@@ -5,7 +5,7 @@
 :root {
   /* Fonts */
   --font-heading: 'Fraunces', 'Georgia', serif;
-  --font-primary: 'Barlow', system-ui, sans-serif;
+  --font-primary: 'Barlow Semi Condensed', system-ui, sans-serif;
   --font-mono: 'Fira Code', monospace;
 
   /* Spacing (8px base grid) */
@@ -82,6 +82,7 @@
   --color-border-light: #edeef1;
 
   /* Text */
+  --color-text-heading: #3d3028;
   --color-text-primary: #1c1f26;
   --color-text-secondary: #4d515c;
   --color-text-muted: #747b8a;
@@ -126,6 +127,7 @@
     --color-border: #4d515c;
     --color-border-light: #42454e;
 
+    --color-text-heading: #f5e6d0;
     --color-text-primary: #f7f8f9;
     --color-text-secondary: #b8bcc5;
     --color-text-muted: #9299a5;

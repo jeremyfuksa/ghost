@@ -222,7 +222,6 @@
 
 .value-prop-title {
   font-size: var(--text-lg);
-  color: var(--color-text-primary);
   margin-bottom: var(--space-3);
 }
 
@@ -290,7 +289,6 @@
 .post-card-title {
   font-size: var(--text-xl);
   letter-spacing: -0.01em;
-  color: var(--color-text-primary);
   margin-bottom: var(--space-2);
   transition: color var(--transition-fast);
 }
@@ -550,7 +548,6 @@
   font-size: var(--text-5xl);
   line-height: var(--leading-5xl);
   letter-spacing: -0.02em;
-  color: var(--color-text-primary);
   margin-bottom: var(--space-4);
 }
 
@@ -724,7 +721,6 @@
   font-size: var(--text-4xl);
   line-height: var(--leading-4xl);
   letter-spacing: -0.02em;
-  color: var(--color-text-primary);
   margin-bottom: var(--space-4);
 }
 
@@ -833,13 +829,11 @@
 .gh-content h2 {
   margin-top: var(--space-12);
   margin-bottom: var(--space-4);
-  color: var(--color-text-primary);
 }
 
 .gh-content h3 {
   margin-top: var(--space-8);
   margin-bottom: var(--space-3);
-  color: var(--color-text-primary);
 }
 
 .gh-content a {
