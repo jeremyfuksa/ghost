@@ -1,0 +1,59 @@
+{{!< default}}
+
+<div class="writing-layout">
+  <div class="page-header">
+    <div class="page-header-left">
+      <div class="eyebrow">The Cocktail Napkin</div>
+      <h1>Writing</h1>
+    </div>
+    <span class="page-header-count">{{pagination.total}} posts</span>
+  </div>
+
+  {{!-- Filter bar --}}
+  <div class="filter-bar" style="grid-column: 1 / -1;">
+    <a href="/writing/" class="filter-chip active">All</a>
+    {{#get "tags" limit="all" order="count.posts desc"}}
+      {{#foreach tags}}
+        <a href="{{url}}" class="filter-chip">{{name}}</a>
+      {{/foreach}}
+    {{/get}}
+  </div>
+
+  <main>
+    {{#foreach posts}}
+      {{> post-card}}
+    {{/foreach}}
+
+    {{#if pagination.pages}}
+      {{#if (match pagination.pages ">" 1)}}
+        <div class="pagination">
+          {{#if pagination.prev}}
+            <a href="{{pagination.prev}}">&larr; Newer</a>
+          {{/if}}
+          <span class="page-number">Page {{pagination.page}} of {{pagination.pages}}</span>
+          {{#if pagination.next}}
+            <a href="{{pagination.next}}">Older &rarr;</a>
+          {{/if}}
+        </div>
+      {{/if}}
+    {{/if}}
+  </main>
+
+  <aside class="sidebar">
+    <div class="sidebar-topics">
+      <div class="sidebar-topics-title">Topics</div>
+      <ul class="sidebar-topics-list">
+        {{#get "tags" limit="all" order="count.posts desc"}}
+          {{#foreach tags}}
+            <li>
+              <a href="{{url}}">
+                <span>{{name}}</span>
+                <span class="topic-count">{{count.posts}}</span>
+              </a>
+            </li>
+          {{/foreach}}
+        {{/get}}
+      </ul>
+    </div>
+  </aside>
+</div>

@@ -1,0 +1,78 @@
+{{!< default}}
+
+{{#post}}
+<header class="post-header">
+  <a href="/writing/" class="post-header-back">&larr; All writing</a>
+  <div class="post-header-meta">
+    {{> tag-pill}}
+    <span class="post-card-date">
+      <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="MMM D, YYYY"}}</time>
+    </span>
+    {{#if @custom.show_reading_time}}
+      <span class="post-card-readtime">{{reading_time}}</span>
+    {{/if}}
+  </div>
+  <h1 class="post-header-title">{{title}}</h1>
+  {{#if custom_excerpt}}
+    <p class="post-header-excerpt">{{custom_excerpt}}</p>
+  {{/if}}
+  {{#if feature_image}}
+    <figure class="post-header-image">
+      <img src="{{img_url feature_image size="l"}}" alt="{{title}}">
+      {{#if feature_image_caption}}
+        <figcaption>{{feature_image_caption}}</figcaption>
+      {{/if}}
+    </figure>
+  {{/if}}
+  <div class="post-header-byline">
+    {{#if author.profile_image}}
+      <img class="post-header-avatar" src="{{author.profile_image}}" alt="{{author.name}}">
+    {{else}}
+      <div class="post-header-avatar"></div>
+    {{/if}}
+    <div>
+      <div class="post-header-author-name">{{author.name}}</div>
+      {{#if author.bio}}
+        <div class="post-header-author-role">{{author.bio}}</div>
+      {{/if}}
+    </div>
+  </div>
+</header>
+
+<div class="post-layout">
+  <article class="post-content gh-content">
+    {{content}}
+  </article>
+
+  <aside class="post-sidebar">
+    <div class="post-sidebar-title">On this page</div>
+    <nav class="toc"></nav>
+
+    {{!-- Related posts --}}
+    {{#if primary_tag}}
+      {{#get "posts" filter="tags:{{primary_tag.slug}}+id:-{{id}}" limit="3"}}
+        {{#if posts.length}}
+          <div class="post-sidebar-title" style="margin-top: var(--space-10);">Related</div>
+          {{#foreach posts}}
+            <div class="post-card" style="padding: var(--space-3) 0;">
+              <a href="{{url}}">
+                <h4 class="post-card-title" style="font-size: var(--text-sm);">{{title}}</h4>
+              </a>
+              <span class="post-card-date">{{date format="MMM D, YYYY"}}</span>
+            </div>
+          {{/foreach}}
+        {{/if}}
+      {{/get}}
+    {{/if}}
+  </aside>
+</div>
+
+<footer class="post-footer">
+  <div class="post-footer-title">More writing</div>
+  {{#get "posts" filter="id:-{{id}}" limit="3"}}
+    {{#foreach posts}}
+      {{> post-card}}
+    {{/foreach}}
+  {{/get}}
+</footer>
+{{/post}}

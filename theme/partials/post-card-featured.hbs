@@ -1,0 +1,25 @@
+<article class="post-card-featured {{#if feature_image}}post-card-featured-has-image{{/if}}">
+  <div class="featured-badge">&#9733; Featured</div>
+  {{#if feature_image}}
+    <a href="{{url}}" class="post-card-featured-image-link">
+      <img class="post-card-featured-image" src="{{img_url feature_image size="l"}}" alt="{{title}}" loading="lazy">
+    </a>
+  {{/if}}
+  <div class="post-card-meta">
+    {{> tag-pill}}
+    <span class="post-card-date">
+      <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="MMM D, YYYY"}}</time>
+    </span>
+    {{#if @custom.show_reading_time}}
+      <span class="post-card-readtime">{{reading_time}}</span>
+    {{/if}}
+  </div>
+  <a href="{{url}}">
+    <h2 class="post-card-title">{{title}}</h2>
+  </a>
+  {{#if custom_excerpt}}
+    <p class="post-card-excerpt">{{custom_excerpt}}</p>
+  {{else if excerpt}}
+    <p class="post-card-excerpt">{{excerpt words="40"}}</p>
+  {{/if}}
+</article>

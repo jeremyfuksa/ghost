@@ -1,0 +1,80 @@
+{{!< default}}
+
+<div class="home-grid">
+  <main>
+    {{!-- Hero --}}
+    <section class="hero">
+      <div class="hero-eyebrow">Design · Systems · Signal</div>
+      <h1 class="hero-headline">Ideas worth sketching on a cocktail napkin</h1>
+      <p class="hero-body">A space for thinking out loud about UX, design systems, AI, and whatever else demands attention. Written by Jeremy Fuksa — independent design leader, available for consulting and senior roles.</p>
+      <div class="hero-meta">
+        <span>Design Leadership</span>
+        <span class="hero-meta-dot"></span>
+        <span>Systems Thinking</span>
+        <span class="hero-meta-dot"></span>
+        <span>AI-Augmented Design</span>
+      </div>
+    </section>
+
+    {{!-- What I do --}}
+    <div class="section-header">
+      <span class="section-title">What I do</span>
+      <a href="/work/" class="section-link">Work with me &rarr;</a>
+    </div>
+    <div class="value-props">
+      <div class="value-prop">
+        <h3 class="value-prop-title">Design Systems</h3>
+        <p class="value-prop-body">Domain-driven systems that teams actually adopt. From token architecture to governance models — built to scale with your organization.</p>
+      </div>
+      <div class="value-prop">
+        <h3 class="value-prop-title">UX Strategy</h3>
+        <p class="value-prop-body">Connecting design decisions to business outcomes. Research-informed, systems-aware, grounded in how products actually ship.</p>
+      </div>
+      <div class="value-prop">
+        <h3 class="value-prop-title">AI-Augmented Design</h3>
+        <p class="value-prop-body">Integrating AI into design workflows without losing craft. Prompt engineering, toolchain design, and team enablement.</p>
+      </div>
+    </div>
+
+    {{!-- Latest writing --}}
+    <div class="section-header" style="margin-top: var(--space-12);">
+      <span class="section-title">Latest writing</span>
+      <a href="/writing/" class="section-link">All posts &rarr;</a>
+    </div>
+    {{#get "posts" limit="3"}}
+      {{#foreach posts}}
+        {{> post-card}}
+      {{/foreach}}
+    {{/get}}
+  </main>
+
+  {{!-- Sidebar --}}
+  <aside class="sidebar">
+    {{> now-card}}
+
+    <div class="sidebar-about">
+      <p>Independent AI-augmented design leader specializing in design systems, UX strategy, and product design. Based in Kansas City.</p>
+      <ul class="sidebar-about-links">
+        <li><a href="/work/">Work</a></li>
+        <li><a href="https://linkedin.com/in/jeremyfuksa">LinkedIn</a></li>
+        <li><a href="https://github.com/jeremyfuksa">GitHub</a></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-topics">
+      <div class="sidebar-topics-title">Topics</div>
+      <ul class="sidebar-topics-list">
+        {{#get "tags" limit="all" order="count.posts desc"}}
+          {{#foreach tags}}
+            <li>
+              <a href="{{url}}">
+                <span>{{name}}</span>
+                <span class="topic-count">{{count.posts}}</span>
+              </a>
+            </li>
+          {{/foreach}}
+        {{/get}}
+      </ul>
+    </div>
+  </aside>
+</div>

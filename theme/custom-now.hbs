@@ -1,0 +1,76 @@
+{{!< default}}
+
+{{#post}}
+<div class="now-page">
+  <div class="eyebrow">Jeremy Fuksa</div>
+  <h1>Now</h1>
+  <div class="now-page-updated">
+    <span class="now-page-dot"></span>
+    <span>Updated {{date format="MMM YYYY"}} · Kansas City</span>
+  </div>
+
+  <p class="now-page-intro">What I'm focused on right now. This is a living document — updated whenever things shift.</p>
+  <hr style="border: none; border-top: 0.5px solid var(--color-border); margin-bottom: var(--space-10);">
+
+  {{!-- Ghost content renders here for editable now items --}}
+  <div class="gh-content">
+    {{content}}
+  </div>
+
+  {{!-- Static fallback sections (use if content is managed in template) --}}
+  {{#unless content}}
+  <section class="now-section">
+    <div class="now-section-header">
+      <span class="now-section-label">Work</span>
+      <hr class="now-section-rule">
+    </div>
+    <div class="now-item">
+      <div class="now-item-label">Status</div>
+      <div>
+        <div class="now-item-value">Independent <span class="now-status now-status-active">Active</span></div>
+        <div class="now-item-sub">Available for consulting and senior UX/design roles</div>
+      </div>
+    </div>
+    <div class="now-item">
+      <div class="now-item-label">Focus</div>
+      <div>
+        <div class="now-item-value">Domain Foundation</div>
+        <div class="now-item-sub">Consulting methodology for design systems and UX strategy</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="now-section">
+    <div class="now-section-header">
+      <span class="now-section-label">Building</span>
+      <hr class="now-section-rule">
+    </div>
+    <div class="now-item">
+      <div class="now-item-label">Project</div>
+      <div>
+        <div class="now-item-value">The Cocktail Napkin</div>
+        <div class="now-item-sub">This site — personal writing and positioning</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="now-section">
+    <div class="now-section-header">
+      <span class="now-section-label">Radio</span>
+      <hr class="now-section-rule">
+    </div>
+    <div class="now-item">
+      <div class="now-item-label">Callsign</div>
+      <div>
+        <div class="now-item-value">W0JJF</div>
+        <div class="now-item-sub">Amateur radio — Kansas City</div>
+      </div>
+    </div>
+  </section>
+  {{/unless}}
+
+  <div class="now-footer-note">
+    <p>This is a <a href="https://nownownow.com/about">now page</a>. If you have your own site, you should make one too.</p>
+  </div>
+</div>
+{{/post}}

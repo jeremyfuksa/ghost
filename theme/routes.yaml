@@ -1,0 +1,12 @@
+routes:
+  /:
+    template: custom-home
+    data: page.home
+
+collections:
+  /writing/:
+    permalink: /writing/{slug}/
+    template: index
+
+taxonomies:
+  tag: /tag/{slug}/
