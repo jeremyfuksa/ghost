@@ -6,6 +6,7 @@
   /* Fonts */
   --font-heading: 'Fraunces', 'Georgia', serif;
   --font-primary: 'Barlow Semi Condensed', system-ui, sans-serif;
+  --font-primary-sm: 'Barlow', system-ui, sans-serif;
   --font-mono: 'Fira Code', monospace;
 
   /* Spacing (8px base grid) */

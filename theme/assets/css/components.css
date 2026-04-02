@@ -1152,6 +1152,60 @@
   font-family: var(--font-mono);
 }
 
+/* ---------- Small Text: Regular Width ---------- */
+/* Text at --text-sm (14px) and below uses regular Barlow for readability */
+
+.nav-author-name,
+.nav-links a,
+.nav-site-name,
+.footer-brand-name,
+.footer-tagline,
+.footer-nav a,
+.footer-copy,
+.tag,
+.eyebrow,
+.section-title,
+.section-link,
+.post-card-date,
+.post-card-readtime,
+.post-card-read-link,
+.post-card-featured .featured-badge,
+.now-card-label,
+.now-card-item-label,
+.now-card-item-value,
+.now-card-item-sub,
+.now-card-link,
+.filter-chip,
+.toc-item,
+.hero-eyebrow,
+.hero-meta,
+.sidebar-about p,
+.sidebar-about-links a,
+.sidebar-topics-title,
+.sidebar-topics-list a,
+.topic-count,
+.page-header-count,
+.post-header-back,
+.post-header-image figcaption,
+.post-header-author-name,
+.post-header-author-role,
+.post-sidebar-title,
+.post-sidebar .post-card-title,
+.post-footer-title,
+.gh-content figcaption,
+.now-page-updated,
+.now-section-label,
+.now-item-label,
+.now-item-sub,
+.now-status,
+.now-footer-note,
+.value-prop-body,
+.error-link,
+.pagination a,
+.pagination .page-number {
+  font-family: var(--font-primary-sm);
+}
+
 /* ---------- Placeholders (static preview only) ---------- */
 
 .placeholder-image {
