@@ -1,0 +1,170 @@
+<!--
+  STATIC SOURCE for: theme/post.hbs
+  Last synced: 2026-04-01
+
+  Handlebars differences:
+  - {{#post}} context replaced with hardcoded post data
+  - {{content}} replaced with sample prose
+  - {{> tag-pill}} replaced with inline tag link
+  - {{> header}} / {{> footer}} replaced with inline nav/footer HTML
+  - {{#get "posts"}} for related posts replaced with hardcoded examples
+  - TOC is hardcoded (JS generates it dynamically in production)
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The case for domain-driven design systems — The Cocktail Napkin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,WONK@9..144,100..900,0..1&family=Barlow+Semi+Condensed:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../theme/assets/css/tokens.css">
+  <link rel="stylesheet" href="../theme/assets/css/base.css">
+  <link rel="stylesheet" href="../theme/assets/css/components.css">
+</head>
+<body class="post-template">
+
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="home.html" class="nav-brand">
+        <div class="nav-logo">
+          <svg viewBox="0 0 80 70" xmlns="http://www.w3.org/2000/svg" fill="none" width="18" height="16">
+            <path d="M40,5 C22,5 8,19 8,37 C8,52 17,63 30,67 C26,59 29,49 40,44 C51,49 54,59 50,67 C63,63 72,52 72,37 C72,19 58,5 40,5Z" fill="var(--color-logo-fg)" opacity="0.85"/>
+          </svg>
+        </div>
+        <div class="nav-name-stack">
+          <span class="nav-site-name">The Cocktail Napkin</span>
+          <span class="nav-author-name">Jeremy Fuksa</span>
+        </div>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="writing.html" class="nav-current">Writing</a></li>
+          <li><a href="page.html">Work</a></li>
+          <li><a href="now.html">Now</a></li>
+          <li><a href="page.html">About</a></li>
+          <li><a href="page.html" class="nav-cta">Work with me</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="site-content">
+    <header class="post-header">
+      <a href="writing.html" class="post-header-back">&larr; All writing</a>
+      <div class="post-header-meta">
+        <a href="tag.html" class="tag">Design Systems</a>
+        <span class="post-card-date"><time>Mar 28, 2026</time></span>
+        <span class="post-card-readtime">8 min read</span>
+      </div>
+      <h1 class="post-header-title">The case for domain-driven design systems</h1>
+      <p class="post-header-excerpt">Most design systems fail because they model UI components instead of business domains. Here's what happens when you flip that assumption.</p>
+      <figure class="post-header-image">
+        <div class="placeholder-image" style="height: 360px; border-radius: var(--rounded-xl);">1000 x 600 feature image</div>
+        <figcaption>Photo caption goes here</figcaption>
+      </figure>
+      <div class="post-header-byline">
+        <div class="post-header-avatar"></div>
+        <div>
+          <div class="post-header-author-name">Jeremy Fuksa</div>
+          <div class="post-header-author-role">Design leader &amp; systems thinker</div>
+        </div>
+      </div>
+    </header>
+
+    <div class="post-layout">
+      <article class="post-content gh-content">
+        <p>There's a pattern I keep seeing in design system work: a team builds a beautiful component library, documents it thoroughly, ships it to production — and then watches adoption plateau at 40%. The components are well-made. The documentation is clear. But something isn't clicking.</p>
+
+        <h2>The component-first trap</h2>
+        <p>The problem is almost always the same. The system was built around <em>visual primitives</em> — buttons, inputs, cards, modals — instead of around the <strong>domain concepts</strong> that the product team actually thinks in. A "card" means nothing to a product manager. An "account summary" means everything.</p>
+        <p>This isn't a new insight in software engineering. Domain-driven design has been a <a href="#">foundational practice</a> in backend architecture for decades. But design systems are still stuck in the component-primitive era.</p>
+
+        <blockquote>
+          <p>The map is not the territory, but a good map should use the territory's language.</p>
+        </blockquote>
+
+        <h2>What domain-driven looks like in practice</h2>
+        <p>Instead of starting with a button audit, start with a domain model. What are the core objects in your product? What actions can users take on them? What states do they move through?</p>
+
+        <pre><code>// Instead of this:
+&lt;Card variant="outlined" size="md"&gt;
+  &lt;CardHeader&gt;...&lt;/CardHeader&gt;
+  &lt;CardBody&gt;...&lt;/CardBody&gt;
+&lt;/Card&gt;
+
+// Try this:
+&lt;AccountSummary
+  account={account}
+  showActions={permissions.canEdit}
+/&gt;</code></pre>
+
+        <p>The second version embeds domain knowledge directly into the component API. It's opinionated, which is exactly what makes it useful.</p>
+
+        <h3>A note on flexibility</h3>
+        <p>The most common objection is that domain components are too rigid. This misunderstands the goal. You still have primitive components underneath — domain components are <em>compositions</em> that encode your team's best understanding of how concepts should be presented.</p>
+
+        <ul>
+          <li>Primitives handle the <em>how</em> — spacing, color, typography</li>
+          <li>Domain components handle the <em>what</em> — accounts, transactions, workflows</li>
+          <li>The domain layer is where adoption actually happens</li>
+        </ul>
+
+        <h2>Measuring success differently</h2>
+        <p>When you build domain-first, your success metric shifts from "component coverage" to "concept coverage." You're not asking "do teams use our button?" — you're asking "do teams model accounts the same way across every surface?"</p>
+
+        <figure>
+          <div class="placeholder-image" style="height: 280px; border-radius: var(--rounded-lg);">[chart placeholder]</div>
+          <figcaption>Adoption rates: component-first vs. domain-first systems over 18 months</figcaption>
+        </figure>
+
+        <p>The results speak for themselves. Teams that ship domain components alongside primitives see 2-3x higher adoption in the first year, because the components match the mental model product teams already have.</p>
+
+        <hr>
+
+        <p>This is the approach behind Domain Foundation — the consulting methodology I'm building for organizations that want design systems that actually stick. More on that soon.</p>
+      </article>
+
+      <aside class="post-sidebar">
+        <div class="post-sidebar-title">On this page</div>
+        <nav class="toc">
+          <a href="#" class="toc-item active">The component-first trap</a>
+          <a href="#" class="toc-item">What domain-driven looks like in practice</a>
+          <a href="#" class="toc-item">Measuring success differently</a>
+        </nav>
+
+        <div class="post-sidebar-title">Related</div>
+        <div class="post-card">
+          <a href="#"><h4 class="post-card-title">Why your design system needs a positioning statement</h4></a>
+          <span class="post-card-date">Mar 15, 2026</span>
+        </div>
+        <div class="post-card">
+          <a href="#"><h4 class="post-card-title">My Figma-to-code pipeline after six months with AI</h4></a>
+          <span class="post-card-date">Feb 28, 2026</span>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="footer-brand-name">Jeremy Fuksa</span>
+        <span class="footer-tagline">Jeremy Fuksa · Kansas City · W0JJF</span>
+      </div>
+      <nav>
+        <ul class="footer-nav">
+          <li><a href="writing.html">Writing</a></li>
+          <li><a href="page.html">Work</a></li>
+          <li><a href="now.html">Now</a></li>
+          <li><a href="page.html">About</a></li>
+        </ul>
+      </nav>
+      <span class="footer-copy">&copy; 2026</span>
+    </div>
+  </footer>
+
+  <script src="../theme/assets/js/main.js"></script>
+</body>
+</html>

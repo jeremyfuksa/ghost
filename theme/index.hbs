@@ -10,7 +10,7 @@
   </div>
 
   {{!-- Filter bar --}}
-  <div class="filter-bar" style="grid-column: 1 / -1;">
+  <div class="filter-bar">
     <a href="/writing/" class="filter-chip active">All</a>
     {{#get "tags" limit="all" order="count.posts desc"}}
       {{#foreach tags}}

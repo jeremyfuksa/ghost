@@ -23,6 +23,7 @@
   --space-24: 96px;
 
   /* Typography Scale */
+  --text-2xs: 11px;
   --text-xs: 12px;
   --text-sm: 14px;
   --text-base: 16px;
@@ -32,6 +33,10 @@
   --text-3xl: 30px;
   --text-4xl: 36px;
   --text-5xl: 48px;
+
+  --leading-h1: 48px;
+  --leading-h2: 33px;
+  --leading-h3: 28px;
 
   --leading-xs: 16px;
   --leading-sm: 20px;
@@ -50,6 +55,13 @@
   --weight-semibold: 600;
   --weight-bold: 700;
 
+  /* Letter Spacing */
+  --tracking-tight: -0.02em;
+  --tracking-snug: -0.01em;
+  --tracking-wide: 0.02em;
+  --tracking-wider: 0.06em;
+  --tracking-widest: 0.1em;
+
   /* Border Radius */
   --rounded-sm: 2px;
   --rounded-base: 4px;
@@ -64,10 +76,28 @@
   --transition-base: 200ms ease;
   --transition-medium: 300ms ease;
 
+  /* Borders */
+  --border-hairline: 0.5px;
+  --border-thin: 1.5px;
+  --border-blockquote: 2px;
+
+  /* Sizing */
+  --size-dot-sm: 3px;
+  --size-dot: 6px;
+  --size-avatar: 32px;
+  --size-card-thumb: 180px;
+  --size-card-image: 120px;
+  --size-featured-image: 320px;
+  --size-featured-image-sm: 200px;
+
   /* Layout */
   --content-max: 1200px;
   --prose-max: 680px;
   --nav-height: 64px;
+  --sidebar-home: 340px;
+  --sidebar-writing: 280px;
+  --sidebar-post: 240px;
+  --now-label-width: 160px;
 
   /* ---- Light Mode Colors ---- */
 

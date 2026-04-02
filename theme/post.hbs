@@ -52,11 +52,11 @@
     {{#if primary_tag}}
       {{#get "posts" filter="tags:{{primary_tag.slug}}+id:-{{id}}" limit="3"}}
         {{#if posts.length}}
-          <div class="post-sidebar-title" style="margin-top: var(--space-10);">Related</div>
+          <div class="post-sidebar-title">Related</div>
           {{#foreach posts}}
-            <div class="post-card" style="padding: var(--space-3) 0;">
+            <div class="post-card">
               <a href="{{url}}">
-                <h4 class="post-card-title" style="font-size: var(--text-sm);">{{title}}</h4>
+                <h4 class="post-card-title">{{title}}</h4>
               </a>
               <span class="post-card-date">{{date format="MMM D, YYYY"}}</span>
             </div>

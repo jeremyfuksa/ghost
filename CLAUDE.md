@@ -6,14 +6,41 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Custom Ghost 6 Handlebars theme called "The Cocktail Napkin" for jeremyfuksa.com. No build step — CSS and JS are served directly. The theme is uploaded as a zip to Ghost Admin.
 
+## Development Workflow: Static-First
+
+Design changes start in `static/*.html` files, not in Ghost templates. CSS is shared — both static pages and HBS templates load the same CSS files.
+
+```
+static/              ← design here (standalone HTML pages)
+  home.html          → theme/custom-home.hbs
+  post.html          → theme/post.hbs
+  writing.html       → theme/index.hbs
+  now.html           → theme/custom-now.hbs
+  tag.html           → theme/tag.hbs
+  page.html          → theme/page.hbs
+  error.html         → theme/error.hbs
+theme/assets/css/    ← single source of truth for styles
+```
+
+**The flow:**
+1. Open `static/*.html` in browser via `file://` — iterate on HTML structure and CSS
+2. CSS changes go directly into `theme/assets/css/` — shared by both static and HBS
+3. When HTML structure changes, port to the corresponding `.hbs` template
+4. Each static file has a comment header documenting its HBS counterpart and last sync date
+
+**CSS-only changes need no sync step.** Only structural HTML changes require porting to HBS.
+
 ## Key Commands
 
 ```bash
-# Package theme for upload
-cd theme && zip -r ../the-cocktail-napkin.zip . -x "*.DS_Store" -x "*node_modules*"
-
-# Preview locally (no Ghost server needed)
+# Open static pages index
 open preview.html
+
+# Open a specific page
+open static/home.html
+
+# Package theme for upload (static/ is NOT included)
+cd theme && zip -r ../the-cocktail-napkin.zip . -x "*.DS_Store" -x "*node_modules*"
 
 # Deploy routes (separate from theme zip)
 # Upload theme/routes.yaml via Ghost Admin > Settings > Labs > Routes
@@ -30,16 +57,29 @@ open preview.html
 ### CSS Structure (no preprocessor, no build)
 - `tokens.css` — design tokens only (CSS custom properties, no selectors)
 - `base.css` — reset, heading/body defaults, animations
-- `components.css` — all component styles (~1200 lines)
-- `screen.css` — entry point that `@import`s the above three
+- `components.css` — all component styles
+- `screen.css` — entry point that `@import`s the above three (used by Ghost)
 
-The `preview.html` file loads the three CSS files directly via `<link>` tags (bypassing `screen.css` imports) because `@import` fails over `file://` protocol.
+Static pages load the three CSS files directly via `<link>` tags (bypassing `screen.css`) because `@import` fails over `file://`.
+
+### Token System
+
+All design values must use CSS custom properties from `tokens.css`. No hardcoded pixel values in CSS or inline styles in HTML/HBS.
+
+**Token categories:** spacing (`--space-*`), typography (`--text-*`, `--leading-*`, `--weight-*`), tracking (`--tracking-*`), borders (`--border-hairline`, `--border-thin`, `--border-blockquote`), sizing (`--size-*`), layout (`--sidebar-*`, `--content-max`, `--prose-max`), colors, radius, transitions.
+
+**Exceptions (intentionally not tokenized):**
+- `font-size: 16px` on `html` (root font size)
+- `0.875em` on inline code (relative to parent)
+- Animation keyframe values
+- Media query breakpoints (CSS vars don't work there)
+- Mobile-specific responsive overrides in `@media` blocks
 
 ### Typography
-- **Headings:** Fraunces (variable font) with `font-variation-settings: 'WONK' 1, 'opsz' 72` for the whimsical ball-terminal style. Weights: H1=400, H2=350, H3=350. Leading is intentionally tight (below 1:1 ratio on H2/H3).
-- **Body:** Barlow (sans-serif), weight 400
+- **Headings:** Fraunces (variable font) with `font-variation-settings: 'WONK' 1, 'opsz' 72`. Weights: H1=400, H2=350, H3=350. Leading is intentionally tight.
+- **Body:** Barlow Semi Condensed, weight 400
 - **Mono:** Fira Code for dates, read times, code blocks
-- All three loaded via a single Google Fonts `<link>` in `default.hbs` and `preview.html`
+- **Heading color:** `--color-text-heading` (warm brown light / cream dark)
 
 ### Color System
 Two accent color roles — never conflate them:
@@ -55,18 +95,15 @@ Dark mode is system-preference only (`prefers-color-scheme`). No JS toggle.
 - `{{#foreach navigation}}` with `{{link_class}}` for active nav state
 - `custom-*.hbs` templates are selectable per-page in Ghost Admin
 
-### Preview System
-`preview.html` is a static HTML file rendering all page templates with mock content. It exists because Handlebars templates need Ghost to render. When theme templates or styles change, the preview drifts — use `/preview-sync` to regenerate it.
-
 ## Custom Commands
 
-- `/swap-font <name> for <heading|body>` — updates font in tokens.css + Google Fonts links in both default.hbs and preview.html
-- `/preview-sync` — regenerates preview.html from current theme state
+- `/swap-font <name> for <heading|body>` — updates font in tokens.css + Google Fonts links in default.hbs and all static pages
+- `/preview-sync` — regenerates static pages from current theme state
 
 ## Design Constraints (intentional, do not override)
 
-- All spacing uses token variables. No hardcoded pixel values in CSS.
-- Borders are `0.5px` (hairline weight is deliberate).
+- All values use token variables. No hardcoded pixels in CSS or inline styles in HTML.
+- Borders use `var(--border-hairline)` (0.5px). The hairline weight is deliberate.
 - Prose max-width is 680px. Do not widen.
 - No JS dependencies. Vanilla JS only, kept minimal (TOC scroll spy is the only behavior).
 - Nav logo at 32px uses the simplified SVG mark, not the full wordmark.

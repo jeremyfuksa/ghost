@@ -10,7 +10,7 @@
   </div>
 
   {{!-- Filter bar --}}
-  <div class="filter-bar" style="grid-column: 1 / -1;">
+  <div class="filter-bar">
     <a href="/writing/" class="filter-chip {{#unless tag}}active{{/unless}}">All</a>
     {{#get "tags" limit="all" order="count.posts desc"}}
       {{#foreach tags}}
@@ -46,7 +46,7 @@
         {{#get "tags" limit="all" order="count.posts desc"}}
           {{#foreach tags}}
             <li>
-              <a href="{{url}}" {{#has slug=../../tag.slug}}style="color: var(--color-accent-text); font-weight: var(--weight-semibold);"{{/has}}>
+              <a href="{{url}}" {{#has slug=../../tag.slug}}class="active"{{/has}}>
                 <span>{{name}}</span>
                 <span class="topic-count">{{count.posts}}</span>
               </a>

@@ -47,30 +47,30 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-size: var(--text-5xl);
-  line-height: 48px;
+  line-height: var(--leading-h1);
   font-weight: 400;
-  letter-spacing: -0.02em;
+  letter-spacing: var(--tracking-tight);
   margin-bottom: var(--space-4);
 }
 
 h2 {
   font-size: var(--text-4xl);
-  line-height: 33px;
+  line-height: var(--leading-h2);
   font-weight: 350;
-  letter-spacing: -0.02em;
+  letter-spacing: var(--tracking-tight);
   margin-bottom: var(--space-4);
 }
 
 h3 {
   font-size: var(--text-3xl);
-  line-height: 28px;
+  line-height: var(--leading-h3);
   font-weight: 350;
   margin-bottom: var(--space-3);
 }
 
 h4 {
   font-size: var(--text-2xl);
-  line-height: 28px;
+  line-height: var(--leading-h3);
   margin-bottom: var(--space-3);
 }
 

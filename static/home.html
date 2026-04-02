@@ -1,0 +1,215 @@
+<!--
+  STATIC SOURCE for: theme/custom-home.hbs
+  Last synced: 2026-04-01
+
+  Handlebars differences:
+  - {{#get "posts" limit="3"}} replaced with 3 hardcoded post-card examples
+  - {{> now-card}} replaced with inline now-card HTML
+  - {{> header}} / {{> footer}} replaced with inline nav/footer HTML
+  - {{#get "tags"}} replaced with hardcoded topic list
+  - Links use # instead of {{url}}
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Home — The Cocktail Napkin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,WONK@9..144,100..900,0..1&family=Barlow+Semi+Condensed:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../theme/assets/css/tokens.css">
+  <link rel="stylesheet" href="../theme/assets/css/base.css">
+  <link rel="stylesheet" href="../theme/assets/css/components.css">
+</head>
+<body class="home-template">
+
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="home.html" class="nav-brand">
+        <div class="nav-logo">
+          <svg viewBox="0 0 80 70" xmlns="http://www.w3.org/2000/svg" fill="none" width="18" height="16">
+            <path d="M40,5 C22,5 8,19 8,37 C8,52 17,63 30,67 C26,59 29,49 40,44 C51,49 54,59 50,67 C63,63 72,52 72,37 C72,19 58,5 40,5Z" fill="var(--color-logo-fg)" opacity="0.85"/>
+          </svg>
+        </div>
+        <div class="nav-name-stack">
+          <span class="nav-site-name">The Cocktail Napkin</span>
+          <span class="nav-author-name">Jeremy Fuksa</span>
+        </div>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="writing.html">Writing</a></li>
+          <li><a href="page.html">Work</a></li>
+          <li><a href="now.html">Now</a></li>
+          <li><a href="page.html">About</a></li>
+          <li><a href="page.html" class="nav-cta">Work with me</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="site-content">
+    <div class="home-grid">
+      <main>
+        <section class="hero">
+          <div class="hero-eyebrow">Design · Systems · Signal</div>
+          <h1 class="hero-headline">Ideas worth sketching on a cocktail napkin</h1>
+          <p class="hero-body">A space for thinking out loud about UX, design systems, AI, and whatever else demands attention. Written by Jeremy Fuksa — independent design leader, available for consulting and senior roles.</p>
+          <div class="hero-meta">
+            <span>Design Leadership</span>
+            <span class="hero-meta-dot"></span>
+            <span>Systems Thinking</span>
+            <span class="hero-meta-dot"></span>
+            <span>AI-Augmented Design</span>
+          </div>
+        </section>
+
+        <div class="section-header">
+          <span class="section-title">What I do</span>
+          <a href="page.html" class="section-link">Work with me &rarr;</a>
+        </div>
+        <div class="value-props">
+          <div class="value-prop">
+            <h3 class="value-prop-title">Design Systems</h3>
+            <p class="value-prop-body">Domain-driven systems that teams actually adopt. From token architecture to governance models — built to scale with your organization.</p>
+          </div>
+          <div class="value-prop">
+            <h3 class="value-prop-title">UX Strategy</h3>
+            <p class="value-prop-body">Connecting design decisions to business outcomes. Research-informed, systems-aware, grounded in how products actually ship.</p>
+          </div>
+          <div class="value-prop">
+            <h3 class="value-prop-title">AI-Augmented Design</h3>
+            <p class="value-prop-body">Integrating AI into design workflows without losing craft. Prompt engineering, toolchain design, and team enablement.</p>
+          </div>
+        </div>
+
+        <div class="section-header">
+          <span class="section-title">Latest writing</span>
+          <a href="writing.html" class="section-link">All posts &rarr;</a>
+        </div>
+
+        <article class="post-card post-card-has-image">
+          <a href="post.html" class="post-card-image-link">
+            <div class="post-card-image placeholder-image">600 x 400</div>
+          </a>
+          <div class="post-card-content">
+            <div class="post-card-meta">
+              <a href="tag.html" class="tag">AI</a>
+              <span class="post-card-date"><time>Mar 22, 2026</time></span>
+            </div>
+            <a href="post.html"><h3 class="post-card-title">Prompt engineering is just design research with a different cursor</h3></a>
+            <p class="post-card-excerpt">The skills that make someone good at user interviews turn out to be the same skills that make someone good at working with LLMs.</p>
+            <div class="post-card-footer">
+              <span class="post-card-readtime">5 min read</span>
+              <a href="post.html" class="post-card-read-link">Read <span>&rarr;</span></a>
+            </div>
+          </div>
+        </article>
+
+        <article class="post-card post-card-has-image">
+          <a href="post.html" class="post-card-image-link">
+            <div class="post-card-image placeholder-image">600 x 400</div>
+          </a>
+          <div class="post-card-content">
+            <div class="post-card-meta">
+              <a href="tag.html" class="tag">UX Strategy</a>
+              <span class="post-card-date"><time>Mar 15, 2026</time></span>
+            </div>
+            <a href="post.html"><h3 class="post-card-title">Why your design system needs a positioning statement</h3></a>
+            <p class="post-card-excerpt">If you can't articulate who your design system serves, you don't have a product — you have a component library.</p>
+            <div class="post-card-footer">
+              <span class="post-card-readtime">6 min read</span>
+              <a href="post.html" class="post-card-read-link">Read <span>&rarr;</span></a>
+            </div>
+          </div>
+        </article>
+
+        <article class="post-card post-card-has-image">
+          <a href="post.html" class="post-card-image-link">
+            <div class="post-card-image placeholder-image">600 x 400</div>
+          </a>
+          <div class="post-card-content">
+            <div class="post-card-meta">
+              <a href="tag.html" class="tag">Leadership</a>
+              <span class="post-card-date"><time>Mar 8, 2026</time></span>
+            </div>
+            <a href="post.html"><h3 class="post-card-title">The senior IC trap: when "staying technical" becomes a ceiling</h3></a>
+            <p class="post-card-excerpt">The most impactful design leaders I know refuse the binary between managing people and staying hands-on.</p>
+            <div class="post-card-footer">
+              <span class="post-card-readtime">7 min read</span>
+              <a href="post.html" class="post-card-read-link">Read <span>&rarr;</span></a>
+            </div>
+          </div>
+        </article>
+      </main>
+
+      <aside class="sidebar">
+        <div class="now-card">
+          <div class="now-card-header">
+            <span class="now-card-dot"></span>
+            <span class="now-card-label">NOW</span>
+          </div>
+          <div class="now-card-item">
+            <div class="now-card-item-label">Status</div>
+            <div class="now-card-item-value">Independent</div>
+            <div class="now-card-item-sub">Available for consulting &amp; senior roles</div>
+          </div>
+          <div class="now-card-item">
+            <div class="now-card-item-label">Building</div>
+            <div class="now-card-item-value">Domain Foundation</div>
+            <div class="now-card-item-sub">Consulting methodology</div>
+          </div>
+          <div class="now-card-item">
+            <div class="now-card-item-label">Location</div>
+            <div class="now-card-item-value">Kansas City</div>
+          </div>
+          <div class="now-card-footer">
+            <a href="now.html" class="now-card-link">Full now page <span>&rarr;</span></a>
+          </div>
+        </div>
+
+        <div class="sidebar-about">
+          <p>Independent AI-augmented design leader specializing in design systems, UX strategy, and product design. Based in Kansas City.</p>
+          <ul class="sidebar-about-links">
+            <li><a href="page.html">Work</a></li>
+            <li><a href="#">LinkedIn</a></li>
+            <li><a href="#">GitHub</a></li>
+          </ul>
+        </div>
+
+        <div class="sidebar-topics">
+          <div class="sidebar-topics-title">Topics</div>
+          <ul class="sidebar-topics-list">
+            <li><a href="tag.html"><span>Design Systems</span><span class="topic-count">12</span></a></li>
+            <li><a href="tag.html"><span>AI</span><span class="topic-count">8</span></a></li>
+            <li><a href="tag.html"><span>UX Strategy</span><span class="topic-count">7</span></a></li>
+            <li><a href="tag.html"><span>Leadership</span><span class="topic-count">5</span></a></li>
+            <li><a href="tag.html"><span>Tools</span><span class="topic-count">4</span></a></li>
+            <li><a href="tag.html"><span>Process</span><span class="topic-count">3</span></a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="footer-brand-name">Jeremy Fuksa</span>
+        <span class="footer-tagline">Jeremy Fuksa · Kansas City · W0JJF</span>
+      </div>
+      <nav>
+        <ul class="footer-nav">
+          <li><a href="writing.html">Writing</a></li>
+          <li><a href="page.html">Work</a></li>
+          <li><a href="now.html">Now</a></li>
+          <li><a href="page.html">About</a></li>
+        </ul>
+      </nav>
+      <span class="footer-copy">&copy; 2026</span>
+    </div>
+  </footer>
+
+</body>
+</html>
