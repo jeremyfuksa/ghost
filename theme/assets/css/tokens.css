@@ -149,8 +149,9 @@
 }
 
 /* ---- Dark Mode Colors ---- */
+/* System preference (default when no toggle used) */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --color-bg: #1c1f26;
     --color-surface: #2b303b;
     --color-surface-2: #42454e;
@@ -186,4 +187,42 @@
     --color-warning: #f9c574;
     --color-danger: #e75351;
   }
+}
+
+/* Manual dark override (toggle) */
+:root[data-theme="dark"] {
+  --color-bg: #1c1f26;
+  --color-surface: #2b303b;
+  --color-surface-2: #42454e;
+  --color-surface-3: #4d515c;
+  --color-border: #4d515c;
+  --color-border-light: #42454e;
+
+  --color-text-heading: #f5e6d0;
+  --color-text-primary: #f7f8f9;
+  --color-text-secondary: #b8bcc5;
+  --color-text-muted: #9299a5;
+  --color-text-subtle: #9299a5;
+
+  --color-accent-ui: #f5a855;
+  --color-accent-text: #f5a855;
+  --color-accent-hover: #ffc05c;
+  --color-accent-subtle: #341f19;
+
+  --color-tag-bg: #341f19;
+  --color-tag-text: #dbbdb3;
+
+  --color-link: #8098b0;
+  --color-link-hover: #f5a855;
+
+  --color-logo-bg: #f7f8f9;
+  --color-logo-fg: #1c1f26;
+
+  --color-now-bg: #231a0e;
+  --color-now-border: #d97706;
+  --color-now-accent: #f5a855;
+
+  --color-success: #8fb14b;
+  --color-warning: #f9c574;
+  --color-danger: #e75351;
 }

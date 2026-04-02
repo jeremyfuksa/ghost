@@ -5,6 +5,30 @@
 (function () {
   'use strict';
 
+  // Theme toggle
+  var toggle = document.querySelector('.theme-toggle');
+  if (toggle) {
+    var stored = localStorage.getItem('theme');
+    if (stored) {
+      document.documentElement.setAttribute('data-theme', stored);
+    }
+
+    toggle.addEventListener('click', function () {
+      var current = document.documentElement.getAttribute('data-theme');
+      var isDark;
+
+      if (current) {
+        isDark = current === 'dark';
+      } else {
+        isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      }
+
+      var next = isDark ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    });
+  }
+
   // TOC generation and scroll spy (post pages only)
   var content = document.querySelector('.gh-content');
   var tocContainer = document.querySelector('.toc');

@@ -137,16 +137,20 @@ kbd {
   animation: fadeUp 0.4s ease both;
 }
 
-.hero-headline {
+.hero-name {
   animation: fadeUp 0.5s 0.05s ease both;
 }
 
-.hero-body {
+.hero-positioning {
   animation: fadeUp 0.5s 0.10s ease both;
 }
 
-.hero-meta {
+.hero-proof {
   animation: fadeUp 0.5s 0.15s ease both;
+}
+
+.hero-actions {
+  animation: fadeUp 0.5s 0.20s ease both;
 }
 
 .now-card {
