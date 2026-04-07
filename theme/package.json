@@ -2,6 +2,15 @@
   "name": "the-cocktail-napkin",
   "description": "Jeremy Fuksa — The Cocktail Napkin",
   "version": "1.0.0",
+  "author": {
+    "name": "Jeremy Fuksa",
+    "email": "jeremy@jeremyfuksa.com"
+  },
+  "keywords": [
+    "ghost",
+    "ghost-theme",
+    "theme"
+  ],
   "engines": {
     "ghost": ">=6.0.0"
   },
@@ -17,12 +26,6 @@
     },
     "card_assets": true,
     "custom": {
-      "navigation_layout": {
-        "type": "select",
-        "options": ["Logo on left", "Logo centered"],
-        "default": "Logo on left",
-        "description": "Navigation bar layout"
-      },
       "show_reading_time": {
         "type": "boolean",
         "default": true,

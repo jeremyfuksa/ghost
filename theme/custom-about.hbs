@@ -1,0 +1,58 @@
+{{!< default}}
+
+{{#page}}
+<article class="about-page">
+  <header class="about-header">
+    <div class="eyebrow">The Cocktail Napkin</div>
+    <h1>About</h1>
+    {{#if custom_excerpt}}
+      <p class="about-lede">{{custom_excerpt}}</p>
+    {{/if}}
+  </header>
+
+  {{#if feature_image}}
+    <figure class="about-image">
+      <img src="{{img_url feature_image size="l"}}" alt="{{title}}">
+      {{#if feature_image_caption}}
+        <figcaption>{{feature_image_caption}}</figcaption>
+      {{/if}}
+    </figure>
+  {{/if}}
+
+  <div class="about-layout">
+    <div class="gh-content about-prose">
+      {{content}}
+    </div>
+
+    <aside class="about-sidebar">
+      <div class="about-sidebar-block">
+        <div class="about-sidebar-label">Based in</div>
+        <div class="about-sidebar-value">Kansas City, MO</div>
+      </div>
+      <div class="about-sidebar-block">
+        <div class="about-sidebar-label">Practice</div>
+        <div class="about-sidebar-value">Design systems, UX strategy, AI-augmented design</div>
+      </div>
+      <div class="about-sidebar-block">
+        <div class="about-sidebar-label">Elsewhere</div>
+        <ul class="about-sidebar-links">
+          <li><a href="/writing/">Writing</a></li>
+          <li><a href="/work/">Work</a></li>
+          <li><a href="/now/">Now</a></li>
+          <li><a href="https://linkedin.com/in/jeremyfuksa">LinkedIn</a></li>
+          <li><a href="https://github.com/jeremyfuksa">GitHub</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <section id="work-with-me" class="about-cta-section">
+    <h2 class="about-cta-title">Work with me</h2>
+    <p class="about-cta-body">Available for design system engagements, UX strategy consulting, and senior design leadership roles. Working with teams anywhere.</p>
+    <div class="about-cta-actions">
+      <a href="mailto:jeremy@jeremyfuksa.com" class="hero-cta">Get in touch</a>
+      <a href="/work/" class="hero-cta-secondary">See my work &rarr;</a>
+    </div>
+  </section>
+</article>
+{{/page}}

@@ -25,15 +25,15 @@
     </figure>
   {{/if}}
   <div class="post-header-byline">
-    {{#if author.profile_image}}
-      <img class="post-header-avatar" src="{{author.profile_image}}" alt="{{author.name}}">
+    {{#if primary_author.profile_image}}
+      <img class="post-header-avatar" src="{{primary_author.profile_image}}" alt="{{primary_author.name}}">
     {{else}}
       <div class="post-header-avatar"></div>
     {{/if}}
     <div>
-      <div class="post-header-author-name">{{author.name}}</div>
-      {{#if author.bio}}
-        <div class="post-header-author-role">{{author.bio}}</div>
+      <div class="post-header-author-name">{{primary_author.name}}</div>
+      {{#if primary_author.bio}}
+        <div class="post-header-author-role">{{primary_author.bio}}</div>
       {{/if}}
     </div>
   </div>
@@ -68,7 +68,10 @@
 </div>
 
 <footer class="post-footer">
-  <div class="post-footer-title">More writing</div>
+  <div class="post-footer-title">
+    <span class="writing-mark writing-mark-sm" style="--logo-glyph: url('{{asset "images/glyph.svg"}}')" aria-hidden="true"></span>
+    More writing
+  </div>
   {{#get "posts" filter="id:-{{id}}" limit="3"}}
     {{#foreach posts}}
       {{> post-card}}

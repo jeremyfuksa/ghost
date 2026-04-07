@@ -1,11 +1,7 @@
 <header class="nav">
   <div class="nav-inner">
     <a href="{{@site.url}}" class="nav-brand">
-      <div class="nav-logo">
-        <svg viewBox="0 0 80 70" xmlns="http://www.w3.org/2000/svg" fill="none" width="18" height="16">
-          <path d="M40,5 C22,5 8,19 8,37 C8,52 17,63 30,67 C26,59 29,49 40,44 C51,49 54,59 50,67 C63,63 72,52 72,37 C72,19 58,5 40,5Z" fill="var(--color-logo-fg)" opacity="0.85"/>
-        </svg>
-      </div>
+      <div class="nav-logo" style="--logo-glyph: url('{{asset "images/flame.svg"}}')" aria-hidden="true"></div>
       <div class="nav-name-stack">
         <span class="nav-site-name">The Cocktail Napkin</span>
         <span class="nav-author-name">Jeremy Fuksa</span>
@@ -13,13 +9,7 @@
     </a>
     <nav>
       <ul class="nav-links">
-        {{#foreach navigation}}
-          {{#if (match label "=" "Work with me")}}
-            <li><a href="{{url}}" class="nav-cta {{link_class}}">{{label}}</a></li>
-          {{else}}
-            <li><a href="{{url}}" class="{{link_class}}">{{label}}</a></li>
-          {{/if}}
-        {{/foreach}}
+        {{navigation}}
         <li>
           <button class="theme-toggle" type="button" aria-label="Toggle dark mode">
             <svg class="theme-toggle-icon theme-toggle-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">

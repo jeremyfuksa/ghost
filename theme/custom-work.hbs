@@ -1,0 +1,122 @@
+{{!< default}}
+
+{{#page}}
+<div class="work-page">
+  <header class="work-header">
+    <div class="eyebrow">The Cocktail Napkin</div>
+    <h1>Work</h1>
+    {{#if custom_excerpt}}
+      <p class="work-intro">{{custom_excerpt}}</p>
+    {{else}}
+      <p class="work-intro">A cross-section of the work I do — writing, systems thinking, leadership, and experiments. Some of it lives publicly. Some of it doesn't.</p>
+    {{/if}}
+  </header>
+
+  {{#if feature_image}}
+    <figure class="work-feature-image">
+      <img src="{{img_url feature_image size="l"}}" alt="{{title}}">
+    </figure>
+  {{/if}}
+
+  {{#if content}}
+    <div class="gh-content work-prose">
+      {{content}}
+    </div>
+  {{/if}}
+
+  <section class="work-grid">
+    {{!-- Writing & thinking --}}
+    <div class="work-category">
+      <div class="work-category-header">
+        <span class="work-category-label">Writing &amp; thinking</span>
+        <a href="/writing/" class="work-category-link">All writing &rarr;</a>
+      </div>
+      <div class="work-category-body">
+        {{#get "posts" limit="3" order="published_at desc"}}
+          {{#if posts}}
+            {{#foreach posts}}
+              <a href="{{url}}" class="work-card">
+                <h3 class="work-card-title">{{title}}</h3>
+                {{#if custom_excerpt}}
+                  <p class="work-card-excerpt">{{custom_excerpt}}</p>
+                {{else}}
+                  <p class="work-card-excerpt">{{excerpt words="20"}}</p>
+                {{/if}}
+                <span class="work-card-meta">{{date format="MMM YYYY"}}</span>
+              </a>
+            {{/foreach}}
+          {{else}}
+            <p class="work-empty">No posts yet.</p>
+          {{/if}}
+        {{/get}}
+      </div>
+    </div>
+
+    {{!-- Systems work --}}
+    <div class="work-category">
+      <div class="work-category-header">
+        <span class="work-category-label">Systems work</span>
+      </div>
+      <div class="work-category-body">
+        <div class="work-card work-card-static">
+          <h3 class="work-card-title">Design systems that ship</h3>
+          <p class="work-card-excerpt">Tokens, components, governance, adoption. What it actually takes to make a design system stick — beyond the Figma library.</p>
+          <span class="work-card-meta">Ongoing practice</span>
+        </div>
+      </div>
+    </div>
+
+    {{!-- Leadership narratives --}}
+    <div class="work-category">
+      <div class="work-category-header">
+        <span class="work-category-label">Leadership narratives</span>
+      </div>
+      <div class="work-category-body">
+        <div class="work-card work-card-static">
+          <h3 class="work-card-title">UX strategy tied to outcomes</h3>
+          <p class="work-card-excerpt">Translating design work into the language the business uses to make decisions. Frameworks, artifacts, anti-patterns.</p>
+          <span class="work-card-meta">Ongoing practice</span>
+        </div>
+      </div>
+    </div>
+
+    {{!-- Experiments --}}
+    <div class="work-category">
+      <div class="work-category-header">
+        <span class="work-category-label">Experiments</span>
+      </div>
+      <div class="work-category-body">
+        <div class="work-card work-card-static">
+          <h3 class="work-card-title">AI-augmented design workflows</h3>
+          <p class="work-card-excerpt">What changes when AI is part of the toolchain — and what stubbornly doesn't. Live experiments, current as of this week.</p>
+          <span class="work-card-meta">In progress</span>
+        </div>
+      </div>
+    </div>
+
+    {{!-- Case studies (password-gated) --}}
+    <div class="work-category work-category-locked">
+      <div class="work-category-header">
+        <span class="work-category-label">Case studies</span>
+        <span class="work-category-lock">Password-protected</span>
+      </div>
+      <div class="work-category-body">
+        <div class="work-card work-card-locked">
+          <h3 class="work-card-title">Detailed engagement case studies</h3>
+          <p class="work-card-excerpt">Process, decisions, and outcomes from specific engagements. Available on request — drop me a line and I'll share the password.</p>
+          <a href="#work-with-me" class="work-card-cta">Request access &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work-with-me" class="work-cta-section">
+    <h2 class="work-cta-title">Work with me</h2>
+    <p class="work-cta-body">Available for design system engagements, UX strategy consulting, and senior design leadership roles. Based in Kansas City, working with teams anywhere.</p>
+    <div class="work-cta-actions">
+      <a href="mailto:jeremy@jeremyfuksa.com" class="hero-cta">Get in touch</a>
+      <a href="/about/" class="hero-cta-secondary">About me &rarr;</a>
+    </div>
+  </section>
+</div>
+{{/page}}

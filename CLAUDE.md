@@ -46,6 +46,46 @@ cd theme && zip -r ../the-cocktail-napkin.zip . -x "*.DS_Store" -x "*node_module
 # Upload theme/routes.yaml via Ghost Admin > Settings > Labs > Routes
 ```
 
+## Local Ghost Development with Docker
+
+For rapid iteration, use a local Ghost instance instead of the manual zip → upload workflow:
+
+```bash
+# Start Ghost container (first time: builds volumes and seeds content)
+docker compose up -d
+
+# Run setup script on first launch (idempotent, safe to re-run)
+bash dev/setup.sh
+
+# Output: Site runs at http://localhost:2368, admin at http://localhost:2368/ghost/
+# Credentials: dev@local.test / DevLocal12345!
+```
+
+**How it works:**
+- `docker-compose.yml` — Ghost 5 Alpine container with SQLite, NODE_ENV=development (file watching enabled)
+- `./theme` bind-mounts to Ghost's theme directory → live reloading on file changes
+- `dev/setup.sh` — idempotent setup: creates owner account, activates theme, uploads routes.yaml, seeds test content
+- Data persists in `ghost-data/` volume across container restarts
+
+**Development loop:**
+1. Edit `theme/*.hbs` or `theme/assets/css/*` → refresh browser (changes live within 1-2s)
+2. Test all pages locally: `/`, `/writing/`, `/work/`, `/about/`, `/now/`, `/writing/{post}/`, `/tag/{tag}/`
+3. Run `npx gscan theme` in `theme/` to validate compatibility (0 errors, 1 warning for custom fonts is normal)
+
+**When done:**
+```bash
+# Stop (data persists)
+docker compose down
+
+# Full reset (if needed)
+docker compose down -v && rm -rf ghost-data/
+```
+
+**Deploying to production:**
+1. Package theme: `cd theme && zip -r ../the-cocktail-napkin.zip . -x "*.DS_Store" -x "*node_modules*"`
+2. Upload to your Ghost Admin at beta.jeremyfuksa.com (Themes)
+3. Upload routes.yaml via Settings > Labs > Routes (if it changed)
+
 ## Architecture
 
 ### Routing (`theme/routes.yaml`)

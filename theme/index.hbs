@@ -4,7 +4,10 @@
   <div class="page-header">
     <div class="page-header-left">
       <div class="eyebrow">The Cocktail Napkin</div>
-      <h1>Writing</h1>
+      <h1 class="page-header-title-with-mark">
+        <span class="writing-mark" style="--logo-glyph: url('{{asset "images/glyph.svg"}}')" aria-hidden="true"></span>
+        Writing
+      </h1>
     </div>
     <span class="page-header-count">{{pagination.total}} posts</span>
   </div>
@@ -12,7 +15,7 @@
   {{!-- Filter bar --}}
   <div class="filter-bar">
     <a href="/writing/" class="filter-chip active">All</a>
-    {{#get "tags" limit="all" order="count.posts desc"}}
+    {{#get "tags" limit="100" order="count.posts desc"}}
       {{#foreach tags}}
         <a href="{{url}}" class="filter-chip">{{name}}</a>
       {{/foreach}}
@@ -43,7 +46,7 @@
     <div class="sidebar-topics">
       <div class="sidebar-topics-title">Topics</div>
       <ul class="sidebar-topics-list">
-        {{#get "tags" limit="all" order="count.posts desc"}}
+        {{#get "tags" limit="100" order="count.posts desc"}}
           {{#foreach tags}}
             <li>
               <a href="{{url}}">

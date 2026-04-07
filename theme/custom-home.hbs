@@ -35,6 +35,30 @@
         {{> post-card}}
       {{/foreach}}
     {{/get}}
+
+    {{!-- Portfolio teaser --}}
+    <div class="section-header section-header-spaced">
+      <span class="section-title">Work</span>
+      <a href="/work/" class="section-link">See all work &rarr;</a>
+    </div>
+    <div class="home-work-teaser">
+      <a href="/work/" class="home-work-card">
+        <div class="home-work-card-label">Writing &amp; thinking</div>
+        <div class="home-work-card-body">Long-form essays on design systems, UX strategy, and craft.</div>
+      </a>
+      <a href="/work/" class="home-work-card">
+        <div class="home-work-card-label">Systems work</div>
+        <div class="home-work-card-body">Tokens, components, governance — making design systems stick.</div>
+      </a>
+      <a href="/work/" class="home-work-card">
+        <div class="home-work-card-label">Leadership</div>
+        <div class="home-work-card-body">Translating design into the language the business uses.</div>
+      </a>
+      <a href="/work/#work-with-me" class="home-work-card home-work-card-cta">
+        <div class="home-work-card-label">Case studies</div>
+        <div class="home-work-card-body">Detailed engagement stories. Available on request.</div>
+      </a>
+    </div>
   </main>
 
   {{!-- Sidebar --}}
@@ -53,7 +77,7 @@
     <div class="sidebar-topics">
       <div class="sidebar-topics-title">Topics</div>
       <ul class="sidebar-topics-list">
-        {{#get "tags" limit="all" order="count.posts desc"}}
+        {{#get "tags" limit="100" order="count.posts desc"}}
           {{#foreach tags}}
             <li>
               <a href="{{url}}">
