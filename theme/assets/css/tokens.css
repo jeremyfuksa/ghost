@@ -5,8 +5,8 @@
 :root {
   /* Fonts */
   --font-heading: 'Fraunces', 'Georgia', serif;
-  --font-primary: 'Barlow Semi Condensed', system-ui, sans-serif;
-  --font-primary-sm: 'Barlow', system-ui, sans-serif;
+  --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-primary-sm: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, Roboto, 'Helvetica Neue', Arial, sans-serif;
   --font-mono: 'Fira Code', monospace;
 
   /* Spacing (8px base grid) */
@@ -24,6 +24,7 @@
   --space-24: 96px;
 
   /* Typography Scale */
+  --text-3xs: 10px;
   --text-2xs: 11px;
   --text-xs: 12px;
   --text-sm: 14px;
@@ -139,8 +140,15 @@
 
   /* Now card */
   --color-now-bg: #fff8f0;
-  --color-now-border: #ffc05c;
+  --color-now-border: #c9998a; /* terracotta-400 */
   --color-now-accent: #b45309;
+
+  /* Palette accents (Cello + Terracotta — applied surgically, not as primary) */
+  --color-eyebrow: #8d5443;          /* terracotta-700 */
+  --color-section-label: #4c627d;    /* cello-600 */
+  --color-blockquote-rule: #a8654f;  /* terracotta-600 */
+  --color-toc-active: #3e4f66;       /* cello-700 */
+  --color-footer-tagline: #607a97;   /* cello-500 */
 
   /* Semantic */
   --color-success: #739038;
@@ -180,8 +188,14 @@
     --color-logo-fg: #1c1f26;
 
     --color-now-bg: #231a0e;
-    --color-now-border: #d97706;
+    --color-now-border: #a8654f; /* terracotta-600 */
     --color-now-accent: #f5a855;
+
+    --color-eyebrow: #dbbdb3;          /* terracotta-300 */
+    --color-section-label: #acbbcc;    /* cello-300 */
+    --color-blockquote-rule: #c9998a;  /* terracotta-400 */
+    --color-toc-active: #acbbcc;       /* cello-300 */
+    --color-footer-tagline: #8098b0;   /* cello-400 */
 
     --color-success: #8fb14b;
     --color-warning: #f9c574;
@@ -219,8 +233,14 @@
   --color-logo-fg: #1c1f26;
 
   --color-now-bg: #231a0e;
-  --color-now-border: #d97706;
+  --color-now-border: #a8654f; /* terracotta-600 */
   --color-now-accent: #f5a855;
+
+  --color-eyebrow: #dbbdb3;          /* terracotta-300 */
+  --color-section-label: #acbbcc;    /* cello-300 */
+  --color-blockquote-rule: #c9998a;  /* terracotta-400 */
+  --color-toc-active: #acbbcc;       /* cello-300 */
+  --color-footer-tagline: #8098b0;   /* cello-400 */
 
   --color-success: #8fb14b;
   --color-warning: #f9c574;

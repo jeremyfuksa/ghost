@@ -74,21 +74,6 @@
       </ul>
     </div>
 
-    <div class="sidebar-topics">
-      <div class="sidebar-topics-title">Topics</div>
-      <ul class="sidebar-topics-list">
-        {{#get "tags" limit="100" order="count.posts desc"}}
-          {{#foreach tags}}
-            <li>
-              <a href="{{url}}">
-                <span>{{name}}</span>
-                <span class="topic-count">{{count.posts}}</span>
-              </a>
-            </li>
-          {{/foreach}}
-        {{/get}}
-      </ul>
-    </div>
   </aside>
 </div>
 </div>

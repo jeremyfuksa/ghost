@@ -117,7 +117,7 @@ All design values must use CSS custom properties from `tokens.css`. No hardcoded
 
 ### Typography
 - **Headings:** Fraunces (variable font) with `font-variation-settings: 'WONK' 1, 'opsz' 72`. Weights: H1=400, H2=350, H3=350. Leading is intentionally tight.
-- **Body:** Barlow Semi Condensed, weight 400
+- **Body:** System UI stack (`-apple-system`, `BlinkMacSystemFont`, `Segoe UI`, `system-ui`, etc.) — no webfont
 - **Mono:** Fira Code for dates, read times, code blocks
 - **Heading color:** `--color-text-heading` (warm brown light / cream dark)
 
