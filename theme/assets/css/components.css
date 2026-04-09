@@ -1298,6 +1298,233 @@
   margin-bottom: var(--space-2);
 }
 
+.gh-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: var(--space-8) 0;
+  font-size: var(--text-sm);
+}
+
+.gh-content th,
+.gh-content td {
+  padding: var(--space-3) var(--space-4);
+  text-align: left;
+  border-bottom: var(--border-hairline) solid var(--color-border);
+  color: var(--color-text-secondary);
+}
+
+.gh-content th {
+  font-weight: var(--weight-semibold);
+  color: var(--color-text-primary);
+  border-bottom-width: 1px;
+}
+
+.gh-content tr:last-child td {
+  border-bottom: none;
+}
+
+/* Koenig: Bookmark card */
+.gh-content .kg-bookmark-card {
+  border: var(--border-hairline) solid var(--color-border);
+  border-radius: var(--rounded-lg);
+  overflow: hidden;
+}
+
+.gh-content .kg-bookmark-container {
+  display: flex;
+  text-decoration: none;
+  border-bottom: none;
+  color: inherit;
+}
+
+.gh-content .kg-bookmark-container:hover {
+  background: var(--color-surface-2);
+  border-bottom: none;
+}
+
+.gh-content .kg-bookmark-content {
+  flex: 1;
+  padding: var(--space-4) var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.gh-content .kg-bookmark-title {
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text-primary);
+  line-height: var(--leading-sm);
+}
+
+.gh-content .kg-bookmark-description {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: var(--leading-sm);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.gh-content .kg-bookmark-metadata {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  margin-top: auto;
+}
+
+.gh-content .kg-bookmark-icon {
+  width: 16px;
+  height: 16px;
+  border-radius: var(--rounded-sm);
+}
+
+.gh-content .kg-bookmark-thumbnail {
+  width: var(--size-featured-image-sm);
+  flex-shrink: 0;
+}
+
+.gh-content .kg-bookmark-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+/* Koenig: Gallery card */
+.gh-content .kg-gallery-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.gh-content .kg-gallery-row {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.gh-content .kg-gallery-image {
+  flex: 1;
+  min-width: 0;
+}
+
+.gh-content .kg-gallery-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: var(--rounded-base);
+}
+
+/* Koenig: Callout card */
+.gh-content .kg-callout-card {
+  display: flex;
+  gap: var(--space-4);
+  padding: var(--space-5) var(--space-6);
+  border-radius: var(--rounded-lg);
+  margin: var(--space-8) 0;
+  background: var(--color-surface-2);
+  border-left: var(--border-blockquote) solid var(--color-border);
+}
+
+.gh-content .kg-callout-card-accent {
+  background: var(--color-accent-subtle);
+  border-left-color: var(--color-accent-ui);
+}
+
+.gh-content .kg-callout-emoji {
+  font-size: var(--text-xl);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.gh-content .kg-callout-text {
+  font-size: var(--text-base);
+  line-height: var(--leading-base);
+  color: var(--color-text-secondary);
+}
+
+.gh-content .kg-callout-text p {
+  margin: 0;
+}
+
+/* Koenig: Button card */
+.gh-content .kg-button-card {
+  display: flex;
+  justify-content: center;
+  margin: var(--space-8) 0;
+}
+
+.gh-content .kg-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--rounded-full);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-decoration: none;
+  border-bottom: none;
+  transition: background var(--transition-fast);
+}
+
+.gh-content .kg-btn-accent {
+  background: var(--color-accent-ui);
+  color: var(--color-surface);
+}
+
+.gh-content .kg-btn-accent:hover {
+  background: var(--color-accent-hover);
+  color: var(--color-surface);
+  border-bottom: none;
+}
+
+/* Koenig: Toggle card */
+.gh-content .kg-toggle-card {
+  border: var(--border-hairline) solid var(--color-border);
+  border-radius: var(--rounded-lg);
+  margin: var(--space-8) 0;
+  overflow: hidden;
+}
+
+.gh-content .kg-toggle-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4) var(--space-5);
+  cursor: pointer;
+  background: var(--color-surface);
+}
+
+.gh-content .kg-toggle-heading-text {
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.gh-content .kg-toggle-card-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+.gh-content .kg-toggle-content {
+  padding: 0 var(--space-5) var(--space-4);
+  background: var(--color-surface);
+}
+
+.gh-content .kg-toggle-card[data-kg-toggle-state="close"] .kg-toggle-content {
+  display: none;
+}
+
 /* ---------- Now Page ---------- */
 
 .now-page {
@@ -1804,6 +2031,13 @@
 .gh-content .kg-embed-card,
 .gh-content .kg-bookmark-card {
   margin: var(--space-8) 0;
+}
+
+.gh-content .kg-embed-card iframe {
+  position: relative;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
 }
 
 /* ==========================================================================

@@ -9,6 +9,11 @@
   - {{> header}} / {{> footer}} replaced with inline nav/footer HTML
   - {{#get "posts"}} for related posts replaced with hardcoded examples
   - TOC is hardcoded (JS generates it dynamically in production)
+  - kg-embed-card iframe uses hardcoded src; in production Ghost sets width/height attrs (CSS overrides both)
+  - kg-gallery-card uses placeholder divs instead of real images
+  - kg-bookmark-card uses placeholder thumbnail instead of real og:image
+  - kg-toggle-card open/close is static (JS handles toggle in production)
+  - kg-button-card, kg-callout-card, table, ol, h4 all present for CSS coverage
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -105,21 +110,107 @@
         <h3>A note on flexibility</h3>
         <p>The most common objection is that domain components are too rigid. This misunderstands the goal. You still have primitive components underneath — domain components are <em>compositions</em> that encode your team's best understanding of how concepts should be presented.</p>
 
+        <h4>The three layers</h4>
+        <p>Every mature design system has these layers, whether or not they're named explicitly.</p>
+
         <ul>
           <li>Primitives handle the <em>how</em> — spacing, color, typography</li>
           <li>Domain components handle the <em>what</em> — accounts, transactions, workflows</li>
           <li>The domain layer is where adoption actually happens</li>
         </ul>
 
+        <ol>
+          <li>Start with the domain model, not the component audit</li>
+          <li>Name things the way product teams name them</li>
+          <li>Ship primitives and domain components in parallel</li>
+        </ol>
+
+        <div class="kg-callout-card">
+          <div class="kg-callout-emoji">💡</div>
+          <div class="kg-callout-text"><p>Domain-driven design systems require buy-in from product and engineering leads early — don't wait until the component library is "done" to start that conversation.</p></div>
+        </div>
+
+        <div class="kg-callout-card kg-callout-card-accent">
+          <div class="kg-callout-emoji">⚠️</div>
+          <div class="kg-callout-text"><p>Avoid naming components after their visual appearance (e.g. "BlueCard"). When the design changes, the name becomes misleading and adoption drops.</p></div>
+        </div>
+
         <h2>Measuring success differently</h2>
         <p>When you build domain-first, your success metric shifts from "component coverage" to "concept coverage." You're not asking "do teams use our button?" — you're asking "do teams model accounts the same way across every surface?"</p>
 
-        <figure>
-          <div class="placeholder-image" style="height: 280px; border-radius: var(--rounded-lg);">[chart placeholder]</div>
-          <figcaption>Adoption rates: component-first vs. domain-first systems over 18 months</figcaption>
+        <figure class="kg-card kg-gallery-card kg-width-wide">
+          <div class="kg-gallery-container">
+            <div class="kg-gallery-row">
+              <div class="kg-gallery-image"><div class="placeholder-image" style="height:200px;">[image 1]</div></div>
+              <div class="kg-gallery-image"><div class="placeholder-image" style="height:200px;">[image 2]</div></div>
+              <div class="kg-gallery-image"><div class="placeholder-image" style="height:200px;">[image 3]</div></div>
+            </div>
+          </div>
+          <figcaption>Example gallery — three images in a row</figcaption>
         </figure>
 
+        <figure>
+          <div class="placeholder-image kg-width-wide" style="height: 280px; border-radius: var(--rounded-lg);">[wide image — bleeds past prose column]</div>
+          <figcaption>Wide image card — extends beyond prose max-width</figcaption>
+        </figure>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Approach</th>
+              <th>Year 1 adoption</th>
+              <th>Year 2 retention</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Component-first</td>
+              <td>38%</td>
+              <td>41%</td>
+            </tr>
+            <tr>
+              <td>Domain-first</td>
+              <td>74%</td>
+              <td>89%</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="kg-embed-card">
+          <iframe width="200" height="113" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video" frameborder="0" allowfullscreen></iframe>
+        </div>
+
         <p>The results speak for themselves. Teams that ship domain components alongside primitives see 2-3x higher adoption in the first year, because the components match the mental model product teams already have.</p>
+
+        <div class="kg-bookmark-card">
+          <a class="kg-bookmark-container" href="#">
+            <div class="kg-bookmark-content">
+              <div class="kg-bookmark-title">Domain-Driven Design — Eric Evans</div>
+              <div class="kg-bookmark-description">The foundational reference for domain modeling in software. The vocabulary here translates directly to design systems work.</div>
+              <div class="kg-bookmark-metadata">
+                <span class="kg-bookmark-author">Eric Evans</span>
+                <span class="kg-bookmark-publisher">informit.com</span>
+              </div>
+            </div>
+            <div class="kg-bookmark-thumbnail">
+              <div class="placeholder-image" style="height:100%; min-height:120px;">[thumb]</div>
+            </div>
+          </a>
+        </div>
+
+        <div class="kg-toggle-card" data-kg-toggle-state="close">
+          <div class="kg-toggle-heading">
+            <h4 class="kg-toggle-heading-text">What about design tokens — where do they fit?</h4>
+            <button class="kg-toggle-card-icon" aria-label="Expand toggle to read content">▾</button>
+          </div>
+          <div class="kg-toggle-content">
+            <p>Tokens live at the primitive layer. They're the raw values — color, spacing, type scale — that both primitive components and domain components consume. They're necessary but not sufficient. A system with only tokens and no domain layer is a paintbrush without a canvas.</p>
+          </div>
+        </div>
+
+        <div class="kg-button-card">
+          <a href="#" class="kg-btn kg-btn-accent">Download the domain modeling worksheet</a>
+        </div>
 
         <hr>
 
