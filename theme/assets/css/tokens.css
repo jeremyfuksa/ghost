@@ -143,6 +143,23 @@
   --color-now-border: #c9998a; /* terracotta-400 */
   --color-now-accent: #b45309;
 
+  /* Nav */
+  --color-nav-bg: #faf7f3;
+  --color-nav-border: #ede4dc;
+  --color-nav-author: #8d5443;       /* terracotta-700 */
+  --color-nav-link: #4c627d;         /* cello-600 */
+  --color-nav-active: var(--color-text-primary);
+  --color-nav-active-border: var(--color-accent-ui);
+  --color-nav-cta: var(--color-accent-text);
+  --color-nav-cta-hover: var(--color-accent-hover);
+
+  /* Footer — always-dark surface; text uses light values */
+  --color-footer-bg: var(--color-link);             /* cello-600 #4c627d */
+  --color-footer-border: var(--color-border-light);
+  --color-footer-text: var(--color-accent-subtle);  /* #faf6f5 warm white */
+  --color-footer-copy: var(--color-accent-subtle);
+  --color-footer-nav-hover: #ffffff;
+
   /* Palette accents (Cello + Terracotta — applied surgically, not as primary) */
   --color-eyebrow: #8d5443;          /* terracotta-700 */
   --color-section-label: #4c627d;    /* cello-600 */
@@ -197,6 +214,20 @@
     --color-toc-active: #acbbcc;       /* cello-300 */
     --color-footer-tagline: #8098b0;   /* cello-400 */
 
+    --color-nav-bg: #8a3308;
+    --color-nav-border: #a84012;
+    --color-nav-author: #b37a5e;
+    --color-nav-link: #d6b49c;
+    --color-nav-active: #ffffff;
+    --color-nav-active-border: var(--color-text-heading);
+    --color-nav-cta: #ffffff;
+    --color-nav-cta-hover: #ffe8c8;
+
+    --color-footer-bg: #303a49;                          /* dark slate */
+    --color-footer-text: var(--color-text-secondary);    /* #b8bcc5 */
+    --color-footer-copy: var(--color-text-secondary);
+    --color-footer-nav-hover: var(--color-text-primary); /* brighter on hover */
+
     --color-success: #8fb14b;
     --color-warning: #f9c574;
     --color-danger: #e75351;
@@ -241,6 +272,20 @@
   --color-blockquote-rule: #c9998a;  /* terracotta-400 */
   --color-toc-active: #acbbcc;       /* cello-300 */
   --color-footer-tagline: #8098b0;   /* cello-400 */
+
+  --color-nav-bg: #8a3308;
+  --color-nav-border: #a84012;
+  --color-nav-author: #b37a5e;
+  --color-nav-link: #d6b49c;
+  --color-nav-active: #ffffff;
+  --color-nav-active-border: var(--color-text-heading);
+  --color-nav-cta: #ffffff;
+  --color-nav-cta-hover: #ffe8c8;
+
+  --color-footer-bg: #303a49;                          /* dark slate */
+  --color-footer-text: var(--color-text-secondary);    /* #b8bcc5 */
+  --color-footer-copy: var(--color-text-secondary);
+  --color-footer-nav-hover: var(--color-text-primary); /* brighter on hover */
 
   --color-success: #8fb14b;
   --color-warning: #f9c574;

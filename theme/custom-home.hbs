@@ -66,7 +66,9 @@
     {{> now-card}}
 
     <div class="sidebar-about">
-      <p>Independent AI-augmented design leader specializing in design systems, UX strategy, and product design. Based in Kansas City.</p>
+      {{#get "users" limit="1"}}
+        <p>{{bio}}</p>
+      {{/get}}
       <ul class="sidebar-about-links">
         <li><a href="/work/"><i class="fa-solid fa-briefcase" aria-hidden="true"></i> Work</a></li>
         <li><a href="https://linkedin.com/in/jeremyfuksa"><i class="fa-brands fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
