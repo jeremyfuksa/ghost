@@ -2538,7 +2538,7 @@
 }
 
 .cs-link {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: var(--spacing-1);
   font-family: var(--font-mono);

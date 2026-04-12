@@ -242,6 +242,7 @@ log "Re-syncing custom templates..."
 assign_template "now"   "custom-now"
 assign_template "work"  "custom-work"
 assign_template "about" "custom-about"
+assign_template "terra-design-system" "custom-casestudy-terra"
 
 log "Done."
 log "Site:  $GHOST_URL"
