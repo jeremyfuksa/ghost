@@ -149,7 +149,7 @@
   width: var(--spacing-6);
   height: var(--spacing-6);
   border: none;
-  border-radius: var(--rounded-full);
+  border-radius: var(--radius-full);
   background: transparent;
   color: var(--color-nav-link);
   cursor: pointer;
@@ -269,7 +269,7 @@
   font-weight: var(--weight-semibold);
   letter-spacing: var(--tracking-wide);
   padding: var(--spacing-1) var(--spacing-2);
-  border-radius: var(--rounded-full);
+  border-radius: var(--radius-full);
   background: var(--color-tag-bg);
   color: var(--color-tag-text);
   white-space: nowrap;
@@ -331,7 +331,7 @@
   padding: var(--spacing-6);
   background: var(--bg-subtle);
   border: var(--border-hairline) solid var(--border-subtle);
-  border-radius: var(--rounded-xl);
+  border-radius: var(--radius-xl);
 }
 
 .value-prop-title {
@@ -378,14 +378,14 @@
 .post-card-image-link {
   display: block;
   overflow: hidden;
-  border-radius: var(--rounded-lg);
+  border-radius: var(--radius-lg);
 }
 
 .post-card-image {
   width: 100%;
   height: var(--size-card-image);
   object-fit: cover;
-  border-radius: var(--rounded-lg);
+  border-radius: var(--radius-lg);
   transition: transform var(--transition-medium);
 }
 
@@ -486,7 +486,7 @@
 .post-card-featured-image-link {
   display: block;
   overflow: hidden;
-  border-radius: var(--rounded-xl);
+  border-radius: var(--radius-xl);
   margin-bottom: var(--spacing-5);
 }
 
@@ -494,7 +494,7 @@
   width: 100%;
   height: var(--size-featured-image);
   object-fit: cover;
-  border-radius: var(--rounded-xl);
+  border-radius: var(--radius-xl);
   transition: transform var(--transition-medium);
 }
 
@@ -507,7 +507,7 @@
 .now-card {
   background: var(--color-now-bg);
   border: var(--border-hairline) solid var(--color-now-border);
-  border-radius: var(--rounded-xl);
+  border-radius: var(--radius-xl);
   padding: var(--spacing-6);
 }
 
@@ -521,7 +521,7 @@
 .now-card-dot {
   width: var(--size-dot);
   height: var(--size-dot);
-  border-radius: var(--rounded-full);
+  border-radius: var(--radius-full);
   background: var(--color-accent-ui);
   animation: pulse 2s infinite;
 }
@@ -751,7 +751,7 @@
 .hero-meta-dot {
   width: var(--size-dot-sm);
   height: var(--size-dot-sm);
-  border-radius: var(--rounded-full);
+  border-radius: var(--radius-full);
   background: var(--border-default);
 }
 
@@ -769,7 +769,7 @@
   color: var(--bg-subtle);
   font-size: var(--text-sm);
   font-weight: var(--weight-semibold);
-  border-radius: var(--rounded-lg);
+  border-radius: var(--radius-lg);
   transition: background var(--transition-fast);
 }
 
@@ -985,7 +985,7 @@
 
 .post-header-image img {
   width: 100%;
-  border-radius: var(--rounded-xl);
+  border-radius: var(--radius-xl);
 }
 
 .post-header-image figcaption {
@@ -1005,7 +1005,7 @@
 .post-header-avatar {
   width: var(--size-avatar);
   height: var(--size-avatar);
-  border-radius: var(--rounded-full);
+  border-radius: var(--radius-full);
   background: var(--color-logo-bg);
   flex-shrink: 0;
 }
@@ -1113,7 +1113,7 @@
   border-left: var(--border-blockquote) solid var(--color-blockquote-rule);
   padding: var(--spacing-4) var(--spacing-6);
   background: var(--color-accent-subtle);
-  border-radius: 0 var(--rounded-md) var(--rounded-md) 0;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
   margin: var(--spacing-8) 0;
 }
 
@@ -1131,13 +1131,13 @@
   background: var(--bg-muted);
   color: var(--color-accent-text);
   padding: var(--spacing-1) var(--spacing-1);
-  border-radius: var(--rounded-base);
+  border-radius: var(--radius-base);
 }
 
 .gh-content pre {
   background: var(--bg-subtle);
   border: var(--border-hairline) solid var(--border-default);
-  border-radius: var(--rounded-lg);
+  border-radius: var(--radius-lg);
   padding: var(--spacing-6);
   overflow-x: auto;
   margin: var(--spacing-6) 0;
@@ -1158,7 +1158,7 @@
 }
 
 .gh-content img {
-  border-radius: var(--rounded-lg);
+  border-radius: var(--radius-lg);
 }
 
 .gh-content figure {
@@ -1212,7 +1212,7 @@
 /* Koenig: Bookmark card */
 .gh-content .kg-bookmark-card {
   border: var(--border-hairline) solid var(--border-default);
-  border-radius: var(--rounded-lg);
+  border-radius: var(--radius-lg);
   overflow: hidden;
 }
 
@@ -1266,7 +1266,7 @@
 .gh-content .kg-bookmark-icon {
   width: 16px;
   height: 16px;
-  border-radius: var(--rounded-sm);
+  border-radius: var(--radius-sm);
 }
 
 .gh-content .kg-bookmark-thumbnail {
@@ -1303,7 +1303,7 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  border-radius: var(--rounded-base);
+  border-radius: var(--radius-base);
 }
 
 /* Koenig: Callout card */
@@ -1311,7 +1311,7 @@
   display: flex;
   gap: var(--spacing-4);
   padding: var(--spacing-5) var(--spacing-6);
-  border-radius: var(--rounded-lg);
+  border-radius: var(--radius-lg);
   margin: var(--spacing-8) 0;
   background: var(--bg-muted);
   border-left: var(--border-blockquote) solid var(--border-default);
@@ -1349,7 +1349,7 @@
   display: inline-flex;
   align-items: center;
   padding: var(--spacing-3) var(--spacing-6);
-  border-radius: var(--rounded-full);
+  border-radius: var(--radius-full);
   font-size: var(--text-sm);
   font-weight: var(--weight-semibold);
   letter-spacing: var(--tracking-wide);
@@ -1372,7 +1372,7 @@
 /* Koenig: Toggle card */
 .gh-content .kg-toggle-card {
   border: var(--border-hairline) solid var(--border-default);
-  border-radius: var(--rounded-lg);
+  border-radius: var(--radius-lg);
   margin: var(--spacing-8) 0;
   overflow: hidden;
 }
@@ -1432,7 +1432,7 @@
 .now-page-dot {
   width: var(--size-dot);
   height: var(--size-dot);
-  border-radius: var(--rounded-full);
+  border-radius: var(--radius-full);
   background: var(--color-accent-ui);
   animation: pulse 2s infinite;
 }
@@ -1514,7 +1514,7 @@
   font-size: var(--text-2xs);
   font-weight: var(--weight-semibold);
   padding: var(--spacing-1) var(--spacing-2);
-  border-radius: var(--rounded-full);
+  border-radius: var(--radius-full);
   margin-left: var(--spacing-2);
 }
 
@@ -1947,7 +1947,7 @@
   padding: var(--spacing-5);
   background: var(--bg-subtle);
   border: var(--border-hairline) solid var(--border-subtle);
-  border-radius: var(--rounded-lg);
+  border-radius: var(--radius-lg);
   transition: border-color var(--transition-fast), transform var(--transition-fast);
 }
 
@@ -2016,7 +2016,7 @@
 
 .work-feature-image img {
   width: 100%;
-  border-radius: var(--rounded-xl);
+  border-radius: var(--radius-xl);
 }
 
 .work-prose {
@@ -2082,7 +2082,7 @@
   padding: var(--spacing-4);
   background: var(--bg-subtle);
   border: var(--border-hairline) solid var(--border-subtle);
-  border-radius: var(--rounded-lg);
+  border-radius: var(--radius-lg);
   transition: border-color var(--transition-fast), transform var(--transition-fast);
 }
 
@@ -2220,7 +2220,7 @@
 
 .about-image img {
   width: 100%;
-  border-radius: var(--rounded-xl);
+  border-radius: var(--radius-xl);
 }
 
 .about-image figcaption {
@@ -2358,7 +2358,7 @@
 
 .static-page-image img {
   width: 100%;
-  border-radius: var(--rounded-xl);
+  border-radius: var(--radius-xl);
 }
 
 .static-page-image figcaption {
