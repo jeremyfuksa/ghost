@@ -181,6 +181,55 @@ seed_page "now" "Now" "custom-now" "<p>Local dev seed. Static fallback content r
 seed_page "work" "Work" "custom-work" "<p>Portfolio page — content rendered by custom-work template.</p>"
 seed_page "about" "About" "custom-about" "<p>I help organizations build design systems that ship, UX strategies tied to business outcomes, and AI-augmented workflows that amplify craft. 15+ years across enterprise SaaS, healthcare, and product design.</p><p>Based in Kansas City. Available for consulting and senior design roles.</p>"
 
+# Terra Design System case study — uses Python for safe JSON encoding of long HTML
+TERRA_SLUG="terra-design-system"
+TERRA_EXISTING=$(api GET "/ghost/api/admin/pages/slug/$TERRA_SLUG/" 2>/dev/null || echo "")
+if echo "$TERRA_EXISTING" | grep -q "\"slug\":\"$TERRA_SLUG\""; then
+  log "Page '$TERRA_SLUG' exists — skipping."
+else
+  TERRA_BODY=$(python3 - <<'PYEOF'
+import json
+
+html = """<h2>Overview</h2>
+<p>Terra is Cerner\u2019s open-source design system \u2014 80+ React components, 200+ icons, and a comprehensive standards library built for healthcare applications at global scale. It provides the UI foundation for Cerner\u2019s Millennium platform: roughly 60 integrated clinical solutions used by approximately 1,500 healthcare organizations in 195 countries.</p>
+<p>I was one of two UX designers embedded with the Terra engineering team who worked directly in the React codebase. My role was ensuring that what got built actually matched what was designed \u2014 bridging the gap between UX standards and engineering implementation at the component level.</p>
+<h2>The Problem</h2>
+<p>Healthcare UI components don\u2019t get to be approximately right. A focus-trap bug in an alert component propagates across every product that consumes it. An icon that fails contrast requirements shows up in operating rooms and emergency departments.</p>
+<p>Terra\u2019s architecture solves this at scale \u2014 every consuming team inherits accessible, internationalized, responsive components without rebuilding that work themselves. But that architecture only works if the components faithfully implement the design standards. Catching those failures requires someone who can read both languages.</p>
+<h2>My Role</h2>
+<p><strong>PR review and UX sign-off.</strong> I reviewed pull requests for UX correctness \u2014 not just whether a component rendered, but whether focus management, keyboard navigation, and interaction behavior matched the published design standards and accessibility guidelines (125+ standards, 150+ accessibility guidelines targeting WCAG 2.1 AA).</p>
+<p><strong>In-code UX problem solving.</strong> When components had UX issues that required both design judgment and code-level debugging to resolve, I was one of two designers with the React fluency to work through them directly in the monorepo alongside engineers.</p>
+<p><strong>Icon library ownership.</strong> I maintained the Terra icon library \u2014 200+ icons in a dedicated Git repository that the engineering team consumed into the component system. Full ownership of the pipeline from design asset to published repo.</p>
+<p><strong>Design advisory.</strong> I didn\u2019t design Terra\u2019s components, but I advised on the proper construction of every component that came through \u2014 ensuring that interaction specifications, accessibility requirements, and visual standards were correctly interpreted and implemented.</p>
+<h2>The System</h2>
+<p>Terra\u2019s component ecosystem spans three repositories: terra-core (foundational components \u2014 buttons, alerts, forms), terra-framework (composed, higher-order patterns \u2014 navigation, layouts, modals), and terra-clinical (healthcare-specific components).</p>
+<p>Every component ships with accessibility, responsive design, internationalization, and cross-browser support built in. The consuming team gets all of that by default. At the scale of hundreds of product teams, each component represents engineering-weeks of accessibility and responsive work that would otherwise be duplicated \u2014 or more likely, done inconsistently or skipped entirely.</p>
+<p>The system is open source under an Apache 2.0 license. The code, the contribution guidelines, and the component documentation are all publicly available on GitHub.</p>
+<h2>Outcomes</h2>
+<p>80+ React components across three repositories, consumed by hundreds of product teams. 200+ icons maintained and published through a dedicated pipeline. 125+ design standards and 150+ accessibility guidelines implemented and verified at the component level. WCAG 2.1 AA targeted conformance baked into every component \u2014 keyboard navigation, screen reader support, focus management, color contrast. Global deployment across ~60 Millennium solutions, ~1,500 healthcare organizations, 195 countries. Open source \u2014 publicly verifiable on GitHub under the Cerner organization.</p>
+<h2>What Happened Next</h2>
+<p>In mid-2022, a few months before Oracle completed its $28.3 billion acquisition of Cerner, I moved from this hands-in-code IC role into design management \u2014 eventually leading a team of up to 12 across the US and India through the organizational transition.</p>
+<p>The leadership story is its own case study. But this is where it started: in the gap between what was designed and what was built, making sure the intent survived.</p>"""
+
+data = {
+    "pages": [{
+        "title": "Terra Design System",
+        "slug": "terra-design-system",
+        "status": "published",
+        "html": html,
+        "custom_template": "custom-casestudy-terra"
+    }]
+}
+print(json.dumps(data))
+PYEOF
+)
+  if api POST "/ghost/api/admin/pages/?source=html" "$TERRA_BODY" >/dev/null 2>&1; then
+    log "Created page '$TERRA_SLUG'."
+  else
+    err "Failed to create page '$TERRA_SLUG'."
+  fi
+fi
+
 # Test posts removed — real content imported from prod export.
 
 # Set primary navigation
