@@ -2428,7 +2428,7 @@
 
 .casestudy-body {
   display: grid;
-  grid-template-columns: 1fr 280px;
+  grid-template-columns: 1fr var(--sidebar-writing);
   gap: var(--spacing-16);
   align-items: start;
 }
