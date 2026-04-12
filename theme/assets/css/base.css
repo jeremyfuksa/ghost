@@ -17,12 +17,11 @@ html {
 }
 
 body {
-  font-family: var(--font-primary);
   font-size: var(--text-base);
   line-height: var(--leading-base);
-  font-weight: var(--weight-regular);
-  color: var(--color-text-primary);
-  background-color: var(--color-bg);
+  font-weight: var(--font-weight-regular);
+  color: var(--text-primary);
+  background-color: var(--bg-base);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -50,7 +49,7 @@ h1 {
   line-height: 1;
   font-weight: 400;
   letter-spacing: var(--tracking-tight);
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--spacing-4);
 }
 
 h2 {
@@ -58,36 +57,36 @@ h2 {
   line-height: 1.05;
   font-weight: 350;
   letter-spacing: var(--tracking-tight);
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--spacing-4);
 }
 
 h3 {
   font-size: clamp(24px, calc(21px + 0.73vw), 30px);
   line-height: 1.1;
   font-weight: 350;
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--spacing-3);
 }
 
 h4 {
   font-size: var(--text-2xl);
   line-height: var(--leading-h3);
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--spacing-3);
 }
 
 h5 {
   font-size: var(--text-xl);
   line-height: var(--leading-xl);
-  margin-bottom: var(--space-2);
+  margin-bottom: var(--spacing-2);
 }
 
 h6 {
   font-size: var(--text-lg);
   line-height: var(--leading-lg);
-  margin-bottom: var(--space-2);
+  margin-bottom: var(--spacing-2);
 }
 
 p {
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--spacing-4);
 }
 
 p:last-child {
@@ -106,8 +105,8 @@ kbd {
   max-width: var(--content-max);
   margin-left: auto;
   margin-right: auto;
-  padding-left: var(--space-8);
-  padding-right: var(--space-8);
+  padding-left: var(--spacing-8);
+  padding-right: var(--spacing-8);
 }
 
 .prose {
