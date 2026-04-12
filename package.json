@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "@jeremyfuksa/campfire": "latest"
+  },
+  "scripts": {
+    "sync-campfire": "cp node_modules/@jeremyfuksa/campfire/dist/index.css theme/assets/css/campfire.css"
+  }
+}
