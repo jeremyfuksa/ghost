@@ -301,7 +301,7 @@
 
 .section-title {
   font-size: var(--text-xs);
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-extrabold);
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
   color: var(--color-section-label);
@@ -2366,4 +2366,202 @@
   color: var(--text-tertiary);
   text-align: center;
   margin-top: var(--spacing-2);
+}
+
+/* ============================
+   Case Study
+   ============================ */
+
+.casestudy-page {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: var(--spacing-12) var(--spacing-8) var(--spacing-20);
+}
+
+.casestudy-back {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  margin-bottom: var(--spacing-8);
+  letter-spacing: var(--tracking-wide);
+}
+
+.casestudy-back:hover {
+  color: var(--color-accent-text);
+}
+
+.casestudy-header {
+  margin-bottom: var(--spacing-10);
+  padding-bottom: var(--spacing-8);
+  border-bottom: var(--border-hairline) solid var(--border-default);
+}
+
+.casestudy-eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-widest);
+  color: var(--color-accent-text);
+  margin-bottom: var(--spacing-3);
+}
+
+.casestudy-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-4xl);
+  font-weight: 400;
+  font-variation-settings: 'WONK' 1, 'opsz' 72;
+  line-height: var(--leading-h1);
+  color: var(--color-text-heading);
+  margin-bottom: var(--spacing-3);
+}
+
+.casestudy-tagline {
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+  max-width: var(--prose-max);
+  line-height: var(--leading-lg);
+}
+
+.casestudy-body {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: var(--spacing-16);
+  align-items: start;
+}
+
+/* Prose */
+
+.casestudy-prose {
+  min-width: 0;
+}
+
+.casestudy-prose h2 {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  font-weight: 350;
+  font-variation-settings: 'WONK' 1, 'opsz' 72;
+  color: var(--color-text-heading);
+  margin-top: var(--spacing-10);
+  margin-bottom: var(--spacing-4);
+  padding-top: var(--spacing-10);
+  border-top: var(--border-hairline) solid var(--border-default);
+}
+
+.casestudy-prose h2:first-of-type {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+
+.casestudy-prose p {
+  font-size: var(--text-base);
+  line-height: var(--leading-lg);
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-4);
+}
+
+.casestudy-prose p:last-child {
+  margin-bottom: 0;
+}
+
+.casestudy-prose strong {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* Sidebar */
+
+.casestudy-sidebar {
+  position: sticky;
+  top: var(--spacing-6);
+}
+
+.cs-meta-group {
+  margin-bottom: var(--spacing-5);
+}
+
+.cs-meta-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-widest);
+  color: var(--text-muted);
+  margin-bottom: var(--spacing-1);
+}
+
+.cs-meta-value {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  color: var(--text-primary);
+  line-height: var(--leading-sm);
+}
+
+.cs-divider {
+  border: none;
+  border-top: var(--border-hairline) solid var(--border-default);
+  margin: var(--spacing-5) 0;
+}
+
+.cs-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-3);
+}
+
+.cs-stat {
+  background: var(--color-tag-bg);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-3);
+}
+
+.cs-stat-value {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  font-weight: 400;
+  font-variation-settings: 'WONK' 1, 'opsz' 72;
+  color: var(--color-text-heading);
+  line-height: 1;
+  margin-bottom: var(--spacing-1);
+}
+
+.cs-stat-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-3xs);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  color: var(--text-muted);
+  line-height: var(--leading-xs);
+}
+
+.cs-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-accent-text);
+  text-decoration: none;
+  margin-top: var(--spacing-4);
+}
+
+.cs-link:hover {
+  color: var(--color-accent-hover);
+  text-decoration: underline;
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+  .casestudy-body {
+    grid-template-columns: 1fr;
+  }
+
+  .casestudy-sidebar {
+    position: static;
+    order: -1;
+  }
 }
