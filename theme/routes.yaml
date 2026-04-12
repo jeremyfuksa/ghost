@@ -2,6 +2,9 @@ routes:
   /:
     template: custom-home
     data: page.home
+  /work/terra-design-system/:
+    template: custom-casestudy-terra
+    data: page.terra-design-system
 
 collections:
   /writing/:
