@@ -1,0 +1,182 @@
+<!--
+  STATIC SOURCE for: theme/custom-casestudy-domain-foundation.hbs
+  Last synced: 2026-04-12
+
+  Handlebars differences:
+  - {{#page}} context removed
+  - {{title}} replaced with hardcoded "Domain Foundation"
+  - {{content}} replaced with full prose HTML
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Domain Foundation — The Cocktail Napkin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,WONK@9..144,100..900,0..1&display=swap" rel="stylesheet">
+  <script>
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+  <link rel="stylesheet" href="../theme/assets/css/campfire.css">
+  <link rel="stylesheet" href="../theme/assets/css/tokens.css">
+  <link rel="stylesheet" href="../theme/assets/css/base.css">
+  <link rel="stylesheet" href="../theme/assets/css/components.css">
+</head>
+<body class="page-template">
+
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="home.html" class="nav-brand">
+        <div class="nav-logo">
+          <svg viewBox="0 0 80 70" xmlns="http://www.w3.org/2000/svg" fill="none" width="18" height="16">
+            <path d="M40,5 C22,5 8,19 8,37 C8,52 17,63 30,67 C26,59 29,49 40,44 C51,49 54,59 50,67 C63,63 72,52 72,37 C72,19 58,5 40,5Z" fill="var(--color-logo-fg)" opacity="0.85"/>
+          </svg>
+        </div>
+        <div class="nav-name-stack">
+          <span class="nav-site-name">The Cocktail Napkin</span>
+          <span class="nav-author-name">Jeremy Fuksa</span>
+        </div>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="writing.html">Writing</a></li>
+          <li><a href="work.html" class="nav-current">Work</a></li>
+          <li><a href="now.html">Now</a></li>
+          <li><a href="page.html">About</a></li>
+          <li><a href="work.html#work-with-me" class="nav-cta">Work with me</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="site-content">
+    <div class="casestudy-page">
+      <a href="work.html" class="casestudy-back">← Work</a>
+
+      <header class="casestudy-header">
+        <div class="casestudy-eyebrow">Experiments</div>
+        <h1 class="casestudy-title">Domain Foundation</h1>
+        <p class="casestudy-tagline">A methodology for encoding organizational design expertise into machine-readable knowledge systems for AI-assisted design workflows.</p>
+      </header>
+
+      <div class="casestudy-body">
+        <div class="casestudy-prose">
+
+          <h2>Overview</h2>
+          <p>AI design tools generate fast. They don't generate right — at least not without help. The gap isn't in the model's capability. It's in what the model knows about your specific domain, your users, your constraints, and why your design decisions exist.</p>
+          <p>Domain Foundation is a structured approach to closing that gap. It's a methodology for building the knowledge layer that AI tools need to produce work that reflects real organizational expertise instead of averaged training data. I built it. I tested it. I documented what worked and what didn't. This case study covers the thinking, the architecture, and the findings.</p>
+
+          <h2>The Problem</h2>
+          <p>Design systems tell AI tools <em>what</em> to build. They don't tell them <em>why</em>.</p>
+          <p>A component library encodes visual tokens, spacing rules, and interaction patterns. That's the what. But the reasoning behind those patterns — when a particular component is dangerous to use in a clinical context, why a specific workflow exists for medication ordering, what accessibility constraints are non-negotiable versus preferred — that knowledge lives in people's heads. When those people leave, the knowledge goes with them.</p>
+          <p>AI tools trained on general data can produce design output that looks correct. It follows the tokens. It uses the right components. But without domain expertise, it can't distinguish between a layout that meets the requirements and a layout that meets the requirements <em>and won't get a nurse killed at 3 AM</em>.</p>
+          <p>The problem isn't AI capability. It's AI context.</p>
+
+          <h2>The Insight</h2>
+          <p>Design systems need to become brains, not libraries.</p>
+          <p>The shift is from documentation — "here's how to use this button" — to machine-queryable intelligence — "here's why this pattern exists, when it's safe to deviate, and what breaks if you get it wrong." That means encoding the institutional knowledge that experienced designers carry, the stuff that's never written down because everyone who needs it just knows it, into a structure that AI tools can consume alongside visual tokens and component specs.</p>
+
+          <h2>The Architecture</h2>
+          <p>Domain Foundation uses a four-layer knowledge model. Each layer has different owners, different update cadences, and different levels of stability.</p>
+          <p><strong>Base layer — universal.</strong> Design principles, accessibility requirements, and interaction fundamentals that don't change across projects. Owned by the design system team.</p>
+          <p><strong>Domain layer — industry.</strong> Clinical safety reasoning, regulatory constraints, compliance requirements, healthcare-specific interaction patterns. Owned by domain experts.</p>
+          <p><strong>Component layer — artifact-specific.</strong> Intent metadata for individual components: when to use, when not to use, what breaks if misapplied. Owned by component authors.</p>
+          <p><strong>Role layer — user context.</strong> The specific needs, workflows, and constraints of different user types. A nurse navigating a medication administration record has different requirements than a billing specialist reviewing claims. Owned by researchers.</p>
+          <p>These layers compose at generation time. The AI draws from all four simultaneously. Different experts own different layers, which means the knowledge governance problem is distributed rather than centralized.</p>
+
+          <h2>What I Built and Tested</h2>
+          <p>This wasn't theoretical. I built working systems and ran structured experiments. Nine findings came out of that work.</p>
+          <p><strong>On knowledge structure:</strong> External prompt references hosted as GitHub gists function as living knowledge artifacts — updates propagate automatically to every session. Mixed-structure prompting (prose for rationale, bullets for constraints, IF/THEN for conditional logic) significantly outperforms uniform formatting. There's a practical ceiling of roughly 3,500 tokens for individual guidelines documents before retrieval quality degrades.</p>
+          <p><strong>On generation fidelity:</strong> Descriptive layer naming alone achieves approximately 90% generation fidelity in Figma Make — meaning clear, structured naming of design layers does most of the heavy lifting before any additional knowledge is injected. The delta between bare prompts and domain-enriched prompts reveals exactly how much institutional context the AI actually needs for any given task.</p>
+          <p><strong>On architecture:</strong> The knowledge base must be designed for both semantic (vector) retrieval and file-based retrieval simultaneously, because different tools consume knowledge differently. AI tools always fetch the latest version of external references — version pinning must be managed externally, not assumed. Pencil libraries in Figma cannot support internal component logic, a fundamental platform limitation that no amount of optimization will solve.</p>
+          <p><strong>On workflow:</strong> A bootstrap-navigate-validate pattern keeps context windows lean: load safety-critical rules at session start, navigate domain knowledge on-demand during generation, run full validation server-side after generation completes. This solves the context window problem that everyone building knowledge-enhanced AI systems encounters.</p>
+
+          <h2>The Frameworks</h2>
+          <p>The experiment findings produced seven original frameworks.</p>
+          <p><strong>The Validation Stack</strong> — A five-tier model for evaluating AI-generated output, ordered by cost and time investment: internal coherence (seconds), expert intuition (minutes), stakeholder alignment (hours), directional user signal (days), behavioral validation (weeks). Every tier catches different failure modes. Skipping tiers doesn't save time — it moves the cost downstream.</p>
+          <p><strong>The Role Inversion Model</strong> — Designers shift from generators to validators. Researchers become reality anchors. Strategists become reasoning validators. System architects become safety systems architects. The people who thrive aren't the most skilled generators — they're the ones who built careers on <em>getting to right</em> rather than <em>being right</em>.</p>
+          <p><strong>The Velocity Paradox</strong> — AI compresses generation time but not validation time. Organizations that optimize for speed without building validation architecture pay exponentially — they just pay later and all at once.</p>
+          <p><strong>Design Systems as Executable Knowledge</strong> — The shift from documentation to machine-queryable intelligence. The design system becomes infrastructure that AI tools consume, not reference material that humans read.</p>
+          <p><strong>The "Being Right vs. Getting to Right" Divide</strong> — Who thrives in AI-augmented workflows isn't predicted by skill type or seniority. It's predicted by identity orientation. People whose professional identity is tied to being the expert source of correct answers struggle. People whose identity is tied to navigating toward correct answers adapt.</p>
+          <p><strong>The Four-Layer Knowledge Architecture</strong> — Described above. Base, domain, component, and role layers with distributed governance.</p>
+          <p><strong>The Bootstrap-Navigate-Validate Pattern</strong> — The technical workflow architecture for keeping AI sessions lean while maintaining constraint coverage.</p>
+
+          <h2>The Technical Stack</h2>
+          <p>The architecture itself is not proprietary. It's an emerging pattern: vectorized database → MCP server → LLM.</p>
+          <p>The value isn't in the stack diagram. It's in knowing what to put in the database (institutional knowledge, not just documentation), how to structure it (four-layer model with governance), and how to govern it (staging layer, confidence scoring, human curation).</p>
+          <p>The system supports dual-path delivery: an ideal path through vectorization and semantic retrieval, and a fallback path through direct file routing. Same knowledge base structure serves both. Graceful degradation is built in.</p>
+
+          <h2>Why This Matters</h2>
+          <p>Every organization adopting AI design tools is about to discover that their design system isn't enough. They have the visual layer. They're missing the reasoning layer. The AI can build what you show it. It can't know what you know.</p>
+          <p>The companies that figure this out early will have AI tools that produce work reflecting genuine organizational expertise. The ones that don't will have AI tools that produce plausible-looking work that misses every domain-specific constraint that makes their product safe, accessible, and effective.</p>
+          <p>Domain Foundation is how you build the layer that makes the difference.</p>
+
+          <h2>Current Status</h2>
+          <p>The methodology is complete and validated. The repackaging for broader market application — removing employer-specific references, generalizing healthcare examples to any high-stakes domain — is underway.</p>
+          <p>The frameworks and findings are domain-agnostic. Healthcare made them sharp. They apply anywhere the design decisions have consequences.</p>
+
+        </div>
+
+        <aside class="casestudy-sidebar">
+          <div class="cs-meta-group">
+            <div class="cs-meta-label">Role</div>
+            <div class="cs-meta-value">Creator and primary researcher</div>
+          </div>
+          <div class="cs-meta-group">
+            <div class="cs-meta-label">Timeline</div>
+            <div class="cs-meta-value">2023–2024, ongoing</div>
+          </div>
+          <div class="cs-meta-group">
+            <div class="cs-meta-label">Scope</div>
+            <div class="cs-meta-value">A methodology for encoding organizational design expertise into machine-readable knowledge systems for AI-assisted design workflows</div>
+          </div>
+
+          <hr class="cs-divider">
+
+          <div class="cs-stats">
+            <div class="cs-stat">
+              <div class="cs-stat-value">9</div>
+              <div class="cs-stat-label">Findings</div>
+            </div>
+            <div class="cs-stat">
+              <div class="cs-stat-value">7</div>
+              <div class="cs-stat-label">Frameworks</div>
+            </div>
+            <div class="cs-stat">
+              <div class="cs-stat-value">4</div>
+              <div class="cs-stat-label">Knowledge layers</div>
+            </div>
+            <div class="cs-stat">
+              <div class="cs-stat-value">5</div>
+              <div class="cs-stat-label">Validation tiers</div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="footer-brand-name">Jeremy Fuksa</span>
+        <span class="footer-tagline">Jeremy Fuksa · Kansas City · KF0NUI</span>
+      </div>
+      <nav>
+        <ul class="footer-nav">
+          <li><a href="writing.html">Writing</a></li>
+          <li><a href="work.html">Work</a></li>
+          <li><a href="now.html">Now</a></li>
+          <li><a href="page.html">About</a></li>
+        </ul>
+      </nav>
+      <span class="footer-copy">&copy; 2026</span>
+    </div>
+  </footer>
+
+</body>
+</html>
