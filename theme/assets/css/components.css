@@ -2498,7 +2498,7 @@
   text-align: left;
   padding: var(--spacing-2) var(--spacing-3);
   border-bottom: var(--border-hairline) solid var(--border-default);
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
 }
 
 .casestudy-prose td {
@@ -2514,7 +2514,7 @@
 }
 
 .casestudy-prose td:first-child {
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   color: var(--text-primary);
 }
 
