@@ -5,6 +5,9 @@ routes:
   /work/terra-design-system/:
     template: custom-casestudy-terra
     data: page.terra-design-system
+  /work/seven-years-in-healthcare-ux/:
+    template: custom-casestudy-cerner
+    data: page.seven-years-in-healthcare-ux
 
 collections:
   /writing/:
