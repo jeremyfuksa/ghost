@@ -295,6 +295,79 @@ PYEOF
   fi
 fi
 
+# Domain Foundation case study — uses Python for safe JSON encoding of long HTML
+DF_SLUG="domain-foundation"
+DF_EXISTING=$(api GET "/ghost/api/admin/pages/slug/$DF_SLUG/" 2>/dev/null || echo "")
+if echo "$DF_EXISTING" | grep -q "\"slug\":\"$DF_SLUG\""; then
+  log "Page '$DF_SLUG' exists — skipping."
+else
+  DF_BODY=$(python3 - <<'PYEOF'
+import json
+
+html = """<h2>Overview</h2>
+<p>AI design tools generate fast. They don\u2019t generate right \u2014 at least not without help. The gap isn\u2019t in the model\u2019s capability. It\u2019s in what the model knows about your specific domain, your users, your constraints, and why your design decisions exist.</p>
+<p>Domain Foundation is a structured approach to closing that gap. It\u2019s a methodology for building the knowledge layer that AI tools need to produce work that reflects real organizational expertise instead of averaged training data. I built it. I tested it. I documented what worked and what didn\u2019t. This case study covers the thinking, the architecture, and the findings.</p>
+<h2>The Problem</h2>
+<p>Design systems tell AI tools <em>what</em> to build. They don\u2019t tell them <em>why</em>.</p>
+<p>A component library encodes visual tokens, spacing rules, and interaction patterns. That\u2019s the what. But the reasoning behind those patterns \u2014 when a particular component is dangerous to use in a clinical context, why a specific workflow exists for medication ordering, what accessibility constraints are non-negotiable versus preferred \u2014 that knowledge lives in people\u2019s heads. When those people leave, the knowledge goes with them.</p>
+<p>AI tools trained on general data can produce design output that looks correct. It follows the tokens. It uses the right components. But without domain expertise, it can\u2019t distinguish between a layout that meets the requirements and a layout that meets the requirements <em>and won\u2019t get a nurse killed at 3 AM</em>.</p>
+<p>The problem isn\u2019t AI capability. It\u2019s AI context.</p>
+<h2>The Insight</h2>
+<p>Design systems need to become brains, not libraries.</p>
+<p>The shift is from documentation \u2014 \u201chere\u2019s how to use this button\u201d \u2014 to machine-queryable intelligence \u2014 \u201chere\u2019s why this pattern exists, when it\u2019s safe to deviate, and what breaks if you get it wrong.\u201d That means encoding the institutional knowledge that experienced designers carry, the stuff that\u2019s never written down because everyone who needs it just knows it, into a structure that AI tools can consume alongside visual tokens and component specs.</p>
+<h2>The Architecture</h2>
+<p>Domain Foundation uses a four-layer knowledge model. Each layer has different owners, different update cadences, and different levels of stability.</p>
+<p><strong>Base layer \u2014 universal.</strong> Design principles, accessibility requirements, and interaction fundamentals that don\u2019t change across projects. Owned by the design system team.</p>
+<p><strong>Domain layer \u2014 industry.</strong> Clinical safety reasoning, regulatory constraints, compliance requirements, healthcare-specific interaction patterns. Owned by domain experts.</p>
+<p><strong>Component layer \u2014 artifact-specific.</strong> Intent metadata for individual components: when to use, when not to use, what breaks if misapplied. Owned by component authors.</p>
+<p><strong>Role layer \u2014 user context.</strong> The specific needs, workflows, and constraints of different user types. A nurse navigating a medication administration record has different requirements than a billing specialist reviewing claims. Owned by researchers.</p>
+<p>These layers compose at generation time. The AI draws from all four simultaneously. Different experts own different layers, which means the knowledge governance problem is distributed rather than centralized.</p>
+<h2>What I Built and Tested</h2>
+<p>This wasn\u2019t theoretical. I built working systems and ran structured experiments. Nine findings came out of that work.</p>
+<p><strong>On knowledge structure:</strong> External prompt references hosted as GitHub gists function as living knowledge artifacts \u2014 updates propagate automatically to every session. Mixed-structure prompting (prose for rationale, bullets for constraints, IF/THEN for conditional logic) significantly outperforms uniform formatting. There\u2019s a practical ceiling of roughly 3,500 tokens for individual guidelines documents before retrieval quality degrades.</p>
+<p><strong>On generation fidelity:</strong> Descriptive layer naming alone achieves approximately 90% generation fidelity in Figma Make \u2014 meaning clear, structured naming of design layers does most of the heavy lifting before any additional knowledge is injected. The delta between bare prompts and domain-enriched prompts reveals exactly how much institutional context the AI actually needs for any given task.</p>
+<p><strong>On architecture:</strong> The knowledge base must be designed for both semantic (vector) retrieval and file-based retrieval simultaneously, because different tools consume knowledge differently. AI tools always fetch the latest version of external references \u2014 version pinning must be managed externally, not assumed. Pencil libraries in Figma cannot support internal component logic, a fundamental platform limitation that no amount of optimization will solve.</p>
+<p><strong>On workflow:</strong> A bootstrap-navigate-validate pattern keeps context windows lean: load safety-critical rules at session start, navigate domain knowledge on-demand during generation, run full validation server-side after generation completes. This solves the context window problem that everyone building knowledge-enhanced AI systems encounters.</p>
+<h2>The Frameworks</h2>
+<p>The experiment findings produced seven original frameworks.</p>
+<p><strong>The Validation Stack</strong> \u2014 A five-tier model for evaluating AI-generated output, ordered by cost and time investment: internal coherence (seconds), expert intuition (minutes), stakeholder alignment (hours), directional user signal (days), behavioral validation (weeks). Every tier catches different failure modes. Skipping tiers doesn\u2019t save time \u2014 it moves the cost downstream.</p>
+<p><strong>The Role Inversion Model</strong> \u2014 Designers shift from generators to validators. Researchers become reality anchors. Strategists become reasoning validators. System architects become safety systems architects. The people who thrive aren\u2019t the most skilled generators \u2014 they\u2019re the ones who built careers on <em>getting to right</em> rather than <em>being right</em>.</p>
+<p><strong>The Velocity Paradox</strong> \u2014 AI compresses generation time but not validation time. Organizations that optimize for speed without building validation architecture pay exponentially \u2014 they just pay later and all at once.</p>
+<p><strong>Design Systems as Executable Knowledge</strong> \u2014 The shift from documentation to machine-queryable intelligence. The design system becomes infrastructure that AI tools consume, not reference material that humans read.</p>
+<p><strong>The \u201cBeing Right vs. Getting to Right\u201d Divide</strong> \u2014 Who thrives in AI-augmented workflows isn\u2019t predicted by skill type or seniority. It\u2019s predicted by identity orientation. People whose professional identity is tied to being the expert source of correct answers struggle. People whose identity is tied to navigating toward correct answers adapt.</p>
+<p><strong>The Four-Layer Knowledge Architecture</strong> \u2014 Described above. Base, domain, component, and role layers with distributed governance.</p>
+<p><strong>The Bootstrap-Navigate-Validate Pattern</strong> \u2014 The technical workflow architecture for keeping AI sessions lean while maintaining constraint coverage.</p>
+<h2>The Technical Stack</h2>
+<p>The architecture itself is not proprietary. It\u2019s an emerging pattern: vectorized database \u2192 MCP server \u2192 LLM.</p>
+<p>The value isn\u2019t in the stack diagram. It\u2019s in knowing what to put in the database (institutional knowledge, not just documentation), how to structure it (four-layer model with governance), and how to govern it (staging layer, confidence scoring, human curation).</p>
+<p>The system supports dual-path delivery: an ideal path through vectorization and semantic retrieval, and a fallback path through direct file routing. Same knowledge base structure serves both. Graceful degradation is built in.</p>
+<h2>Why This Matters</h2>
+<p>Every organization adopting AI design tools is about to discover that their design system isn\u2019t enough. They have the visual layer. They\u2019re missing the reasoning layer. The AI can build what you show it. It can\u2019t know what you know.</p>
+<p>The companies that figure this out early will have AI tools that produce work reflecting genuine organizational expertise. The ones that don\u2019t will have AI tools that produce plausible-looking work that misses every domain-specific constraint that makes their product safe, accessible, and effective.</p>
+<p>Domain Foundation is how you build the layer that makes the difference.</p>
+<h2>Current Status</h2>
+<p>The methodology is complete and validated. The repackaging for broader market application \u2014 removing employer-specific references, generalizing healthcare examples to any high-stakes domain \u2014 is underway.</p>
+<p>The frameworks and findings are domain-agnostic. Healthcare made them sharp. They apply anywhere the design decisions have consequences.</p>"""
+
+data = {
+    "pages": [{
+        "title": "Domain Foundation",
+        "slug": "domain-foundation",
+        "status": "published",
+        "html": html,
+        "custom_template": "custom-casestudy-domain-foundation"
+    }]
+}
+print(json.dumps(data))
+PYEOF
+)
+  if api POST "/ghost/api/admin/pages/?source=html" "$DF_BODY" >/dev/null 2>&1; then
+    log "Created page '$DF_SLUG'."
+  else
+    err "Failed to create page '$DF_SLUG'."
+  fi
+fi
+
 # Test posts removed — real content imported from prod export.
 
 # Set primary navigation
@@ -309,6 +382,7 @@ assign_template "work"  "custom-work"
 assign_template "about" "custom-about"
 assign_template "terra-design-system" "custom-casestudy-terra"
 assign_template "seven-years-in-healthcare-ux" "custom-casestudy-cerner"
+assign_template "domain-foundation" "custom-casestudy-domain-foundation"
 
 log "Done."
 log "Site:  $GHOST_URL"
