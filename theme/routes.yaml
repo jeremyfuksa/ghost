@@ -8,6 +8,9 @@ routes:
   /work/seven-years-in-healthcare-ux/:
     template: custom-casestudy-cerner
     data: page.seven-years-in-healthcare-ux
+  /work/domain-foundation/:
+    template: custom-casestudy-domain-foundation
+    data: page.domain-foundation
 
 collections:
   /writing/:
