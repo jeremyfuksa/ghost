@@ -230,6 +230,71 @@ PYEOF
   fi
 fi
 
+# Seven Years in Healthcare UX case study — uses Python for safe JSON encoding of long HTML
+CERNER_SLUG="seven-years-in-healthcare-ux"
+CERNER_EXISTING=$(api GET "/ghost/api/admin/pages/slug/$CERNER_SLUG/" 2>/dev/null || echo "")
+if echo "$CERNER_EXISTING" | grep -q "\"slug\":\"$CERNER_SLUG\""; then
+  log "Page '$CERNER_SLUG' exists — skipping."
+else
+  CERNER_BODY=$(python3 - <<'PYEOF'
+import json
+
+html = """<h2>Overview</h2>
+<p>I joined Cerner in 2018 as a UX designer on the revenue cycle product. Three months later I moved to the UX Foundations team, where I spent three and a half years working directly in the Terra design system codebase alongside engineers. In mid-2022 I moved into design management, eventually leading designers across Kansas City, New York City, Brussels, Bangalore, Puducherry, Chennai, Florida, and North Carolina \u2014 through Oracle\u2019s acquisition of Cerner and everything that came with it.</p>
+<p>This is the full arc.</p>
+<h2>Revenue Cycle: Learning the Domain</h2>
+<p>My first assignment was middle office revenue cycle \u2014 the claims processing, denials management, and compliance work that keeps hospitals financially solvent. Not the clinical-facing work that makes it into conference talks. The operational infrastructure that revenue cycle teams stare at all day.</p>
+<p>The Millennium interface I walked into was dense. Aggressively dense. Data tables packed with status codes, payer information, denial reasons, dollar amounts, and dates \u2014 all competing for attention at the same priority level.</p>
+<p>My instinct was that the density was the problem. Information running together, no hierarchy, no clear path for the eye. I built a widget for care teams to check whether a patient\u2019s stay was still compliant \u2014 a specific, bounded piece of the larger workflow.</p>
+<p>What I learned in those three months changed how I thought about enterprise healthcare design. Providers want the density. They have reasons. A clinician managing a patient panel needs to scan large volumes of information quickly without drilling into detail views. The density isn\u2019t a design failure \u2014 it\u2019s a design requirement. The problem isn\u2019t how much data is on the screen. The problem is when that data runs together and distinctions disappear.</p>
+<p>That tension \u2014 between the density users need and the clarity they deserve \u2014 stayed with me for the next seven years.</p>
+<h2>Terra: Working in the Gap</h2>
+<p>Three months after joining, I moved to the UX Foundations team and the Terra design system. The details of that work are covered in a <a href="/work/terra-design-system/">separate case study</a>, but the short version: I was one of two UX designers who could work directly in the React codebase alongside the Terra engineering team. I reviewed pull requests for UX correctness, resolved interaction and accessibility issues in code, owned the 200+ icon library, and advised on the construction of every component that came through.</p>
+<p>The role was defined by the space between design intent and engineering implementation \u2014 making sure that what got built actually honored the 125+ design standards and 150+ accessibility guidelines the system was built on.</p>
+<p>I did that work for roughly three and a half years.</p>
+<h2>Management: A Different Job</h2>
+<p>In mid-2022, a few months before Oracle completed its $28.3 billion acquisition of Cerner, I moved into design management. My hands-on IC work in the codebase effectively ended. The job became people.</p>
+<p>At its peak, I managed 12 designers spread across eight locations: Kansas City, New York City, Brussels, Bangalore, Puducherry, Chennai, Florida, and North Carolina. The work was mentoring, advocacy, career development, and keeping design quality consistent across a team that spanned three continents and rarely shared a time zone.</p>
+<p>Then Oracle\u2019s organizational philosophy took hold. Design managers were expected to operate as 80% IC, 20% manager. The team contracted through attrition and restructuring \u2014 people resigned, roles were consolidated. I went from twelve reports to five: three in Kansas City, one in New York, one in North Carolina.</p>
+<p>The shift wasn\u2019t just headcount. It was a fundamentally different idea of what design management means. At Cerner, managing designers was the job. Under Oracle, it was something you did on the side of your \u201creal\u201d work. I don\u2019t think those two philosophies are compatible, but I operated under both.</p>
+<h2>What I Protected</h2>
+<p>The period after the acquisition was not friendly to individual contributors. Promotions were nearly impossible to push through. Raises were rare. The organizational message, intended or not, was that growth had stopped.</p>
+<p>I got three of my reports promoted \u2014 with pay raises \u2014 during that window. It required building airtight justification packages and advocating through layers of new leadership who had no context on these designers\u2019 contributions. It was the most important management work I did at Oracle, and none of it shows up in a portfolio as a deliverable.</p>
+<h2>What I Carried Out</h2>
+<p>Seven years in healthcare enterprise UX taught me things that don\u2019t fit in a case study section header.</p>
+<p>Data density is a design requirement, not a design problem. The people using the software know more about their needs than you do \u2014 your job is to bring clarity to their requirements, not to override them with your preferences.</p>
+<p>Design systems are a coordination problem with a design surface. The components are the visible layer. The real work is the governance, the standards, the translation fidelity between what\u2019s specified and what ships.</p>
+<p>Management is advocacy. The deliverable is other people\u2019s growth. When the organization makes growth impossible, making it happen anyway is the job.</p>
+<p>The IC work and the management work both mattered. But they were different jobs, and pretending they\u2019re the same job done at different altitudes isn\u2019t honest.</p>
+<h2>Timeline</h2>
+<table>
+<thead><tr><th>Phase</th><th>Dates</th><th>Role</th><th>Scope</th></tr></thead>
+<tbody>
+<tr><td>Revenue Cycle</td><td>Sep\u2013Dec 2018</td><td>UX Designer</td><td>Middle office product, patient stay compliance widget</td></tr>
+<tr><td>Terra / UX Foundations</td><td>Dec 2018\u2013Mid 2022</td><td>Senior UX Designer</td><td>Design system engineering partnership, PR review, icon library, design advisory</td></tr>
+<tr><td>Design Management</td><td>Mid 2022\u20132024</td><td>UX Design Manager</td><td>5\u201312 reports across 8 locations, 3 continents; team leadership through Oracle acquisition</td></tr>
+</tbody>
+</table>"""
+
+data = {
+    "pages": [{
+        "title": "Seven Years in Healthcare UX",
+        "slug": "seven-years-in-healthcare-ux",
+        "status": "published",
+        "html": html,
+        "custom_template": "custom-casestudy-cerner"
+    }]
+}
+print(json.dumps(data))
+PYEOF
+)
+  if api POST "/ghost/api/admin/pages/?source=html" "$CERNER_BODY" >/dev/null 2>&1; then
+    log "Created page '$CERNER_SLUG'."
+  else
+    err "Failed to create page '$CERNER_SLUG'."
+  fi
+fi
+
 # Test posts removed — real content imported from prod export.
 
 # Set primary navigation
@@ -243,6 +308,7 @@ assign_template "now"   "custom-now"
 assign_template "work"  "custom-work"
 assign_template "about" "custom-about"
 assign_template "terra-design-system" "custom-casestudy-terra"
+assign_template "seven-years-in-healthcare-ux" "custom-casestudy-cerner"
 
 log "Done."
 log "Site:  $GHOST_URL"
