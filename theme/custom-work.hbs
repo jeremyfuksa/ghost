@@ -8,7 +8,7 @@
     {{#if custom_excerpt}}
       <p class="work-intro">{{custom_excerpt}}</p>
     {{else}}
-      <p class="work-intro">A cross-section of the work I do — writing, systems thinking, leadership, and experiments. Some of it lives publicly. Some of it doesn't.</p>
+      <p class="work-intro">Systems thinking, design leadership, and experiments at the intersection of craft and technology.</p>
     {{/if}}
   </header>
 
@@ -24,90 +24,22 @@
     </div>
   {{/if}}
 
-  <section class="work-grid">
-    {{!-- Writing & thinking --}}
-    <div class="work-category">
-      <div class="work-category-header">
-        <span class="work-category-label">Writing &amp; thinking</span>
-        <a href="/writing/" class="work-category-link">All writing &rarr;</a>
-      </div>
-      <div class="work-category-body">
-        {{#get "posts" limit="3" order="published_at desc"}}
-          {{#if posts}}
-            {{#foreach posts}}
-              <a href="{{url}}" class="work-card">
-                <h3 class="work-card-title">{{title}}</h3>
-                {{#if custom_excerpt}}
-                  <p class="work-card-excerpt">{{custom_excerpt}}</p>
-                {{else}}
-                  <p class="work-card-excerpt">{{excerpt words="20"}}</p>
-                {{/if}}
-                <span class="work-card-meta">{{date format="MMM YYYY"}}</span>
-              </a>
-            {{/foreach}}
-          {{else}}
-            <p class="work-empty">No posts yet.</p>
-          {{/if}}
-        {{/get}}
-      </div>
-    </div>
-
-    {{!-- Systems work --}}
-    <div class="work-category">
-      <div class="work-category-header">
-        <span class="work-category-label">Systems work</span>
-      </div>
-      <div class="work-category-body">
-        <a href="/work/terra-design-system/" class="work-card">
-          <h3 class="work-card-title">Terra Design System</h3>
-          <p class="work-card-excerpt">Open-source React component library. 80+ components, 200+ icons, WCAG 2.1 AA. Cerner / Oracle Health, 2018–2024.</p>
-          <span class="work-card-meta">2018–2024</span>
-        </a>
-      </div>
-    </div>
-
-    {{!-- Leadership narratives --}}
-    <div class="work-category">
-      <div class="work-category-header">
-        <span class="work-category-label">Leadership narratives</span>
-      </div>
-      <div class="work-category-body">
-        <a href="/work/seven-years-in-healthcare-ux/" class="work-card">
-          <h3 class="work-card-title">Seven Years in Healthcare UX</h3>
-          <p class="work-card-excerpt">Revenue cycle product design, design system engineering, and distributed team leadership through a $28B acquisition.</p>
-          <span class="work-card-meta">2018–2024</span>
-        </a>
-      </div>
-    </div>
-
-    {{!-- Experiments --}}
-    <div class="work-category">
-      <div class="work-category-header">
-        <span class="work-category-label">Experiments</span>
-      </div>
-      <div class="work-category-body">
-        <a href="/work/domain-foundation/" class="work-card">
-          <h3 class="work-card-title">Domain Foundation</h3>
-          <p class="work-card-excerpt">A methodology for encoding organizational design expertise into machine-readable knowledge systems for AI-assisted design workflows.</p>
-          <span class="work-card-meta">2023–ongoing</span>
-        </a>
-      </div>
-    </div>
-
-    {{!-- Case studies (password-gated) --}}
-    <div class="work-category work-category-locked">
-      <div class="work-category-header">
-        <span class="work-category-label">Case studies</span>
-        <span class="work-category-lock">Password-protected</span>
-      </div>
-      <div class="work-category-body">
-        <div class="work-card work-card-locked">
-          <h3 class="work-card-title">Detailed engagement case studies</h3>
-          <p class="work-card-excerpt">Process, decisions, and outcomes from specific engagements. Available on request — drop me a line and I'll share the password.</p>
-          <a href="#work-with-me" class="work-card-cta">Request access &rarr;</a>
-        </div>
-      </div>
-    </div>
+  <section class="work-list">
+    <a href="/work/terra-design-system/" class="work-row">
+      <div class="work-row-meta">Case study · 2018–2024</div>
+      <div class="work-row-title">Terra Design System</div>
+      <div class="work-row-excerpt">Open-source React component library. 80+ components, 200+ icons, WCAG 2.1 AA. Built and led at Cerner / Oracle Health.</div>
+    </a>
+    <a href="/work/seven-years-in-healthcare-ux/" class="work-row">
+      <div class="work-row-meta">Case study · 2018–2024</div>
+      <div class="work-row-title">Seven Years in Healthcare UX</div>
+      <div class="work-row-excerpt">Revenue cycle product design, design system engineering, and distributed team leadership through a $28B acquisition.</div>
+    </a>
+    <a href="/work/domain-foundation/" class="work-row">
+      <div class="work-row-meta">Experiment · 2023–ongoing</div>
+      <div class="work-row-title">Domain Foundation</div>
+      <div class="work-row-excerpt">A methodology for encoding organizational design expertise into machine-readable knowledge systems for AI-assisted design workflows.</div>
+    </a>
   </section>
 
   <section id="work-with-me" class="work-cta-section">
