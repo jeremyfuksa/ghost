@@ -2054,6 +2054,7 @@
 }
 
 .work-row-title {
+  font-family: var(--font-sans);
   font-size: var(--text-xl);
   font-weight: var(--font-weight-semibold);
   color: var(--text-primary);
@@ -2062,6 +2063,7 @@
 }
 
 .work-row-excerpt {
+  font-family: var(--font-sans);
   font-size: var(--text-sm);
   line-height: var(--leading-sm);
   color: var(--text-secondary);
