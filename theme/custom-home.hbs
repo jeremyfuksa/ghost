@@ -30,42 +30,73 @@
   </div>
 </section>
 
+{{#get "pages" filter="slug:testimonial" limit="1"}}
+  {{#foreach pages}}
+    <section class="testimonial">
+      <div class="testimonial-inner">
+        <span class="testimonial-label">What people say</span>
+        <blockquote class="testimonial-quote">{{{html}}}</blockquote>
+        {{#if custom_excerpt}}<cite class="testimonial-cite">{{custom_excerpt}}</cite>{{/if}}
+      </div>
+    </section>
+  {{/foreach}}
+{{/get}}
+
+{{#get "pages" filter="tag:hash-methodology" limit="3"}}
+  {{#if pages}}
+    <section class="methodology-trio">
+      <div class="methodology-trio-inner">
+        <span class="methodology-trio-label">How I think</span>
+        <div class="methodology-trio-grid">
+          {{#foreach pages}}
+            <a href="{{url}}" class="methodology-tile">
+              {{#if primary_tag}}<span class="methodology-tile-eyebrow">{{primary_tag.name}}</span>{{/if}}
+              <h3 class="methodology-tile-title">{{title}}</h3>
+              {{#if custom_excerpt}}<p class="methodology-tile-body">{{custom_excerpt}}</p>{{/if}}
+              <span class="methodology-tile-link">Read &rarr;</span>
+            </a>
+          {{/foreach}}
+        </div>
+      </div>
+    </section>
+  {{/if}}
+{{/get}}
+
+{{!-- Editorial override: posts flagged "Feature this post" in Ghost Admin
+     populate the hero article + sidebar. Falls back to newest when none. --}}
 <div class="home-writing-grid">
   <main>
     <span class="section-title">Latest</span>
-    {{#get "posts" limit="1"}}
-      {{#foreach posts}}
-        <article class="post-card-featured">
-          {{#if feature_image}}
-            <a href="{{url}}" class="post-card-featured-image-link">
-              <img class="post-card-featured-image" src="{{img_url feature_image size="m"}}" alt="{{title}}" loading="lazy">
-            </a>
-          {{/if}}
-          <div class="post-card-meta">
-            {{#if primary_tag}}<a href="{{primary_tag.url}}" class="tag">{{primary_tag.name}}</a>{{/if}}
-            <span class="post-card-date"><time datetime="{{date format="YYYY-MM-DD"}}">{{date format="MMM D, YYYY"}}</time></span>
-          </div>
-          <a href="{{url}}"><h3 class="post-card-title">{{title}}</h3></a>
-          {{#if custom_excerpt}}<p class="post-card-excerpt">{{custom_excerpt}}</p>{{else}}<p class="post-card-excerpt">{{excerpt}}</p>{{/if}}
-          <div class="post-card-footer">
-            <span class="post-card-readtime">{{reading_time}}</span>
-            <a href="{{url}}" class="post-card-read-link">Read <span>&rarr;</span></a>
-          </div>
-        </article>
-      {{/foreach}}
+    {{#get "posts" filter="featured:true" limit="1" as |hero|}}
+      {{#if hero.posts}}
+        {{#foreach hero.posts}}
+          {{> "post-card-featured"}}
+        {{/foreach}}
+      {{else}}
+        {{#get "posts" limit="1"}}
+          {{#foreach posts}}
+            {{> "post-card-featured"}}
+          {{/foreach}}
+        {{/get}}
+      {{/if}}
     {{/get}}
   </main>
 
   <aside class="sidebar">
     <span class="section-title">Previous Writing</span>
     <nav class="sidebar-posts">
-      {{#get "posts" limit="5" offset="1"}}
-        {{#foreach posts}}
-          <a href="{{url}}" class="sidebar-post-link">
-            <span class="sidebar-post-title">{{title}}</span>
-            {{#if custom_excerpt}}<span class="sidebar-post-teaser">{{custom_excerpt}}</span>{{else if excerpt}}<span class="sidebar-post-teaser">{{excerpt words="12"}}</span>{{/if}}
-          </a>
-        {{/foreach}}
+      {{#get "posts" filter="featured:true" limit="5" offset="1" as |featured|}}
+        {{#if featured.posts}}
+          {{#foreach featured.posts}}
+            {{> "sidebar-post-link"}}
+          {{/foreach}}
+        {{else}}
+          {{#get "posts" limit="5" offset="1"}}
+            {{#foreach posts}}
+              {{> "sidebar-post-link"}}
+            {{/foreach}}
+          {{/get}}
+        {{/if}}
       {{/get}}
       <a href="/writing/" class="sidebar-posts-all">All posts &rarr;</a>
     </nav>

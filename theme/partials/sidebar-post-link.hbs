@@ -1,0 +1,8 @@
+<a href="{{url}}" class="sidebar-post-link">
+  <span class="sidebar-post-title">{{title}}</span>
+  {{#if custom_excerpt}}
+    <span class="sidebar-post-teaser">{{custom_excerpt}}</span>
+  {{else if excerpt}}
+    <span class="sidebar-post-teaser">{{excerpt words="12"}}</span>
+  {{/if}}
+</a>

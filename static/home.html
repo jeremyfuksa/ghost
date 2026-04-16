@@ -1,9 +1,11 @@
 <!--
   STATIC SOURCE for: theme/custom-home.hbs
-  Last synced: 2026-04-15
+  Last synced: 2026-04-16
 
   Handlebars differences:
-  - {{#get "posts" limit="3"}} replaced with 3 hardcoded post-card examples
+  - {{#get "pages" filter="slug:testimonial"}} replaced with hardcoded sample testimonial
+  - {{#get "pages" filter="tag:hash-methodology"}} replaced with 3 hardcoded methodology tiles
+  - {{#get "posts" filter="featured:true"}} replaced with hardcoded post-card example
   - {{> now-card}} replaced with inline now-card HTML
   - {{> header}} / {{> footer}} replaced with inline nav/footer HTML
   - {{#get "tags"}} replaced with hardcoded topic list
@@ -92,6 +94,40 @@
           <h2 class="featured-work-title">Domain Foundation</h2>
           <p class="featured-work-body">Fast doesn't matter in design when the output is just averaged training data. Domain Foundation is a methodology for building the knowledge layer that makes AI tools produce work that actually reflects your domain — not everyone else's.</p>
           <a href="page.html" class="featured-work-link">Read the case study &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="testimonial">
+      <div class="testimonial-inner">
+        <span class="testimonial-label">What people say</span>
+        <blockquote class="testimonial-quote"><p>Jeremy built the design system that Terra is today. He handled the strategy, the politics, and the craft — and the team came out of it stronger than it went in.</p></blockquote>
+        <cite class="testimonial-cite">Jennifer Example · Former VP of Product, Cerner</cite>
+      </div>
+    </section>
+
+    <section class="methodology-trio">
+      <div class="methodology-trio-inner">
+        <span class="methodology-trio-label">How I think</span>
+        <div class="methodology-trio-grid">
+          <a href="page.html" class="methodology-tile">
+            <span class="methodology-tile-eyebrow">Framework</span>
+            <h3 class="methodology-tile-title">The four-layer knowledge architecture</h3>
+            <p class="methodology-tile-body">Tokens, patterns, domain language, and decisions — and why most design systems only ship the first two.</p>
+            <span class="methodology-tile-link">Read &rarr;</span>
+          </a>
+          <a href="page.html" class="methodology-tile">
+            <span class="methodology-tile-eyebrow">Framework</span>
+            <h3 class="methodology-tile-title">The validation stack</h3>
+            <p class="methodology-tile-body">How to tell the difference between a design that tests well and a design that ships well.</p>
+            <span class="methodology-tile-link">Read &rarr;</span>
+          </a>
+          <a href="page.html" class="methodology-tile">
+            <span class="methodology-tile-eyebrow">Framework</span>
+            <h3 class="methodology-tile-title">Role evolution model</h3>
+            <p class="methodology-tile-body">Why senior ICs stall at the staying-technical ceiling, and the moves that break through it.</p>
+            <span class="methodology-tile-link">Read &rarr;</span>
+          </a>
         </div>
       </div>
     </section>

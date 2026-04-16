@@ -1,5 +1,5 @@
 <article class="post-card-featured {{#if feature_image}}post-card-featured-has-image{{/if}}">
-  <div class="featured-badge">&#9733; Featured</div>
+  {{#if featured}}<div class="featured-badge">&#9733; Featured</div>{{/if}}
   {{#if feature_image}}
     <a href="{{url}}" class="post-card-featured-image-link">
       <img class="post-card-featured-image" src="{{img_url feature_image size="l"}}" alt="{{title}}" loading="lazy">
