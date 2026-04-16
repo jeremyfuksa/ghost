@@ -976,6 +976,41 @@
   color: var(--color-accent-hover);
 }
 
+/* ---------- Worked With ---------- */
+
+.worked-with {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: var(--spacing-8) var(--spacing-8) var(--spacing-16);
+  border-top: var(--border-hairline) solid var(--border-subtle);
+}
+
+.worked-with-label {
+  display: block;
+  font-size: var(--text-xs);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+  color: var(--color-section-label);
+  margin-bottom: var(--spacing-5);
+}
+
+.worked-with-logos {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  flex-wrap: wrap;
+}
+
+.worked-with-logo-placeholder {
+  width: 80px;
+  height: 28px;
+  background: var(--border-subtle);
+  border-radius: var(--radius-sm);
+  opacity: 0.5;
+}
+
 /* Sidebar */
 .sidebar {
   position: sticky;
