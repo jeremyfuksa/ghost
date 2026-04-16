@@ -142,6 +142,21 @@
   color: var(--color-nav-cta-hover);
 }
 
+.nav-links .nav-cta-btn {
+  background: var(--color-accent-text);
+  color: var(--bg-subtle);
+  padding: var(--spacing-1) var(--spacing-3);
+  border-radius: var(--radius-sm);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--text-sm);
+  text-decoration: none;
+  transition: opacity var(--transition-fast);
+}
+
+.nav-links .nav-cta-btn:hover {
+  opacity: 0.85;
+}
+
 .theme-toggle {
   display: inline-flex;
   align-items: center;
