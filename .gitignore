@@ -10,3 +10,4 @@ ghost-data/
 
 # Git worktrees
 .worktrees/
+.superpowers/
