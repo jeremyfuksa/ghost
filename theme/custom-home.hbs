@@ -61,7 +61,10 @@
     <nav class="sidebar-posts">
       {{#get "posts" limit="5" offset="1"}}
         {{#foreach posts}}
-          <a href="{{url}}" class="sidebar-post-link">{{title}}</a>
+          <a href="{{url}}" class="sidebar-post-link">
+            <span class="sidebar-post-title">{{title}}</span>
+            {{#if custom_excerpt}}<span class="sidebar-post-teaser">{{custom_excerpt}}</span>{{else if excerpt}}<span class="sidebar-post-teaser">{{excerpt words="12"}}</span>{{/if}}
+          </a>
         {{/foreach}}
       {{/get}}
       <a href="/writing/" class="sidebar-posts-all">All posts &rarr;</a>
