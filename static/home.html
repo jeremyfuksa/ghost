@@ -1,6 +1,6 @@
 <!--
   STATIC SOURCE for: theme/custom-home.hbs
-  Last synced: 2026-04-01
+  Last synced: 2026-04-15
 
   Handlebars differences:
   - {{#get "posts" limit="3"}} replaced with 3 hardcoded post-card examples
@@ -84,122 +84,57 @@
       </div>
     </section>
 
-    <div class="home-grid">
-      <main>
-        <div class="section-header">
-          <span class="section-title">Latest writing</span>
-          <a href="writing.html" class="section-link">All posts &rarr;</a>
+    <section class="featured-work">
+      <div class="featured-work-inner">
+        <span class="section-title">Featured Work</span>
+        <div class="featured-work-card">
+          <span class="featured-work-tag">Experiments · AI-Augmented Design</span>
+          <h2 class="featured-work-title">Domain Foundation</h2>
+          <p class="featured-work-body">Fast doesn't matter in design when the output is just averaged training data. Domain Foundation is a methodology for building the knowledge layer that makes AI tools produce work that actually reflects your domain — not everyone else's.</p>
+          <a href="page.html" class="featured-work-link">Read the case study &rarr;</a>
         </div>
+      </div>
+    </section>
 
-        <article class="post-card post-card-has-image">
-          <div class="post-card-image-col">
-            <a href="post.html" class="post-card-image-link">
-              <div class="post-card-image placeholder-image">600 x 400</div>
-            </a>
-            <div class="post-card-meta">
-              <a href="tag.html" class="tag">AI</a>
-              <span class="post-card-date"><time>Mar 22, 2026</time></span>
-            </div>
+    <div class="home-writing-grid">
+      <main>
+        <span class="section-title">Latest</span>
+        <article class="post-card-featured">
+          <div class="post-card-meta">
+            <a href="tag.html" class="tag">AI</a>
+            <span class="post-card-date"><time>Mar 22, 2026</time></span>
           </div>
-          <div class="post-card-content">
-            <a href="post.html"><h3 class="post-card-title">Prompt engineering is just design research with a different cursor</h3></a>
-            <p class="post-card-excerpt">The skills that make someone good at user interviews turn out to be the same skills that make someone good at working with LLMs.</p>
-            <div class="post-card-footer">
-              <span class="post-card-readtime">5 min read</span>
-              <a href="post.html" class="post-card-read-link">Read <span>&rarr;</span></a>
-            </div>
-          </div>
-        </article>
-
-        <article class="post-card post-card-has-image">
-          <div class="post-card-image-col">
-            <a href="post.html" class="post-card-image-link">
-              <div class="post-card-image placeholder-image">600 x 400</div>
-            </a>
-            <div class="post-card-meta">
-              <a href="tag.html" class="tag">UX Strategy</a>
-              <span class="post-card-date"><time>Mar 15, 2026</time></span>
-            </div>
-          </div>
-          <div class="post-card-content">
-            <a href="post.html"><h3 class="post-card-title">Why your design system needs a positioning statement</h3></a>
-            <p class="post-card-excerpt">If you can't articulate who your design system serves, you don't have a product — you have a component library.</p>
-            <div class="post-card-footer">
-              <span class="post-card-readtime">6 min read</span>
-              <a href="post.html" class="post-card-read-link">Read <span>&rarr;</span></a>
-            </div>
-          </div>
-        </article>
-
-        <article class="post-card post-card-has-image">
-          <div class="post-card-image-col">
-            <a href="post.html" class="post-card-image-link">
-              <div class="post-card-image placeholder-image">600 x 400</div>
-            </a>
-            <div class="post-card-meta">
-              <a href="tag.html" class="tag">Leadership</a>
-              <span class="post-card-date"><time>Mar 8, 2026</time></span>
-            </div>
-          </div>
-          <div class="post-card-content">
-            <a href="post.html"><h3 class="post-card-title">The senior IC trap: when "staying technical" becomes a ceiling</h3></a>
-            <p class="post-card-excerpt">The most impactful design leaders I know refuse the binary between managing people and staying hands-on.</p>
-            <div class="post-card-footer">
-              <span class="post-card-readtime">7 min read</span>
-              <a href="post.html" class="post-card-read-link">Read <span>&rarr;</span></a>
-            </div>
+          <a href="post.html"><h3 class="post-card-title">Prompt engineering is just design research with a different cursor</h3></a>
+          <p class="post-card-excerpt">The skills that make someone good at user interviews turn out to be the same skills that make someone good at working with LLMs.</p>
+          <div class="post-card-footer">
+            <span class="post-card-readtime">5 min read</span>
+            <a href="post.html" class="post-card-read-link">Read <span>&rarr;</span></a>
           </div>
         </article>
       </main>
 
       <aside class="sidebar">
-        <div class="now-card">
-          <div class="now-card-header">
-            <span class="now-card-dot"></span>
-            <span class="now-card-label">NOW</span>
-          </div>
-          <div class="now-card-item">
-            <div class="now-card-item-label">Status</div>
-            <div class="now-card-item-value">Independent</div>
-            <div class="now-card-item-sub">Available for consulting &amp; senior roles</div>
-          </div>
-          <div class="now-card-item">
-            <div class="now-card-item-label">Building</div>
-            <div class="now-card-item-value">Domain Foundation</div>
-            <div class="now-card-item-sub">Consulting methodology</div>
-          </div>
-          <div class="now-card-item">
-            <div class="now-card-item-label">Location</div>
-            <div class="now-card-item-value">Kansas City</div>
-          </div>
-          <div class="now-card-footer">
-            <a href="now.html" class="now-card-link">Full now page <span>&rarr;</span></a>
-          </div>
-        </div>
-
-        <div class="sidebar-about">
-          <!-- ghost: {{#get "users" limit="1"}}{{bio}}{{/get}} -->
-          <p>Independent AI-augmented design leader specializing in design systems, UX strategy, and product design. Based in Kansas City.</p>
-          <ul class="sidebar-about-links">
-            <li><a href="page.html">Work</a></li>
-            <li><a href="#">LinkedIn</a></li>
-            <li><a href="#">GitHub</a></li>
-          </ul>
-        </div>
-
-        <div class="sidebar-topics">
-          <div class="sidebar-topics-title">Topics</div>
-          <ul class="sidebar-topics-list">
-            <li><a href="tag.html"><span>Design Systems</span><span class="topic-count">12</span></a></li>
-            <li><a href="tag.html"><span>AI</span><span class="topic-count">8</span></a></li>
-            <li><a href="tag.html"><span>UX Strategy</span><span class="topic-count">7</span></a></li>
-            <li><a href="tag.html"><span>Leadership</span><span class="topic-count">5</span></a></li>
-            <li><a href="tag.html"><span>Tools</span><span class="topic-count">4</span></a></li>
-            <li><a href="tag.html"><span>Process</span><span class="topic-count">3</span></a></li>
-          </ul>
-        </div>
+        <nav class="sidebar-posts">
+          <a href="post.html" class="sidebar-post-link">Why your design system needs a positioning statement</a>
+          <a href="post.html" class="sidebar-post-link">The senior IC trap: when "staying technical" becomes a ceiling</a>
+          <a href="post.html" class="sidebar-post-link">How I structure AI-assisted design reviews</a>
+          <a href="post.html" class="sidebar-post-link">What makes a design system actually adopted</a>
+          <a href="writing.html" class="sidebar-posts-all">All posts &rarr;</a>
+        </nav>
       </aside>
     </div>
+
+    <section class="worked-with">
+      <div class="worked-with-inner">
+        <span class="worked-with-label">Worked with</span>
+        <div class="worked-with-logos">
+          <div class="worked-with-logo-placeholder"></div>
+          <div class="worked-with-logo-placeholder"></div>
+          <div class="worked-with-logo-placeholder"></div>
+          <div class="worked-with-logo-placeholder"></div>
+        </div>
+      </div>
+    </section>
     </div>
   </div>
 
