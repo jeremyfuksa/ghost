@@ -116,6 +116,9 @@
   /* Hero fade */
   --color-hero-fade: #f7f8f9;
 
+  /* Featured work card — always dark regardless of mode */
+  --color-featured-card-bg: #1c1f26;
+
   /* Status — aliased to campfire palette tokens */
   --color-success: var(--success-600);
   --color-warning: var(--warning-600);

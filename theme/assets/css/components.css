@@ -856,7 +856,7 @@
 }
 
 .featured-work-card {
-  background: var(--bg-emphasis);
+  background: var(--color-featured-card-bg);
   border-radius: var(--radius-lg);
   padding: var(--spacing-8) var(--spacing-10);
   display: flex;
