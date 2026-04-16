@@ -92,6 +92,24 @@ cd theme && npx gscan .
 
 0 errors is the bar. A single warning about custom fonts is expected.
 
+## CI and auto-merge
+
+`.github/workflows/ci.yml` runs `gscan` against `theme/` on every PR and on pushes to `main`. The `--fatal` flag makes it exit non-zero on errors so the check actually blocks bad merges.
+
+To enable auto-merge end-to-end, configure this once in the GitHub UI:
+
+1. **Settings → General → Pull Requests**
+   - Enable **Allow auto-merge**.
+   - Enable **Automatically delete head branches**.
+   - Pick one merge style (squash recommended) and disable the others.
+2. **Settings → Branches → Branch protection rules → Add rule** for `main`:
+   - **Require a pull request before merging**.
+   - **Require status checks to pass before merging** → add `gscan` as required. Also tick **Require branches to be up to date before merging**.
+   - Leave "Require approvals" off for a solo repo (it would block auto-merge with no second reviewer).
+   - Tick **Do not allow bypassing the above settings** to keep the rule honest.
+
+With that in place, enable auto-merge on an individual PR via the GitHub UI button, `gh pr merge --auto --squash <n>`, or the `mcp__github__enable_pr_auto_merge` tool. GitHub will merge it the moment `gscan` goes green.
+
 ## More
 
 - `CLAUDE.md` — exhaustive architecture notes and conventions for agent-driven work.
