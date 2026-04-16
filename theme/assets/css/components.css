@@ -143,18 +143,20 @@
 }
 
 .nav-links .nav-cta-btn {
+  display: inline-flex;
+  align-items: center;
   background: var(--color-accent-text);
-  color: var(--bg-subtle);
+  color: var(--text-inverse);
   padding: var(--spacing-1) var(--spacing-3);
   border-radius: var(--radius-sm);
   font-weight: var(--font-weight-semibold);
   font-size: var(--text-sm);
   text-decoration: none;
-  transition: opacity var(--transition-fast);
+  transition: background var(--transition-fast);
 }
 
 .nav-links .nav-cta-btn:hover {
-  opacity: 0.85;
+  background: var(--color-accent-hover);
 }
 
 .theme-toggle {
