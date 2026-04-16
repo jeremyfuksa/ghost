@@ -739,6 +739,7 @@
 
 .hero .hero-positioning {
   color: rgba(255, 255, 255, 0.85);
+  max-width: 480px;
 }
 
 .hero .hero-proof {
