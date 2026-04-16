@@ -113,6 +113,9 @@
   --color-blockquote-rule: #a8654f;
   --color-toc-active: #3e4f66;
 
+  /* Hero fade */
+  --color-hero-fade: #f7f8f9;
+
   /* Status — aliased to campfire palette tokens */
   --color-success: var(--success-600);
   --color-warning: var(--warning-600);
@@ -162,4 +165,7 @@
   --color-footer-text: var(--text-secondary);
   --color-footer-copy: var(--text-secondary);
   --color-footer-nav-hover: var(--text-primary);
+
+  /* Hero fade */
+  --color-hero-fade: #1c1f26;
 }
