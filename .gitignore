@@ -11,3 +11,4 @@ ghost-data/
 # Git worktrees
 .worktrees/
 .superpowers/
+.playwright-mcp/
