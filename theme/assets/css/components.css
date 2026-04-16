@@ -913,7 +913,8 @@
   padding: var(--spacing-8) var(--spacing-8) var(--spacing-12);
 }
 
-.home-writing-grid > main > .section-title {
+.home-writing-grid > main > .section-title,
+.home-writing-grid > aside > .section-title {
   display: block;
   margin-bottom: var(--spacing-4);
 }
