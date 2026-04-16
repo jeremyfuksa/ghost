@@ -923,6 +923,25 @@
   border-bottom: none;
 }
 
+.post-card-featured-image-link {
+  display: block;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-5);
+}
+
+.post-card-featured-image {
+  width: 100%;
+  height: var(--size-featured-image-sm);
+  object-fit: cover;
+  display: block;
+  transition: transform var(--transition-base);
+}
+
+.post-card-featured-image-link:hover .post-card-featured-image {
+  transform: scale(1.03);
+}
+
 .post-card-featured .post-card-meta {
   margin-bottom: var(--spacing-3);
 }

@@ -36,6 +36,11 @@
     {{#get "posts" limit="1"}}
       {{#foreach posts}}
         <article class="post-card-featured">
+          {{#if feature_image}}
+            <a href="{{url}}" class="post-card-featured-image-link">
+              <img class="post-card-featured-image" src="{{img_url feature_image size="m"}}" alt="{{title}}" loading="lazy">
+            </a>
+          {{/if}}
           <div class="post-card-meta">
             {{#if primary_tag}}<a href="{{primary_tag.url}}" class="tag">{{primary_tag.name}}</a>{{/if}}
             <span class="post-card-date"><time datetime="{{date format="YYYY-MM-DD"}}">{{date format="MMM D, YYYY"}}</time></span>
