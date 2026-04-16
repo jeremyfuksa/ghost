@@ -110,14 +110,21 @@
   /* Palette accents (surgical use in nav/section labels/etc.) */
   --color-eyebrow: #8d5443;
   --color-section-label: #4c627d;
+  --color-section-underline: var(--secondary-200);
+
+  /* Worked-with section */
+  --color-worked-with-bg: var(--primary-50);
+  --color-worked-with-border: var(--primary-100);
   --color-blockquote-rule: #a8654f;
   --color-toc-active: #3e4f66;
 
   /* Hero fade */
   --color-hero-fade: #f7f8f9;
 
-  /* Featured work card — always dark regardless of mode */
+  /* Featured work card */
   --color-featured-card-bg: #1c1f26;
+  --color-featured-card-surface: #75acaf;
+  --color-featured-card-border: rgba(0, 0, 0, 0.1);
 
   /* Status — aliased to campfire palette tokens */
   --color-success: var(--success-600);
@@ -151,6 +158,7 @@
 
   --color-eyebrow: #dbbdb3;
   --color-section-label: #acbbcc;
+  --color-section-underline: var(--secondary-700);
   --color-blockquote-rule: #c9998a;
   --color-toc-active: #acbbcc;
   --color-footer-tagline: #8098b0;
@@ -171,4 +179,11 @@
 
   /* Hero fade */
   --color-hero-fade: #1c1f26;
+
+  --color-featured-card-surface: #2e5a5c;
+  --color-featured-card-border: rgba(255, 255, 255, 0.08);
+
+  /* Worked-with section — recessed dark surface */
+  --color-worked-with-bg: var(--primary-950);
+  --color-worked-with-border: var(--primary-900);
 }
