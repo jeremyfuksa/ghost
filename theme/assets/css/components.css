@@ -727,6 +727,35 @@
     url(../images/jeremy-hero.png);
 }
 
+/* Hero text — always light over photo background */
+.hero .hero-eyebrow {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.hero .hero-name {
+  color: #ffffff;
+}
+
+.hero .hero-positioning {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.hero .hero-proof {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.hero .hero-meta-dot {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.hero .hero-cta-secondary {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.hero .hero-cta-secondary:hover {
+  color: rgba(255, 255, 255, 1);
+}
+
 .hero-inner {
   max-width: var(--content-max);
   margin: 0 auto;
