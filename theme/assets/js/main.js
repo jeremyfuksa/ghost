@@ -11,6 +11,7 @@
     var stored = localStorage.getItem('theme');
     if (stored) {
       document.documentElement.setAttribute('data-theme', stored);
+      document.documentElement.classList.toggle('dark', stored === 'dark');
     }
 
     toggle.addEventListener('click', function () {
@@ -25,6 +26,7 @@
 
       var next = isDark ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', next);
+      document.documentElement.classList.toggle('dark', next === 'dark');
       localStorage.setItem('theme', next);
     });
   }
