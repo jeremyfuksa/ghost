@@ -12,3 +12,6 @@ ghost-data/
 .worktrees/
 .superpowers/
 .playwright-mcp/
+
+# Local editing scratch
+drafts/
