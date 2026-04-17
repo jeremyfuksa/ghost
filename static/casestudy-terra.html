@@ -1,6 +1,6 @@
 <!--
   STATIC SOURCE for: theme/custom-casestudy-terra.hbs
-  Last synced: 2026-04-12
+  Last synced: 2026-04-17
 
   Handlebars differences:
   - {{#page}} context removed
@@ -66,28 +66,22 @@
       <div class="casestudy-body">
         <div class="casestudy-prose">
           <h2>Overview</h2>
-          <p>Terra is Cerner's open-source design system — 80+ React components, 200+ icons, and a comprehensive standards library built for healthcare applications at global scale. It provides the UI foundation for Cerner's Millennium platform: roughly 60 integrated clinical solutions used by approximately 1,500 healthcare organizations in 195 countries.</p>
-          <p>I was one of two UX designers embedded with the Terra engineering team who worked directly in the React codebase. My role was ensuring that what got built actually matched what was designed — bridging the gap between UX standards and engineering implementation at the component level.</p>
+          <p>Terra is Cerner's open-source design system — the React component library that provides the UI foundation for the Millennium platform. I joined the Terra team three months after I started at Cerner, and I was one of two UX designers on it who could work directly in the React codebase alongside the engineers. I stayed in that role for roughly three and a half years.</p>
 
-          <h2>The Problem</h2>
-          <p>Healthcare UI components don't get to be approximately right. A focus-trap bug in an alert component propagates across every product that consumes it. An icon that fails contrast requirements shows up in operating rooms and emergency departments.</p>
-          <p>Terra's architecture solves this at scale — every consuming team inherits accessible, internationalized, responsive components without rebuilding that work themselves. But that architecture only works if the components faithfully implement the design standards. Catching those failures requires someone who can read both languages.</p>
+          <h2>Why the role existed</h2>
+          <p>Healthcare UI components don't get to be approximately right. A focus-trap bug in an alert component propagates across every product that consumes it. An icon that fails contrast requirements shows up in operating rooms and emergency departments. Every consuming team inherits whatever actually ships, whether or not it matches the standards.</p>
+          <p>So the architecture's promise — accessible, internationalized, responsive components built once, consumed everywhere — only works if the components faithfully implement those standards. Catching the places they don't requires someone who can read both the standards document and the pull request and push back on the difference. That was the job.</p>
 
-          <h2>My Role</h2>
-          <p><strong>PR review and UX sign-off.</strong> I reviewed pull requests for UX correctness — not just whether a component rendered, but whether focus management, keyboard navigation, and interaction behavior matched the published design standards and accessibility guidelines (125+ standards, 150+ accessibility guidelines targeting WCAG 2.1 AA).</p>
-          <p><strong>In-code UX problem solving.</strong> When components had UX issues that required both design judgment and code-level debugging to resolve, I was one of two designers with the React fluency to work through them directly in the monorepo alongside engineers.</p>
-          <p><strong>Icon library ownership.</strong> I maintained the Terra icon library — 200+ icons in a dedicated Git repository that the engineering team consumed into the component system. Full ownership of the pipeline from design asset to published repo.</p>
-          <p><strong>Design advisory.</strong> I didn't design Terra's components, but I advised on the proper construction of every component that came through — ensuring that interaction specifications, accessibility requirements, and visual standards were correctly interpreted and implemented.</p>
+          <h2>What the work actually looked like</h2>
+          <p>Most days I was in the Terra monorepo reading pull requests. Not rubber-stamping them. Actually reading them — walking through the interaction logic, checking focus management against the standards we'd published, flagging the places where an engineer's reasonable implementation had quietly diverged from the intended behavior. When something was wrong in a way that needed both design judgment and React fluency to resolve, I was one of two designers on the team who could fix it in code rather than throw it back over the wall with a spec.</p>
+          <p>Alongside that, I owned the icon library — a dedicated Git repository the engineering team consumed into the component system, maintained end-to-end from design asset to published package. And I was the design advisor on the construction of every new component that came through, which meant a lot of arguing about tab order, screen reader announcements, and which interaction patterns the design standards actually required versus which ones had been convenient to document.</p>
+          <p>The standards we were enforcing weren't small. The system was built on 125+ design standards and 150+ accessibility guidelines targeting WCAG 2.1 AA. My job was making sure what shipped actually honored them.</p>
 
-          <h2>The System</h2>
-          <p>Terra's component ecosystem spans three repositories: terra-core (foundational components — buttons, alerts, forms), terra-framework (composed, higher-order patterns — navigation, layouts, modals), and terra-clinical (healthcare-specific components).</p>
-          <p>Every component ships with accessibility, responsive design, internationalization, and cross-browser support built in. The consuming team gets all of that by default. At the scale of hundreds of product teams, each component represents engineering-weeks of accessibility and responsive work that would otherwise be duplicated — or more likely, done inconsistently or skipped entirely.</p>
-          <p>The system is open source under an Apache 2.0 license. The code, the contribution guidelines, and the component documentation are all publicly available on GitHub.</p>
+          <h2>What I learned there</h2>
+          <p>A design system isn't a components problem. It's an interpretation problem. The gap between what the standard says and what the engineer built in good faith is where accessibility actually dies, and closing that gap requires someone who can read the diff — not someone who writes the spec harder.</p>
+          <p>The other thing I learned: being the designer who works in the code changes what design means as a job. I spent three and a half years not producing Figma files that anyone cared about, and the work mattered more than most of the Figma files I'd produced before that.</p>
 
-          <h2>Outcomes</h2>
-          <p>80+ React components across three repositories, consumed by hundreds of product teams. 200+ icons maintained and published through a dedicated pipeline. 125+ design standards and 150+ accessibility guidelines implemented and verified at the component level. WCAG 2.1 AA targeted conformance baked into every component — keyboard navigation, screen reader support, focus management, color contrast. Global deployment across ~60 Millennium solutions, ~1,500 healthcare organizations, 195 countries. Open source — publicly verifiable on GitHub under the Cerner organization.</p>
-
-          <h2>What Happened Next</h2>
+          <h2>What happened next</h2>
           <p>In mid-2022, a few months before Oracle completed its $28.3 billion acquisition of Cerner, I moved from this hands-in-code IC role into design management — eventually leading a team of up to 12 across the US and India through the organizational transition.</p>
           <p>The leadership story is its own case study. But this is where it started: in the gap between what was designed and what was built, making sure the intent survived.</p>
         </div>
