@@ -54,4 +54,4 @@ Two years, two shipped components, two descoped ones, and a handful of sub-compo
 
 In my June 2025 performance review, my top goal for the next year was that whatever I worked on next had to be centered on AI. The Page Summary component had already put me one degree away from the AI work at Oracle Health; the segue was short. In September I got asked to be the designer of the AI design process for Oracle design. Six months later the layoff came.
 
-The AI Domain Foundation is its own case study. But this is where it first had to hold up inside an enterprise healthcare product.
+[The Context Layer](domain-foundation.md) is its own case study. It's where the thread picked up.

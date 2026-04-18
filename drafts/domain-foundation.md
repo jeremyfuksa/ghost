@@ -2,7 +2,8 @@
 
 **Role:** Creator and primary researcher
 **Timeline:** 2023–2024, ongoing
-**Scope:** A methodology for encoding organizational design expertise into machine-readable knowledge systems for AI-assisted design workflows.
+**Organization:** Oracle (Redwood Design System)
+**Scope:** A methodology for encoding institutional design expertise into AI-assisted design workflows.
 
 ---
 
@@ -12,7 +13,7 @@ The first thing anyone said, in the first meeting, was that AI in the hands of e
 
 Not a metaphor. Figma Make had arrived, and a PM with no design training could generate a layout that looked real enough to circulate. The work a design team protected was, suddenly, something anyone could do plausibly enough to win an argument in a standup.
 
-The question we opened with wasn't *how do we do AI better.* It was *how do we make sure a non-designer can't generate something that doesn't match our design system.*
+The question we opened with wasn't *how do we do AI better.* It was *how do we make sure a non-designer can't generate something that doesn't match Redwood.*
 
 ## The pattern that has served me well
 
@@ -74,7 +75,7 @@ Design teams whose expertise is encoded — literally, as a retrievable knowledg
 
 ## What the MVP proved
 
-An engineer on the project built the vector database, the MCP, and the tooling to query it. We connected the pipeline to ChatGPT 5.4 and ingested three real corpora: Human Factors research, the team's role profiles, and the internal accessibility guidelines. Links to additional internal research hung off the rest.
+An engineer on the project built the vector database, the MCP, and the tooling to query it. We connected the pipeline to ChatGPT 5.4 and ingested three real corpora: Oracle's Human Factors research, the team's role profiles, and Oracle's internal accessibility guidelines. Links to additional internal research hung off the rest.
 
 The first test was small. We asked the system for information about a user persona we'd ingested. It answered accurately. Retrieval worked. The corpus was real.
 
