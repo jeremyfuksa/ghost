@@ -2,71 +2,55 @@
 
 **Role:** UX Designer → Senior UX Designer → UX Design Manager
 **Organization:** Cerner / Oracle Health
-**Timeline:** 2018–2024
-**Scope:** Revenue cycle product design, design system engineering, and distributed team leadership through a $28B acquisition.
-
-_(This one is the North Star for voice — unchanged in the PR. Included here for reference when editing the other two.)_
+**Timeline:** 2018–2026
+**Scope:** Distributed design team leadership through a $28B acquisition, applying volunteer leadership training to enterprise design management.
 
 ---
 
 ## Overview
 
-I joined Cerner in 2018 as a UX designer on the revenue cycle product. Three months later I moved to the UX Foundations team, where I spent three and a half years working directly in the Terra design system codebase alongside engineers. In mid-2022 I moved into design management, eventually leading designers across Kansas City, New York City, Brussels, Bangalore, Puducherry, Chennai, Florida, and North Carolina — through Oracle's acquisition of Cerner and everything that came with it.
+I joined Cerner in 2018 as a UX designer on the revenue cycle product. Over the next nearly eight years I moved through three phases — revenue cycle, the [Terra design system](terra-design-system.md), and design management — and came out on the other side of an acquisition. This case study is about the third phase.
 
-This is the full arc.
+Running alongside all of it, on the volunteer side of my life, was Wood Badge — the Boy Scouts of America's adult leadership program. The program taught me how to lead. The management chapter was where I got to use what it had taught me.
 
-## Revenue Cycle: Learning the Domain
+## The question I brought with me
 
-My first assignment was middle office revenue cycle — the claims processing, denials management, and compliance work that keeps hospitals financially solvent. Not the clinical-facing work that makes it into conference talks. The operational infrastructure that revenue cycle teams stare at all day.
+I went through Wood Badge starting in 2015 and stayed with the program through 2022, staffing courses after my own training was done. The curriculum covers team development, situational leadership, conflict management, change management, and underneath all of it, servant leadership.
 
-The Millennium interface I walked into was dense. Aggressively dense. Data tables packed with status codes, payer information, denial reasons, dollar amounts, and dates — all competing for attention at the same priority level.
+The most useful thing I picked up from Wood Badge wasn't in the official curriculum. It came from other adults I taught alongside, and it was a practice rather than a framework. Every one-on-one — every Scoutmaster conference with a Scout about how their progress was going — you close with the same question:
 
-My instinct was that the density was the problem. Information running together, no hierarchy, no clear path for the eye. I built a widget for care teams to check whether a patient's stay was still compliant — a specific, bounded piece of the larger workflow.
+*What can I do to make your experience better?*
 
-What I learned in those three months changed how I thought about enterprise healthcare design. Providers want the density. They have reasons. A clinician managing a patient panel needs to scan large volumes of information quickly without drilling into detail views. The density isn't a design failure — it's a design requirement. The problem isn't how much data is on the screen. The problem is when that data runs together and distinctions disappear.
+I started using it as a Scoutmaster two or three years before I joined Cerner. By the time I had direct reports of my own, the question was instinct. I asked it at the end of every one-on-one I ever ran with a designer who worked for me. Not only when something was wrong. Every time.
 
-That tension — between the density users need and the clarity they deserve — stayed with me for the next seven years.
+It does small structural work. It inverts the default shape of a manager-and-report conversation, where the manager is the one evaluating. It asks the report to evaluate you, and it tells them — every time — that their experience is a thing you are responsible for and want feedback on. Asked once, it's a gesture. Asked in every one-on-one for years, it becomes the channel the actually-difficult asks arrive through.
 
-## Terra: Working in the Gap
+I didn't know how much I was going to need it.
 
-Three months after joining, I moved to the UX Foundations team and the Terra design system. The details of that work are covered in a [separate case study](./terra-design-system.md), but the short version: I was one of two UX designers who could work directly in the React codebase alongside the Terra engineering team. I reviewed pull requests for UX correctness, resolved interaction and accessibility issues in code, owned the 200+ icon library, and advised on the construction of every component that came through.
+## Management
 
-The role was defined by the space between design intent and engineering implementation — making sure that what got built actually honored the 125+ design standards and 150+ accessibility guidelines the system was built on.
+I moved into design management in mid-2022. I'd managed a three-person design team at an agency years earlier — enough to know management wasn't the same job as IC, but not enough to prepare me for twelve reports across eight locations, three continents, and a company going through a $28B acquisition.
 
-I did that work for roughly three and a half years.
+Oracle's acquisition of Cerner changed the philosophy of design management quickly. Managers were expected to operate as 80% IC, 20% manager. Over time, the team contracted through attrition and restructuring — people resigned, roles were restructured. I went from twelve reports to five: three in Kansas City, one in New York, one in North Carolina.
 
-## Management: A Different Job
+The shift also changed what design management meant. At Cerner, managing designers was the job. Under Oracle, it was something you did on the side of your "real" work.
 
-In mid-2022, a few months before Oracle completed its $28.3 billion acquisition of Cerner, I moved into design management. My hands-on IC work in the codebase effectively ended. The job became people.
+## The drought
 
-At its peak, I managed 12 designers spread across eight locations: Kansas City, New York City, Brussels, Bangalore, Puducherry, Chennai, Florida, and North Carolina. The work was mentoring, advocacy, career development, and keeping design quality consistent across a team that spanned three continents and rarely shared a time zone.
+For the first two Oracle years, during performance review cycles, there were no promotions or raises on the table. For anyone. Not a cap, not a slowdown — just not available.
 
-Then Oracle's organizational philosophy took hold. Design managers were expected to operate as 80% IC, 20% manager. The team contracted through attrition and restructuring — people resigned, roles were consolidated. I went from twelve reports to five: three in Kansas City, one in New York, one in North Carolina.
+I still had to run performance reviews and not have anything at the end of the conversation to offer them for exceptional work. People who had genuinely earned recognition — the kind you'd normally signal with a promotion or a raise — were getting neither, and they knew it, and I knew it, and there was no version of the conversation where we could pretend otherwise.
 
-The shift wasn't just headcount. It was a fundamentally different idea of what design management means. At Cerner, managing designers was the job. Under Oracle, it was something you did on the side of your "real" work. I don't think those two philosophies are compatible, but I operated under both.
+The closing question was what kept those conversations honest.
+
+I couldn't promise a promotion. I couldn't promise a raise. I could ask what I could do to make their experience better — and most of the answers were things I could actually do. Shift a project. Push back on a meeting cadence. The things a manager can do unilaterally, I could still do.
+
+The question also created the channel for the harder answers. Sometimes a report would use it to tell me they were hitting a wall, or that the promotion drought was doing real damage to how they thought about their career, or that they needed me to go advocate for something they couldn't advocate for themselves. I couldn't always fix those.
 
 ## What I Protected
 
-The period after the acquisition was not friendly to individual contributors. Promotions were nearly impossible to push through. Raises were rare. The organizational message, intended or not, was that growth had stopped.
+During that same window, I got three of my reports promoted — with pay raises.
 
-I got three of my reports promoted — with pay raises — during that window. It required building airtight justification packages and advocating through layers of new leadership who had no context on these designers' contributions. It was the most important management work I did at Oracle, and none of it shows up in a portfolio as a deliverable.
+It required building airtight justification packages and advocating through layers of new leadership who had no context on these designers' contributions. It was the most important management work I did at Oracle, and none of it shows up in a portfolio as a deliverable.
 
-## What I Carried Out
-
-Seven years in healthcare enterprise UX taught me things that don't fit in a case study section header.
-
-Data density is a design requirement, not a design problem. The people using the software know more about their needs than you do — your job is to bring clarity to their requirements, not to override them with your preferences.
-
-Design systems are a coordination problem with a design surface. The components are the visible layer. The real work is the governance, the standards, the translation fidelity between what's specified and what ships.
-
-Management is advocacy. The deliverable is other people's growth. When the organization makes growth impossible, making it happen anyway is the job.
-
-The IC work and the management work both mattered. But they were different jobs, and pretending they're the same job done at different altitudes isn't honest.
-
-## Timeline
-
-| Phase | Dates | Role | Scope |
-|---|---|---|---|
-| Revenue Cycle | Sep–Dec 2018 | UX Designer | Middle office product, patient stay compliance widget |
-| Terra / UX Foundations | Dec 2018–Mid 2022 | Senior UX Designer | Design system engineering partnership, PR review, icon library, design advisory |
-| Design Management | Mid 2022–2024 | UX Design Manager | 5–12 reports across 8 locations, 3 continents; team leadership through Oracle acquisition |
+These were also people who happened not to have been promoted in the two years leading up to the acquisition. Ordinary at the time. By the time I was pushing their cases through, those two years had become the front end of a three-to-four-year stretch with no movement. The one-on-ones told me where the pressure was. What ultimately moved the three promotions was documentation, elapsed time, and the willingness to keep pushing after the standard answer came back as "no."
