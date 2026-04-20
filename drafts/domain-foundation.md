@@ -67,7 +67,7 @@ By the time the kickoff happened, I'd been ahead of the curve for a year.
 
 ## The gap the methodology exists to close
 
-My design team killed a feature for privacy reasons. The AI didn't catch it. A designer on the team did. The [full story](redwood-health-pod.md) is its own case study; the part that matters here is what the AI missed. It could reason at the surface — workflow, provider needs, clinical framing. It couldn't carry the deployment context. Human expertise killed the feature, not the AI's.
+My design team killed a feature for privacy reasons. The AI didn't catch it. A designer on the team did. The [full story](redwood-health-design.md) is its own case study; the part that matters here is what the AI missed. It could reason at the surface — workflow, provider needs, clinical framing. It couldn't carry the deployment context. Human expertise killed the feature, not the AI's.
 
 The Context Layer is a bet that the *why* can be captured in a form a model can use, so that the judgment of people like my colleague doesn't walk out the door when they do. (now that I'm on the other side of this, I have a whole new set of thoughts and questions about that)
 

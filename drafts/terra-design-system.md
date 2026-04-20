@@ -40,4 +40,4 @@ In mid-2022 I moved from the hands-in-code IC role into design management at Cer
 
 The management philosophy shifted fast: design managers were now expected to deliver meaningful IC work on top of leading. The IC project I took on was the Redwood theme for Terra — a reskin of the component library in Oracle's Redwood design language so Oracle-built apps could drop into Millennium. Two months in, Oracle Health decided to rebuild its applications from the ground up instead. The bridge became moot.
 
-That ended my Terra chapter. [The leadership story](seven-years-in-healthcare-ux.md) and [the Redwood design work](redwood-health-pod.md) that came next are each their own case studies. Both start here.
+That ended my Terra chapter. [The leadership story](seven-years-in-healthcare-ux.md) and [the Redwood design work](redwood-health-design.md) that came next are each their own case studies. Both start here.
