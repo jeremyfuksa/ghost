@@ -11,6 +11,9 @@ routes:
   /work/domain-foundation/:
     template: custom-casestudy-domain-foundation
     data: page.domain-foundation
+  /work/redwood-health-design/:
+    template: custom-casestudy-redwood
+    data: page.redwood-health-design
 
 collections:
   /writing/:
