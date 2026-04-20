@@ -8,6 +8,10 @@ node_modules/
 .ghost/
 ghost-data/
 
+# Secrets
+.env
+.env.local
+
 # Git worktrees
 .worktrees/
 .superpowers/
