@@ -1,4 +1,4 @@
-# The Context Layer
+# Domain Foundation
 
 **Role:** Creator and primary researcher
 **Timeline:** 2023–2024, ongoing
@@ -69,7 +69,7 @@ By the time the kickoff happened, I'd been ahead of the curve for a year.
 
 My design team killed a feature for privacy reasons. The AI didn't catch it. A designer on the team did. The [full story](redwood-health-design.md) is its own case study; the part that matters here is what the AI missed. It could reason at the surface — workflow, provider needs, clinical framing. It couldn't carry the deployment context. Human expertise killed the feature, not the AI's.
 
-The Context Layer is a bet that the *why* can be captured in a form a model can use, so that the judgment of people like my colleague doesn't walk out the door when they do. (now that I'm on the other side of this, I have a whole new set of thoughts and questions about that)
+Domain Foundation is a bet that the *why* can be captured in a form a model can use, so that the judgment of people like my colleague doesn't walk out the door when they do. (now that I'm on the other side of this, I have a whole new set of thoughts and questions about that)
 
 Design teams whose expertise is encoded — literally, as a retrievable knowledge base tied to the generation pipeline — will do work that doesn't look like everyone else's. Design teams whose expertise lives only in people's heads will produce outputs a PM with a good prompt can already reproduce. That gap is going to decide which design organizations matter a few years from now.
 
@@ -89,8 +89,8 @@ The layoff ended the project early. What we had was a working MVP and two tests 
 
 This is methodology, not product. It's hard to demo. Half the value is in what you choose to put in the knowledge base, and the choosing is the expertise — not the structure. I'm generalizing the healthcare-specific examples so the same methodology can travel to other high-stakes domains. Healthcare made the thinking sharp, but the work isn't healthcare-specific. It applies anywhere the design decisions have consequences.
 
-The formal project the Context Layer came out of was in active development when the layoff ended it. What I'm carrying forward is the pattern.
+The formal project Domain Foundation came out of was in active development when the layoff ended it. What I'm carrying forward is the pattern.
 
 The people I find myself talking to now are ones who've arrived at the same realization I did eighteen months ago: default models produce default output, and if you want design that reflects real institutional insight, you have to put that insight somewhere the model can actually reach. They're early in asking the question. I'm further along in answering it, because I spent a year and a half building toward it inside a real enterprise product. Those conversations are where the work is sitting right now.
 
-The college habit — learning tools before the institution caught up to them — landed, this time, on the problem I think matters most in design for the next decade. The Context Layer is the mature expression of twenty-five years of that habit. It's also just one answer to a problem that's going to need many.
+The college habit — learning tools before the institution caught up to them — landed, this time, on the problem I think matters most in design for the next decade. Domain Foundation is the mature expression of twenty-five years of that habit. It's also just one answer to a problem that's going to need many.
