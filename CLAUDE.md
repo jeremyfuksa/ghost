@@ -144,7 +144,7 @@ Dark mode is system-preference only (`prefers-color-scheme`). No JS toggle.
 
 - All values use token variables. No hardcoded pixels in CSS or inline styles in HTML.
 - Borders use `var(--border-hairline)` (0.5px). The hairline weight is deliberate.
-- Prose max-width is 680px. Do not widen.
+- Prose max-width is `--prose-max: 720px` (single-column reading); content max-width is `--content-max: 1280px` (multi-column). All page wrappers use `padding: var(--spacing-12) var(--spacing-8) var(--spacing-20)`; responsive horizontal padding step-down lives in the consolidated media block at the end of `components.css`.
 - No JS dependencies. Vanilla JS only, kept minimal (TOC scroll spy is the only behavior).
 - Nav logo at 32px uses the simplified SVG mark, not the full wordmark.
 - `--color-text-muted` is AA Large only — use for metadata (dates, read times), not standalone body text.
