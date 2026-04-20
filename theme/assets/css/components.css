@@ -1379,7 +1379,7 @@
   column-gap: clamp(24px, 4vw, 48px);
   max-width: var(--content-max);
   margin: 0 auto;
-  padding: var(--spacing-12) var(--spacing-20) var(--spacing-12);
+  padding: var(--spacing-12) var(--spacing-8) var(--spacing-20);
 }
 
 .writing-layout-single {
@@ -1511,7 +1511,7 @@
   position: relative;
   max-width: var(--prose-max);
   margin: 0 auto;
-  padding: 0 var(--spacing-8) var(--spacing-12);
+  padding: var(--spacing-12) var(--spacing-8) var(--spacing-20);
 }
 
 .post-content {
@@ -1910,7 +1910,7 @@
 .now-page {
   max-width: var(--prose-max);
   margin: 0 auto;
-  padding: var(--spacing-16) var(--spacing-8) var(--spacing-20);
+  padding: var(--spacing-12) var(--spacing-8) var(--spacing-20);
 }
 
 .now-page-updated {
@@ -2043,7 +2043,7 @@
 .static-page {
   max-width: var(--prose-max);
   margin: 0 auto;
-  padding: var(--spacing-12) var(--spacing-8) var(--spacing-16);
+  padding: var(--spacing-12) var(--spacing-8) var(--spacing-20);
 }
 
 .static-page .eyebrow {
@@ -2487,7 +2487,7 @@
 .work-page {
   max-width: var(--content-max);
   margin: 0 auto;
-  padding: var(--spacing-16) var(--spacing-8) 0;
+  padding: var(--spacing-12) var(--spacing-8) var(--spacing-20);
 }
 
 .work-header {
@@ -2606,9 +2606,6 @@
 }
 
 @media (max-width: 600px) {
-  .work-page {
-    padding: var(--spacing-8) var(--spacing-4) 0;
-  }
   .work-cta-section {
     margin: 0 calc(-1 * var(--spacing-4));
     padding: var(--spacing-10) var(--spacing-4);
@@ -2625,7 +2622,7 @@
 .about-page {
   max-width: var(--content-max);
   margin: 0 auto;
-  padding: var(--spacing-16) var(--spacing-8) 0;
+  padding: var(--spacing-12) var(--spacing-8) var(--spacing-20);
 }
 
 .about-header {
@@ -2773,9 +2770,6 @@
 }
 
 @media (max-width: 600px) {
-  .about-page {
-    padding: var(--spacing-8) var(--spacing-4) 0;
-  }
   .about-cta-section {
     margin: var(--spacing-16) calc(-1 * var(--spacing-4)) 0;
     padding: var(--spacing-10) var(--spacing-4);
@@ -3103,5 +3097,47 @@
   .casestudy-sidebar {
     position: static;
     order: -1;
+  }
+}
+
+/* ==========================================================================
+   Responsive page-container padding
+   Consolidates horizontal padding step-down across all page wrappers so
+   every template behaves identically at narrow widths.
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .work-page,
+  .about-page,
+  .casestudy-page,
+  .now-page,
+  .writing-layout,
+  .static-page,
+  .post-layout,
+  .post-footer {
+    padding-left: var(--spacing-6);
+    padding-right: var(--spacing-6);
+  }
+  .work-cta-section,
+  .about-cta-section,
+  .subscribe-cta-section {
+    margin-left: calc(-1 * var(--spacing-6));
+    margin-right: calc(-1 * var(--spacing-6));
+    padding-left: var(--spacing-6);
+    padding-right: var(--spacing-6);
+  }
+}
+
+@media (max-width: 600px) {
+  .work-page,
+  .about-page,
+  .casestudy-page,
+  .now-page,
+  .writing-layout,
+  .static-page,
+  .post-layout,
+  .post-footer {
+    padding-left: var(--spacing-4);
+    padding-right: var(--spacing-4);
   }
 }
