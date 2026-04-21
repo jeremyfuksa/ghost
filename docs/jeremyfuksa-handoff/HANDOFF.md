@@ -1,138 +1,177 @@
-# Project Handoff — jeremyfuksa.com `/work/` Rebuild
+# jeremyfuksa.com — `/work/` Rebuild Handoff
 
-_Transferring from a Claude web conversation to Claude Code. Read this top-to-bottom before touching anything._
-
----
-
-## What this project is
-
-Rebuilding the `/work/` section of jeremyfuksa.com from a flat three-item portfolio into a **three-orbit body-of-IP architecture** that supports Jeremy's Director/Principal UX positioning during an active job search + independent consulting ramp-up.
-
-**The positioning thesis (unstated on the site, but load-bearing for every decision):** at Jeremy's altitude, hiring managers grade portfolios on methodological rigor, not visual polish. Explicit framework articulation is the gap most senior portfolios miss. The rebuild treats the methodology as the primary IP and everything else as supporting evidence. Inspired by the Nate's Newsletter piece ["Your AI credentials don't matter. Your artifacts do."](https://natesnewsletter.substack.com/p/your-ai-credentials-dont-matter-your) — same observation, portfolio-scoped.
-
-**The site:** Ghost 6 self-hosted on DigitalOcean (Ubuntu + Docker + Traefik v3 + MySQL 8). Custom theme based on Campfire Design System.
+**To:** Claude Code
+**From:** Web-conversation Claude (working session, April 2026)
+**Status:** Staged copy + template + CSS changes, not yet deployed. Ready for your first turn with Jeremy at the terminal.
 
 ---
 
-## The three-orbit architecture
+## Read CLAUDE.md first
 
-### Frameworks — the primary IP
-Seven named, portable methodological pieces, each its own page using a "Field Guide" template. They are the differentiator. Domain Foundation is the hub that points at them. Four known (Validation Stack, Role Inversion Model, Four-Layer Knowledge Architecture, Velocity Paradox); three more named in `moonbird_repackaging_plan.md` but not yet in this handoff context — Jeremy will need to provide them or reference the file.
+**If anything in this document conflicts with CLAUDE.md in the theme repo, CLAUDE.md wins.** This handoff was written without direct access to the repo; it's a content and structural proposal, not a deploy playbook. The repo's documented workflow (version bump → commit → zip → `dev/deploy-theme.mjs`) is the source of truth for how this ships.
 
-### Demonstrations — the proof layer
-Artifact-level exhibits showing the frameworks running in practice. Starting set:
-- **Skill Ecosystem** — the corpus of encoded skills (jeremy-voice, campfire-css, omnifocus-expert, jeremys-workshop, moonbird-oracle, etc.) as a single exhibit proving Domain Foundation runs end-to-end on one practitioner.
-- **jeremyfuksa.com Build** — the site itself as an applied case: Campfire tokens, voice calibration encoded in skills, analog-signal-in-chrome-only constraint, Claude Code theme prompts as executable artifacts.
-- **Jeremy OS** — the integrated personal infrastructure (OmniFocus conventions, skill ecosystem, signal/noise dashboard, content engine, Ghost stack). Previously called "Signal/Noise Dashboard" but renamed — OS framing does load-bearing work the dashboard name couldn't.
-- **Moonbird origin dispatch** — the Oracle-era research project, scrubbed per the repackaging checklist, as the origin case for Domain Foundation.
-
-### Case Studies — traditional portfolio artifacts
-Already live on the site. Three exist: Terra Design System, Seven Years in Healthcare UX, "Two Components That Didn't Ship" (at `/work/redwood-health-design/`). These stay roughly as-is; template kept. Jeremy may want one or more password-gated later, but not required.
+A prior version of this handoff prescribed an SSH-edit deploy path that would have desynced the live theme from the repo permanently. That's corrected here. If you see anything below that still smells like a shortcut around CLAUDE.md's workflow, trust CLAUDE.md.
 
 ---
 
-## Voice & design conventions
+## What this is
 
-- **All prose under Jeremy's byline uses the `jeremy-voice` skill.** It's installed in his local skill library. Do not write anything in his voice without consulting that skill first. Core rule: reporting, not thesizing. Underdraft.
-- **All frontend work uses the `campfire-css` skill.** Use only existing Campfire design tokens; never invent new variables. Dark mode only via `prefers-color-scheme`, ember/amber palette, Fira Sans + Noto Serif, 8px grid, WCAG 2.1 AA with dual-role accent tokens (`--color-accent-ui` for decorative/large, `--color-accent-text` for body-size).
-- **Relevant skills also on Jeremy's machine:** `moonbird-oracle` (for framework writing), `jeremys-workshop` (for image/thumbnail prompts), `obsidian-pkm` (for vault integration), `omnifocus-expert` (for task capture).
+A design and copy rebuild of `/work/` on Jeremy's site — the portfolio page — shifting it from a flat list of case studies into a three-orbit structure that fronts his methodology (Domain Foundation) as the primary exhibit, with demonstrations and enterprise case studies supporting it.
 
----
-
-## Critical constraints Claude Code should know
-
-1. **The `/work/` page body is empty in Ghost.** The visible rendering comes from a hardcoded custom theme template (`page-work.hbs`). Pushing page body content via the Ghost Admin API does nothing to the rendered output. All `/work/` changes are **theme-file work**, not content work. Edit `page-work.hbs` directly in `/var/lib/ghost/content/themes/<active-theme>/` on the DigitalOcean droplet.
-
-2. **Ghost Admin API integration tokens do not have theme-management scope.** The `/themes/` endpoint returns 403. Theme uploads via API are blocked. Only path forward for theme changes is SSH + file edit. (The `ghost-mcp` integration only exposes posts endpoints, not pages or themes.)
-   > **2026-04-21 correction:** this turned out to be wrong. The `GHOST_API` key in `.env` has full theme scope. `dev/deploy-theme.mjs` uploads and activates theme zips via `POST /ghost/api/admin/themes/upload/` + `PUT /ghost/api/admin/themes/<name>/activate/`. No SSH needed.
-
-3. **Individual Ghost `/work/<slug>/` pages ARE editable via the Admin API** (body, title, excerpt, code injection). The Admin API key is in `.env` as `GHOST_API=<id>:<secret>` — format matches Ghost's `{id}:{secretHex}` integration token scheme. (Originally redacted from this handoff before commit.)
-
-4. **Contact email is `hello@jeremyfuksa.com`** (Jeremy updated this recently from `jeremy@jeremyfuksa.com`).
-
-5. **Memory patterns to preserve** — Jeremy uses OmniFocus as his primary task system; proactively capture new tasks. End substantive work sessions with an OmniFocus capture prompt. Use the `omnifocus-expert` skill for any task management interaction.
+The About page at `/about/` was also rebuilt in the same session and is already live. You don't need to touch it unless Jeremy asks. Archived at `about-page-rewrite.md`.
 
 ---
 
-## What's already done in this session
+## Why Jeremy is doing this now
 
-- **About page rewritten, published, and edited.** Live at `https://jeremyfuksa.com/about/`. Jeremy made significant manual edits post-publish (title changed to "About Jeremy," company names genericized, several voice tightenings). Those edits are authoritative; don't revert them.
-- **About excerpt behavior fixed.** `custom_excerpt` is preserved for SEO, RSS, Open Graph, and JSON-LD; visible rendering is suppressed via per-page `codeinjection_head` CSS (`<style>.static-page-excerpt{display:none;}</style>`). The `meta_description` field is also set to a short version for Google snippets.
-- **`/work/` rebuild staged (not yet deployed).** Files waiting in the handoff bundle:
-  - `page-work.hbs` — drop-in replacement for the theme template
-  - `work-orbit.css` — new CSS rules to append to `components.css` in the theme
-  - `work-page-preview.html` — self-contained preview, opens in any browser, pixel-accurate to post-deploy rendering
-  - `README-deployment.md` — SSH deploy steps and rollback protocol
-  - `work-page-content.md` — archival markdown of the copy
+Two converging things:
+
+1. He recently read Nate Kadlac's newsletter piece arguing that in an AI-era hiring market, a candidate's artifacts — their actual body of thinking, published — matter more than résumé credentials. Jeremy's current portfolio under-indexes on the thinking and over-indexes on "here are case studies." He wants the new `/work/` to lead with methodology first, demonstrations second, client case studies third.
+2. He's post-Oracle Health (laid off, fully independent now), running an active job search for Director / Principal / senior UX leadership roles, and simultaneously building a consulting practice. The `/work/` page is the single highest-leverage artifact for both audiences.
+
+The positioning is **depth over count**. One methodology, pursued seriously, with demonstrations of it running in practice and case studies showing where the thinking came from — beats "seven framework pages" every time at the altitude he's hiring into.
 
 ---
 
-## Next tasks, in priority order
+## The architecture — three orbits
 
-### 1. Deploy the `/work/` rebuild (immediate)
-SSH to the droplet, back up the current `page-work.hbs`, drop in the new one, append `work-orbit.css` to the theme's `components.css` source, restart Ghost. See `README-deployment.md` for the full protocol. Estimated 15 minutes. Post-deploy verification checklist is in the README.
+`/work/` is organized into three parallel orbits, each with its own `<h2>` heading and intro paragraph.
 
-### 2. Pull the framework list from `moonbird_repackaging_plan.md`
-Before drafting framework pages, Claude Code needs the full seven-framework inventory with one-line problem statements for each. Known: Validation Stack, Role Inversion Model, Four-Layer Knowledge Architecture, Velocity Paradox. Unknown (to this handoff): the other three. Either read `moonbird_repackaging_plan.md` from wherever it lives on Jeremy's machine, or ask him for the section.
+### Methodology (singular)
 
-### 3. Define the Field Guide template
-One-framework pilot to prove the template before building all seven. Suggested pilot: **Four-Layer Knowledge Architecture** — it's the most concrete, already referenced in the existing Domain Foundation page, and has a natural diagram. Template structure (from architecture plan):
-- Problem statement (1 paragraph — what the market can't see)
-- Structural observation
-- The named artifact (diagram or structural figure)
-- Implementation notes (1–2 paragraphs on where this runs in practice)
-- Cross-links to demonstrations that use this framework
-- Related frameworks footer
+**The primary IP. One exhibit.**
 
-Each framework page is its own Ghost page under `/work/frameworks/<slug>/` — which means Claude Code needs to either create new Ghost pages (Admin API supports this for posts, need to verify for pages) OR add more hardcoded rows to `page-work.hbs` pointing to routes that don't yet have backing pages. Decide based on how the theme handles missing pages — probably create real pages to avoid 404s.
+Domain Foundation is the methodology. It's an architecture for encoding organizational design expertise into AI-reachable form — a four-layer knowledge structure (base layer / domain layer / component layer / role layer, each layer owned by a different role in the design org). Its output is a corpus that downstream AI pipelines can reach, but those downstream applications are out of scope for this page. The methodology itself is the exhibit.
 
-### 4. Demonstrations — start with Skill Ecosystem
-The highest-weight demonstration. Write it up as a single exhibit showing the encoded-expertise layer of Domain Foundation running on Jeremy's own practice. Claude Code has direct access to the skill files (probably at `~/.claude/skills/`), so it can reference them concretely.
+**Important context:** An earlier memory note described "seven frameworks" in Jeremy's repackaged Moonbird body of work. In this session we traced that claim back and found it was speculative — a misreading of an old repackaging plan. The real scope is singular: **Domain Foundation and the Four-Layer Knowledge Architecture collapse into one thing**. They're not a methodology containing multiple frameworks; they're the same work under two names.
 
-### 5. Home page three-orbit teaser
-Once `/work/` is rebuilt and frameworks exist, update the home page to signal the three-orbit structure — lead with one exhibit from each orbit. Home is currently a Ghost page that likely uses a template similar to `/work/`; same theme-edit path.
+Do not scaffold out "framework pages" based on the old note. Do not generate Validation Stack / Role Inversion Model / Velocity Paradox pages. The existing `/work/domain-foundation/` Ghost page already articulates the methodology as one cohesive narrative. Tightening that page is a task below; splitting it into seven is not.
 
-### 6. Nav update
-Promote "Frameworks" to a top-level nav item (desktop), or keep single "Work" link with a restructured index (mobile fallback). Theme navigation is likely in a partial (`partials/navigation.hbs` or similar).
+### Demonstrations
 
-### 7. Content Engine (deferred until May 15, 2026)
-Not this sprint. Jeremy has it locked behind that defer date in OmniFocus.
+How the methodology runs in practice. Four dispatches are in production, none published yet. They'll publish as they're ready. The orbit intentionally shows no placeholder cards — just the intro paragraph, and real cards appear as each dispatch ships.
 
-### 8. Writing: "Bullshit to Domain Foundation" arc piece
-Memory #13 captures the seed: the AI-era career-within-a-career arc (image generation dicking around → worked through the landscape → Domain Foundation), structurally identical to the cars-to-national-brands agency-years arc. When Jeremy's ready, this is a natural Cocktail Napkin post. Not blocking anything else.
+The four:
 
----
+1. **The Skill Ecosystem** — Jeremy's collection of encoded skills (jeremy-voice, campfire-css, omnifocus-expert, jeremys-workshop, moonbird-oracle, and others) as a single exhibit demonstrating Domain Foundation running end-to-end on one practitioner. Highest weight; likely first to ship.
+2. **jeremyfuksa.com Build** — the Ghost 6 theme build, Campfire token sourcing, voice calibration, the analog-signal-in-chrome-only constraint, and the Claude Code theme prompt as an executable artifact.
+3. **Jeremy OS** — the integrated personal infrastructure (OmniFocus, skill ecosystem, Signal/Noise dashboard, content engine, Ghost stack) framed as an operating system rather than a productivity dashboard.
+4. **Moonbird origin dispatch** — the Oracle-era research project (scrubbed per the repackaging checklist) as the origin case for Domain Foundation.
 
-## Deploy protocol (general)
+### Case Studies
 
-For theme file changes:
-1. SSH to DigitalOcean droplet.
-2. Navigate to `/var/lib/ghost/content/themes/<active-theme>/` (exact path depends on Docker volume mount — check `docker-compose.yml`).
-3. Back up the file you're changing with `.bak.$(date +%Y%m%d)` suffix.
-4. Replace or append as needed.
-5. Restart Ghost: `docker compose restart ghost` (or `ghost restart` if using ghost-cli outside Docker).
-6. Hard-refresh the affected page(s) in a browser to verify.
-7. If anything's wrong, restore the `.bak` file and restart again.
+Enterprise work at Cerner / Oracle Health. Three cards, all live at existing URLs:
 
-For Ghost page content changes (individual `/work/<slug>/` pages, posts, etc.):
-- Ghost Admin API with JWT auth works. Code example is in the web conversation transcript; the pattern is: GET page to retrieve current `updated_at`, then PUT to `/pages/<id>/?source=html` with an HTML body.
-- DNS cache can flake — retry logic is worth building in (3–5 attempts with 2–3s backoff).
+- Terra Design System (`/work/terra-design-system/`)
+- Seven Years in Healthcare UX (`/work/seven-years-in-healthcare-ux/`)
+- Two Components That Didn't Ship (`/work/redwood-health-design/`)
 
 ---
 
-## Files in this handoff
+## The files in this handoff
 
-- `HANDOFF.md` — this document
-- `INITIAL_PROMPT.md` — paste this as your first message to Claude Code
-- `about-page-rewrite.md` — final About markdown (already shipped; archival)
-- `page-work.hbs` — new Work template (not yet deployed)
-- `work-orbit.css` — CSS rules to append (not yet deployed)
-- `README-deployment.md` — deploy steps
-- `work-page-content.md` — archival markdown of Work copy
-- `work-page-preview.html` — visual preview (open in browser)
+| File | Role |
+| --- | --- |
+| `custom-work.hbs` | Proposed template shape. **Diff against the existing `theme/custom-work.hbs` — don't blindly replace.** Preserves `{{#if custom_excerpt}}`, `{{#if feature_image}}`, `{{#if content}}` fallbacks so Jeremy can still edit intro text and add a hero image via Ghost Admin without a redeploy. |
+| `work-orbit.css` | CSS rules to insert in `components.css` grouped with existing `.work-*` rules, before the consolidated mobile `@media` block. Only uses existing Campfire tokens. No new variables. |
+| `work-page-content.md` | Markdown archival of the copy. Not deployed. |
+| `work-page-preview.html` | Self-contained HTML preview rendered against the live site's CSS. Open in a browser to sanity-check before deploying. |
+| `DEPLOYMENT-NOTES.md` | Short notes that defer to CLAUDE.md for deploy steps. Carries the verification checklist. |
+| `about-page-rewrite.md` | Archival of the About page rewrite (already live). |
+| `INITIAL_PROMPT.md` | Paste-ready message for your first turn with Jeremy. |
 
 ---
 
-## One last thing
+## Critical constraints
 
-Jeremy's working style: direct, high-trust, low-ceremony. Claude Code should propose → act → report back, not Socratic-dialogue every decision. When uncertainty exists, flag confidence level ("60% confident because X, uncertain about Y") rather than feigning certainty. End responses declaratively, not with "Would you like me to...". Capture new tasks in OmniFocus proactively via the `omnifocus-expert` skill.
+### Follow CLAUDE.md's deploy workflow
+
+Version bump `theme/package.json`, commit, zip, upload via `dev/deploy-theme.mjs`. Credentials live in `.env` (gitignored). Don't paste secrets anywhere; don't SSH-edit the droplet.
+
+### `/work/` renders from `custom-work.hbs`, not page body
+
+The Ghost page at `/work/` has an empty body in the admin. All the structural rendering happens in `theme/custom-work.hbs` (Ghost's `custom-*.hbs` per-page template convention). The Ghost Admin API can update the page's `custom_excerpt`, `feature_image`, and `html` content — and the proposed template exposes those via `{{#if}}` fallback blocks — but the three-orbit structure itself lives in the template.
+
+### Design system — Campfire, no new tokens
+
+Jeremy has a `campfire-css` skill that governs all frontend work on this site. **Read it before writing or reviewing any CSS.** Core rule: no new CSS variables, ever. The `work-orbit.css` file was authored to comply.
+
+Tokens in use on this page: `--spacing-*`, `--text-*`, `--leading-*`, `--color-accent-ui`, `--text-secondary`, `--font-sans`, `--prose-max`. The amber `<h2>` underline uses `--color-accent-ui` to match the existing `<h1>` treatment — WCAG-compliant because it's decorative and large, not body text.
+
+### Voice — use the jeremy-voice skill
+
+All prose on this page passed through voice review in the working session. If Jeremy asks you to revise copy, use the `jeremy-voice` skill. Core rules: report flat, don't synthesize; underdraft rather than overstate; cultural/geographic details are load-bearing; no "I learned," no "I discovered," no narration of growth.
+
+### Contact surface
+
+Contact email on the site is `hello@jeremyfuksa.com`.
+
+---
+
+## Next tasks
+
+Not strictly linear. Blockers are called out so you don't chase a task you can't finish.
+
+### 1. Deploy the `/work/` rebuild (unblocked)
+
+Propose the plan to Jeremy before executing — confirm you've read CLAUDE.md, confirm the diff against the existing `custom-work.hbs` (specifically what conditional blocks live in the current file that this proposal doesn't), confirm the CSS insertion point in `components.css`. Then execute per CLAUDE.md's workflow. Verify against the checklist in `DEPLOYMENT-NOTES.md`.
+
+### 2. Tighten the Domain Foundation page (partially blocked)
+
+The existing `/work/domain-foundation/` page is good but was written before this session's clarifications about scope. Under the clarified framing — one methodology, one architectural move, no multi-framework implication — it could be tightened:
+
+- Add a clear diagram of the Four-Layer Knowledge Architecture if one doesn't already exist (SVG or image). Each layer labeled with the role that owns it.
+- Tighten the narrative to foreground the architecture as *the* central move, rather than one move among several.
+- Add a brief "downstream applications" section that credibly gestures at where the encoded corpus can feed (generation pipelines, validation layers, evaluation harnesses) without claiming ownership of those downstream tools. Jeremy's exact framing: "that kind of stuff is really out of the scope of what we want to talk about, but we could give credible examples."
+
+**Blocker:** the Four-Layer diagram. Jeremy needs to provide source material (a sketch, existing diagram, or rough notes on what each layer's name and role-ownership is) before the page tightening can actually ship with a new diagram. The narrative tightening can proceed without it; the diagram can't.
+
+This is a Ghost page — editable via Admin API using the posts/pages endpoints. Use the `jeremy-voice` skill.
+
+### 3. Write and publish the Skill Ecosystem dispatch (partially blocked)
+
+Highest-weight of the four Demonstrations. Gets the Demonstrations orbit off empty-state. Frame: one practitioner, Domain Foundation running end-to-end on themselves. Use `jeremy-voice`.
+
+**Blocker:** the skill corpus itself. Jeremy has skills in `/mnt/skills/user/` on his working environment, but you may or may not see them depending on how the session is wired. Confirm you can read the skill directory before starting the dispatch; if not, ask Jeremy to paste a list of skills + short descriptions.
+
+When the dispatch ships, `custom-work.hbs` needs one more card added to the Demonstrations orbit's `.work-list` — small template edit, same deploy path as Task 1.
+
+### 4. Other Demonstrations (unblocked, no fixed order)
+
+jeremyfuksa.com Build, Jeremy OS, Moonbird origin dispatch. Let Jeremy direct. Each publishes the same way: Ghost post + template card add.
+
+### 5. Home page update (unblocked, minor)
+
+Once `/work/` is live, the home page teaser for Work may want updating to hint at the three-orbit structure rather than the old flat list. Small edit; handle when Jeremy raises it.
+
+### 6. Navigation audit (unblocked, minor)
+
+Check whether the top nav promotes `/work/` correctly in light of the new structure. Probably fine as-is.
+
+### 7. Content Engine (deferred)
+
+Don't start before May 15, 2026 per Jeremy's OmniFocus.
+
+### 8. "Bullshit to Domain Foundation" Cocktail Napkin post (unblocked, low priority)
+
+Sketched in an earlier memory — Jeremy's AI-era arc from image generation and Will-Smith-eating-spaghetti experiments up to Domain Foundation, structurally mirroring his "local car ads to national brands" agency-years arc. Not yet written. Surface if it fits a content slot.
+
+---
+
+## Session protocol
+
+Jeremy uses OmniFocus fanatically. Use the `omnifocus-expert` skill any time you touch his task system. Proactively capture tasks during sessions without being asked — if he mentions something that needs doing, route it to OmniFocus.
+
+At the end of substantive working sessions, ask: *"Before we close — anything from this session to capture in OmniFocus? New tasks, completed items to check off, or next steps?"*
+
+His working style is direct, high-trust, low-ceremony. He delegates substantial autonomous work and expects comprehensive output without hand-holding. Reviews plans, identifies gaps, issues corrections clearly. Prefers **propose → execute → report** over Socratic dialogue once constraints are established.
+
+---
+
+## One closing note
+
+The prior version of this handoff shipped with several load-bearing errors that the coding agent caught on first read: wrong template filename, SSH-based deploy path contradicting the repo's documented workflow, a false claim about Admin API theme scope, a hardcoded template that would have dropped useful Ghost conditionals, and a pasted production secret. This version corrects those. If you spot more of the same shape — confident claims about infrastructure that haven't been verified against the actual repo — flag them before acting.
+
+---
+
+_Verified: 2026-04-21. Facts about deploy paths, API scope, template filenames, and CSS placement were corrected in a review cycle against the repo. Re-verify against CLAUDE.md if you're reading this more than a few weeks out._
