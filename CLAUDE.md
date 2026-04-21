@@ -83,7 +83,7 @@ docker compose down -v && rm -rf ghost-data/
 
 **Deploying to production:**
 1. Package theme: `cd theme && zip -r ../the-cocktail-napkin.zip . -x "*.DS_Store" -x "*node_modules*"`
-2. Upload to your Ghost Admin at beta.jeremyfuksa.com (Themes)
+2. Upload to your Ghost Admin at jeremyfuksa.com (Themes) — or push via the Admin API using the `GHOST_API` key in `.env` (`POST /ghost/api/admin/themes/upload/` with a JWT signed from the key)
 3. Upload routes.yaml via Settings > Labs > Routes (if it changed)
 
 ## Architecture
