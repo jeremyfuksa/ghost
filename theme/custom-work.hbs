@@ -8,7 +8,7 @@
     {{#if custom_excerpt}}
       <p class="work-intro">{{custom_excerpt}}</p>
     {{else}}
-      <p class="work-intro">Systems thinking, design leadership, and experiments at the intersection of craft and technology.</p>
+      <p class="work-intro">The work falls into three groups. Frameworks are the methodology — seven named, portable pieces, each its own page. Demonstrations are how those frameworks run in practice. Case studies are the client-facing enterprise work.</p>
     {{/if}}
   </header>
 
@@ -24,27 +24,54 @@
     </div>
   {{/if}}
 
-  <section class="work-list">
-    <a href="/work/terra-design-system/" class="work-row">
-      <div class="work-row-meta">Case study · 2018–2024</div>
-      <div class="work-row-title">Terra Design System</div>
-      <div class="work-row-excerpt">Open-source React component library. 80+ components, 200+ icons, WCAG 2.1 AA. Built and led at Cerner / Oracle Health.</div>
-    </a>
-    <a href="/work/seven-years-in-healthcare-ux/" class="work-row">
-      <div class="work-row-meta">Case study · 2018–2024</div>
-      <div class="work-row-title">Seven Years in Healthcare UX</div>
-      <div class="work-row-excerpt">Revenue cycle product design, design system engineering, and distributed team leadership through a $28B acquisition.</div>
-    </a>
-    <a href="/work/redwood-health-design/" class="work-row">
-      <div class="work-row-meta">Case study · 2024–2026</div>
-      <div class="work-row-title">Two Components That Didn't Ship</div>
-      <div class="work-row-excerpt">Health-specific components on Oracle's Redwood design system. The ones I remember best are the two we decided to kill.</div>
-    </a>
-    <a href="/work/domain-foundation/" class="work-row">
-      <div class="work-row-meta">Experiment · 2023–ongoing</div>
-      <div class="work-row-title">Domain Foundation</div>
-      <div class="work-row-excerpt">A methodology for encoding organizational design expertise into machine-readable knowledge systems for AI-assisted design workflows.</div>
-    </a>
+  {{!-- FRAMEWORKS --}}
+  <section class="work-orbit">
+    <header class="work-orbit-header">
+      <h2 class="work-orbit-title">Frameworks</h2>
+      <p class="work-orbit-intro">The methodology and its moving parts. Domain Foundation is the hub for the seven frameworks; individual framework pages will publish as they're ready.</p>
+    </header>
+
+    <div class="work-list">
+      <a href="/work/domain-foundation/" class="work-row">
+        <div class="work-row-meta">Methodology hub · 2023–ongoing</div>
+        <div class="work-row-title">Domain Foundation</div>
+        <div class="work-row-excerpt">A methodology for encoding organizational design expertise into machine-readable knowledge systems for AI-assisted design workflows.</div>
+      </a>
+    </div>
+  </section>
+
+  {{!-- DEMONSTRATIONS --}}
+  <section class="work-orbit">
+    <header class="work-orbit-header">
+      <h2 class="work-orbit-title">Demonstrations</h2>
+      <p class="work-orbit-intro">How the frameworks operate in real practice. Four in production: the Skill Ecosystem, jeremyfuksa.com as an applied case, Jeremy OS, and the Moonbird origin dispatch. Publishing as they're ready.</p>
+    </header>
+  </section>
+
+  {{!-- CASE STUDIES --}}
+  <section class="work-orbit">
+    <header class="work-orbit-header">
+      <h2 class="work-orbit-title">Case Studies</h2>
+      <p class="work-orbit-intro">Enterprise work at Cerner / Oracle Health, where the healthcare UI stakes sharpened the thinking that became Domain Foundation.</p>
+    </header>
+
+    <div class="work-list">
+      <a href="/work/terra-design-system/" class="work-row">
+        <div class="work-row-meta">Case study · 2018–2024</div>
+        <div class="work-row-title">Terra Design System</div>
+        <div class="work-row-excerpt">Open-source React component library. 80+ components, 200+ icons, WCAG 2.1 AA. Built and led at Cerner / Oracle Health.</div>
+      </a>
+      <a href="/work/seven-years-in-healthcare-ux/" class="work-row">
+        <div class="work-row-meta">Case study · 2018–2024</div>
+        <div class="work-row-title">Seven Years in Healthcare UX</div>
+        <div class="work-row-excerpt">Revenue cycle product design, design system engineering, and distributed team leadership through a $28B acquisition.</div>
+      </a>
+      <a href="/work/redwood-health-design/" class="work-row">
+        <div class="work-row-meta">Case study · 2024–2026</div>
+        <div class="work-row-title">Two Components That Didn't Ship</div>
+        <div class="work-row-excerpt">Health-specific components on Oracle's Redwood design system. The ones I remember best are the two we decided to kill.</div>
+      </a>
+    </div>
   </section>
 
   <section id="work-with-me" class="work-cta-section">
