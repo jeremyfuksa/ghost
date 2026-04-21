@@ -3317,3 +3317,77 @@
     transform: none;
   }
 }
+
+/* ==========================================================================
+   Share — inline (post header meta) + end-of-article block
+   ========================================================================== */
+
+.post-share-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  transition: color var(--transition-fast);
+  cursor: pointer;
+}
+
+.post-share-inline:hover {
+  color: var(--color-accent-text);
+}
+
+.post-share-inline i {
+  font-size: var(--text-sm);
+}
+
+.post-share {
+  max-width: var(--prose-max);
+  margin: var(--spacing-16) auto var(--spacing-12);
+  padding: var(--spacing-8) var(--spacing-8) 0;
+  border-top: var(--border-hairline) solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-6);
+  flex-wrap: wrap;
+}
+
+.post-share-label {
+  font-family: var(--font-heading);
+  font-variation-settings: 'WONK' 1, 'opsz' 72;
+  font-size: var(--text-2xl);
+  color: var(--color-text-heading);
+  letter-spacing: var(--tracking-tight);
+  line-height: 1;
+}
+
+.post-share-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-3) var(--spacing-5);
+  border: var(--border-hairline) solid var(--color-accent-ui);
+  border-radius: 999px;
+  color: var(--color-accent-text);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+  cursor: pointer;
+}
+
+.post-share-cta:hover {
+  background: var(--color-accent-ui);
+  color: var(--color-accent-subtle);
+  transform: translateY(-1px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .post-share-cta:hover {
+    transform: none;
+  }
+}
