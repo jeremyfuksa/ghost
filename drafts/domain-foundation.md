@@ -1,12 +1,5 @@
 # Domain Foundation
 
-**Role:** Creator and primary researcher
-**Timeline:** 2023–2024, ongoing
-**Organization:** Oracle (Redwood Design System)
-**Scope:** A methodology for encoding institutional design expertise into AI-assisted design workflows.
-
----
-
 ## The kickoff
 
 The first thing anyone said, in the first meeting, was that AI in the hands of engineering and PM was going to take our jobs.
@@ -33,9 +26,9 @@ The standard answer is "give the model the design system documentation." It isn'
 
 Guardrails meant giving the generation pipeline access not just to the components but to the reasoning behind them.
 
-## Second question: differentiation
+## The average.
 
-Once we were rolling, a second question opened: **can AI actually produce novel design, or is it always a weighted average of training data?**
+Once we were rolling, a second question opened: can AI actually produce novel design, or is it always a weighted average of training data?
 
 It's the average. That's what the tech is. Given a general model and a commodity prompt, you get the commodity output — the same thing every other team gets when they reach for AI without doing more work than asking for a design.
 
@@ -43,9 +36,18 @@ The only way out is to feed the model something no other organization has. The t
 
 That's the context layer. It converts an averaging machine into a machine that reflects specific institutional expertise.
 
-The architecture we landed on is four layers, chosen because it matched how the knowledge is actually *owned* inside a design group. A base layer of universal design principles, owned by the design system team. A domain layer of industry-specific reasoning, owned by domain experts. A component layer of per-artifact intent metadata — when to use, when not to — owned by component authors. A role layer describing user types and their constraints, owned by researchers. The model composes from all four at generation time, which distributes governance instead of centralizing it on the design system team.
+## The four-layer architecture
 
-That's the design group's portion. Other institutional knowledge — customer feedback, Jira tickets, and everything else — lives in other systems and needs its own ingestion story. The four-layer model is what we built because it's what our team owned. The larger context problem extends past it.
+The structural move is this: **encode institutional knowledge as four layers, each owned by the role that produces it**, and let the model compose from all four at generation time.
+
+A **base layer** of universal design principles, owned by the design system team.
+A **domain layer** of industry-specific reasoning, owned by domain experts.
+A **component layer** of per-artifact intent metadata — when to use, when not to — owned by component authors.
+A **role layer** describing user types and their constraints, owned by researchers.
+
+The ownership matters more than the count. Four layers, because that matched how knowledge was actually owned inside our design group. A different org's shape might want five, or three. The load-bearing claim is that governance distributes: the people who produce the knowledge also own the layer that encodes it, and no single team becomes the bottleneck.
+
+This is the design group's portion. Other institutional knowledge — customer feedback, Jira tickets, regulatory correspondence — lives in other systems and needs its own ingestion story. The four-layer architecture is what we built because it's what our team owned. The larger context problem extends past it.
 
 The technical shape — vector database, MCP server, LLM — isn't the interesting part. What goes into the database is. Institutional knowledge, not documentation.
 
@@ -56,6 +58,16 @@ If the context layer works, the next question is unavoidable: what do you feed i
 We tried Figma Make. The output pipeline wasn't reliable enough for governed generation at the time. We looked at going straight into Codex for component work. It worked differently — better for some tasks, worse for others.
 
 Different outputs wanted different tools, and accepting that was the structural decision that made everything else work.
+
+## Downstream applications
+
+The encoded corpus is retrievable, which means it can feed more than one pipeline. The obvious next stop is generation — the governed Figma or code output that started this project. Two others come up in every conversation I have about this work.
+
+The same corpus that generates can also validate. Given a proposed design, does it satisfy the constraints the role layer names for this user type, in this deployment context? That's a check a model can run if the knowledge is reachable.
+
+Evaluation harnesses are the third. Design teams accumulate a pile of historical decisions — patterns adopted, patterns rejected, and the reasoning for both. A retrievable version of that pile is a benchmark for new proposals.
+
+None of those pipelines are ours to own. They're where the corpus can go once it exists. The methodology's job is to make sure the corpus exists in a form those pipelines can actually use.
 
 ## The shadow practice
 
@@ -69,7 +81,7 @@ By the time the kickoff happened, I'd been ahead of the curve for a year.
 
 My design team killed a feature for privacy reasons. The AI didn't catch it. A designer on the team did. The [full story](redwood-health-design.md) is its own case study; the part that matters here is what the AI missed. It could reason at the surface — workflow, provider needs, clinical framing. It couldn't carry the deployment context. Human expertise killed the feature, not the AI's.
 
-Domain Foundation is a bet that the *why* can be captured in a form a model can use, so that the judgment of people like my colleague doesn't walk out the door when they do. (now that I'm on the other side of this, I have a whole new set of thoughts and questions about that)
+Domain Foundation is a bet that the *why* can be captured in a form a model can use, so that the judgment of people like my colleague doesn't walk out the door when they do.
 
 Design teams whose expertise is encoded — literally, as a retrievable knowledge base tied to the generation pipeline — will do work that doesn't look like everyone else's. Design teams whose expertise lives only in people's heads will produce outputs a PM with a good prompt can already reproduce. That gap is going to decide which design organizations matter a few years from now.
 
@@ -87,10 +99,6 @@ The layoff ended the project early. What we had was a working MVP and two tests 
 
 ## Where this sits
 
-This is methodology, not product. It's hard to demo. Half the value is in what you choose to put in the knowledge base, and the choosing is the expertise — not the structure. I'm generalizing the healthcare-specific examples so the same methodology can travel to other high-stakes domains. Healthcare made the thinking sharp, but the work isn't healthcare-specific. It applies anywhere the design decisions have consequences.
-
 The formal project Domain Foundation came out of was in active development when the layoff ended it. What I'm carrying forward is the pattern.
 
-The people I find myself talking to now are ones who've arrived at the same realization I did eighteen months ago: default models produce default output, and if you want design that reflects real institutional insight, you have to put that insight somewhere the model can actually reach. They're early in asking the question. I'm further along in answering it, because I spent a year and a half building toward it inside a real enterprise product. Those conversations are where the work is sitting right now.
-
-The college habit — learning tools before the institution caught up to them — landed, this time, on the problem I think matters most in design for the next decade. Domain Foundation is the mature expression of twenty-five years of that habit. It's also just one answer to a problem that's going to need many.
+The people I find myself talking to now are the ones who've arrived at the same realization: default models produce default output. If you want design that reflects real institutional insight, you have to put that insight somewhere the model can actually reach. Those conversations are where the work sits right now.
