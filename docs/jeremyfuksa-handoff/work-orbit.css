@@ -1,8 +1,21 @@
-/* ==========================================================================
-   Work Page — Orbit Sections (Frameworks / Demonstrations / Case Studies)
-   Add to components.css near the existing .work-* rules.
-   Uses existing Campfire tokens; introduces no new variables.
-   ========================================================================== */
+/* ============================================================
+   Work Page — Orbit Sections
+   ============================================================
+   Supports the three-orbit structure (Methodology /
+   Demonstrations / Case Studies) on /work/ via custom-work.hbs.
+
+   PLACEMENT: Insert these rules in components.css grouped with
+   the other .work-* rules (around the existing .work-row /
+   .work-list block — see CLAUDE.md for the exact location in
+   the current theme version). Place BEFORE the consolidated
+   mobile @media block so mobile overrides still apply to them.
+
+   DO NOT append to end-of-file via `cat >>` — that would land
+   after the @media block and miss the responsive overrides.
+
+   No new CSS variables. All tokens used here already exist in
+   the Campfire token set.
+   ============================================================ */
 
 .work-orbit {
   max-width: var(--prose-max);
@@ -28,8 +41,6 @@
   max-width: var(--prose-max);
 }
 
-/* When a .work-list is nested inside an orbit, drop its bottom margin
-   so the orbit's own spacing rules govern the gap to the next section. */
 .work-orbit .work-list {
   margin-bottom: 0;
 }

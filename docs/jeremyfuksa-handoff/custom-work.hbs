@@ -1,25 +1,57 @@
 {{!< default}}
 
-{{!-- The tag above means - insert everything in this file into the {body} of the default.hbs template --}}
+{{!--
+  TEMPLATE: custom-work.hbs
+  PROPOSED REPLACEMENT — do NOT overwrite the existing file blindly.
+
+  This file proposes a three-orbit structure for /work/ (Methodology /
+  Demonstrations / Case Studies). Before applying, diff against the
+  existing theme/custom-work.hbs and preserve anything worth keeping —
+  especially any additional {{#if}} conditional blocks that let
+  Jeremy edit the page via Ghost Admin without a redeploy.
+
+  The conditional blocks below (custom_excerpt, feature_image, content)
+  are the known Ghost conveniences worth preserving. If the live file
+  has more of them, keep them.
+
+  Deploy via the repo's documented workflow (CLAUDE.md): bump
+  theme/package.json version, commit, zip, upload via
+  dev/deploy-theme.mjs. Do not SSH-edit on the droplet.
+--}}
 
 <div class="work-page">
 
   <header class="work-header">
     <div class="eyebrow">The Cocktail Napkin</div>
-    <h1>Work</h1>
-    <p class="work-intro">The work falls into three groups. Frameworks are the methodology — seven named, portable pieces, each its own page. Demonstrations are how those frameworks run in practice. Case studies are the client-facing enterprise work.</p>
+    <h1>{{title}}</h1>
+
+    {{#if custom_excerpt}}
+      <p class="work-intro">{{custom_excerpt}}</p>
+    {{else}}
+      <p class="work-intro">The work falls into three groups. The methodology is Domain Foundation — an architecture for encoding design expertise into AI-reachable form. Demonstrations are how it runs in practice. Case studies are the client-facing enterprise work.</p>
+    {{/if}}
+
+    {{#if feature_image}}
+      <img src="{{feature_image}}" alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}" class="work-hero-image">
+    {{/if}}
   </header>
 
-  {{!-- FRAMEWORKS --}}
+  {{#if content}}
+    <section class="work-intro-content">
+      {{content}}
+    </section>
+  {{/if}}
+
+  {{!-- METHODOLOGY --}}
   <section class="work-orbit">
     <header class="work-orbit-header">
-      <h2 class="work-orbit-title">Frameworks</h2>
-      <p class="work-orbit-intro">The methodology and its moving parts. Domain Foundation is the hub for the seven frameworks; individual framework pages will publish as they're ready.</p>
+      <h2 class="work-orbit-title">Methodology</h2>
+      <p class="work-orbit-intro">The methodology, in one place. Domain Foundation is the current form — and, for now, the whole of it.</p>
     </header>
 
     <div class="work-list">
       <a href="/work/domain-foundation/" class="work-row">
-        <div class="work-row-meta">Methodology hub · 2023–ongoing</div>
+        <div class="work-row-meta">Methodology · 2023–ongoing</div>
         <div class="work-row-title">Domain Foundation</div>
         <div class="work-row-excerpt">A methodology for encoding organizational design expertise into machine-readable knowledge systems for AI-assisted design workflows.</div>
       </a>
@@ -30,7 +62,7 @@
   <section class="work-orbit">
     <header class="work-orbit-header">
       <h2 class="work-orbit-title">Demonstrations</h2>
-      <p class="work-orbit-intro">How the frameworks operate in real practice. Four in production: the Skill Ecosystem, jeremyfuksa.com as an applied case, Jeremy OS, and the Moonbird origin dispatch. Publishing as they're ready.</p>
+      <p class="work-orbit-intro">How the methodology runs in practice. Four in production: the Skill Ecosystem, jeremyfuksa.com as an applied case, Jeremy OS, and the Moonbird origin dispatch. Publishing as they're ready.</p>
     </header>
   </section>
 
