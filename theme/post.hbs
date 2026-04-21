@@ -12,6 +12,9 @@
     {{#if @custom.show_reading_time}}
       <span class="post-card-readtime">{{reading_time}}</span>
     {{/if}}
+    <a class="post-share-inline" href="#/share" aria-label="Share this post">
+      <i class="fa-solid fa-share-nodes" aria-hidden="true"></i>Share
+    </a>
   </div>
   {{#if custom_excerpt}}
     <p class="post-header-excerpt">{{custom_excerpt}}</p>
@@ -66,6 +69,14 @@
     {{/if}}
   </aside>
 </div>
+
+<section class="post-share" aria-label="Share">
+  <div class="post-share-label">Enjoyed this?</div>
+  <a class="post-share-cta" href="#/share">
+    <i class="fa-solid fa-share-nodes" aria-hidden="true"></i>
+    Share this post
+  </a>
+</section>
 
 <footer class="post-footer">
   <div class="post-footer-title">
