@@ -1,6 +1,7 @@
 {
   "devDependencies": {
-    "@jeremyfuksa/campfire": "latest"
+    "@jeremyfuksa/campfire": "latest",
+    "marked": "^18.0.2"
   },
   "scripts": {
     "sync-campfire": "cp node_modules/@jeremyfuksa/campfire/dist/index.css theme/assets/css/campfire.css"
