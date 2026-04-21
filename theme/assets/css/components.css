@@ -3242,17 +3242,6 @@
   letter-spacing: var(--tracking-wide);
 }
 
-/* H1 breathe — signature hover on hero & post titles */
-.hero-name,
-.post-header-title {
-  transition: font-variation-settings 600ms ease;
-}
-
-.hero-name:hover,
-.post-header-title:hover {
-  font-variation-settings: 'WONK' 1, 'opsz' 144, 'wght' 450;
-}
-
 /* TOC sliding indicator */
 .toc {
   position: relative;
@@ -3316,8 +3305,6 @@
   .reveal.is-visible,
   .reading-progress,
   .toc-indicator,
-  .hero-name,
-  .post-header-title,
   .gh-content a,
   .heading-anchor,
   .tag {
@@ -3328,10 +3315,5 @@
   .reveal {
     opacity: 1;
     transform: none;
-  }
-
-  .hero-name:hover,
-  .post-header-title:hover {
-    font-variation-settings: 'WONK' 1, 'opsz' 72;
   }
 }
