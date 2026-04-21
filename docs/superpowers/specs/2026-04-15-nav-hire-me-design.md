@@ -86,5 +86,5 @@ Remove the old "Work with me" list item.
 After code changes are complete:
 
 1. Repackage theme: `cd theme && zip -r ../the-cocktail-napkin.zip . -x "*.DS_Store" -x "*node_modules*"`
-2. Upload theme zip to Ghost Admin (beta.jeremyfuksa.com)
+2. Upload theme zip to Ghost Admin (jeremyfuksa.com)
 3. In Ghost Admin > Navigation: update label to "Hire me", URL to `mailto:hello@jeremyfuksa.com`

@@ -186,7 +186,7 @@ Expected: `the-cocktail-napkin.zip` created/overwritten in the repo root.
 
 - [ ] **Step 2: Upload theme to Ghost Admin**
 
-1. Go to Ghost Admin: `https://beta.jeremyfuksa.com/ghost/`
+1. Go to Ghost Admin: `https://jeremyfuksa.com/ghost/`
 2. Settings > Design > Change theme > Upload theme
 3. Upload `the-cocktail-napkin.zip`
 4. Activate the theme
