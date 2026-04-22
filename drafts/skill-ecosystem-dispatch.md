@@ -12,7 +12,7 @@ My laptop has twenty-six skills installed. They're files, mostly — `SKILL.md` 
 
 The question is whether the thing I built at Oracle works on one person.
 
-The thing I built at Oracle was Domain Foundation — a methodology for encoding institutional design expertise into a form a model can reach at generation time. Four layers of knowledge, each owned by the role that produces it. The methodology's whole bet is that specific institutional context is what separates commodity AI output from the output that reflects a specific organization's judgment. I wrote about it at length [elsewhere](/work/domain-foundation/). What I haven't written about is what happened when I started running the methodology on the only design org I'm still inside — mine.
+The thing I built from the research I did at Oracle is Domain Foundation — a methodology for encoding institutional design expertise into a form a model can reach at generation time. Four layers of knowledge, each owned by the role that produces it. The methodology's whole bet is that specific institutional context is what separates commodity AI output from the output that reflects a specific organization's judgment. I wrote about it at length [elsewhere](/work/domain-foundation/). What I haven't written about is what happened when I started running the methodology on the only design org I'm still inside — mine.
 
 Here's what that looks like.
 
@@ -56,7 +56,7 @@ The corpus reflects what I've worked on heavily enough to write the encoding for
 
 ## What this proves
 
-Domain Foundation was a bet about organizations. The bet was that encoded institutional expertise would let design teams do work that a PM with a good prompt couldn't reproduce. I made the bet inside Oracle Health, at the scale of a design org with its own design system team, clinical safety researchers, and regulatory experts.
+Domain Foundation is a bet about organizations. The bet is that encoded institutional expertise would let design teams do work that a PM with a good prompt couldn't reproduce. The research that led there happened inside Oracle Health, at the scale of a design org with its own design system team, human factors researchers, and a PhD on staff whose job included tracking healthcare regulatory and safety practice.
 
 The practitioner version is smaller. It's one person with twenty-six skill files and a gap list he's honest about. But it's the same mechanism, and it works. The difference between a model answering as an averaging machine and a model answering with a reflection of specific practice turns out to be the corpus, regardless of whether the corpus is a healthcare org's human factors research or a songwriter's notes on Wormy Dog Saloon.
 

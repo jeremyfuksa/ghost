@@ -8,21 +8,19 @@
 
 # jeremyfuksa.com, Rebuilt Against a Corpus
 
-The Ghost theme for this site has a file called `dev/deploy-theme.mjs`. Sixty-eight lines of JavaScript. It mints a short-lived JWT from an Admin API key, uploads a zipped theme to Ghost's admin endpoint, activates it. Four seconds from `node dev/deploy-theme.mjs` to a live site running new code.
+The site has one design constraint that predates everything else on it: **analog signal in a chrome frame.** The content is messy and personal — a Red Dirt songwriter, an amateur radio hobbyist, a designer who got laid off — and the container has to be precise enough that the content reads as deliberate rather than chaotic. Hairline borders at half a pixel. Fraunces for headings with intentionally tight leading. A system font stack for body text because a webfont would overstate it. Two accent colors — one decorative, one readable — that never get conflated.
 
-I wrote none of it by hand.
+Every structural decision on the site serves that constraint. A looser container would let the mess read as mess. The precision of the rules is what makes the content inside them register as a choice.
 
-A prior version of the handoff I was working from said the Admin API didn't have theme-management scope — that deploys had to happen over SSH, editing files directly on the production droplet. The claim was wrong. Claude Code tested it with a single POST, got a 200, and the SSH workaround fell away. The deploy script exists because the assumption that blocked it turned out to be false, and the only cost of checking was one HTTP call.
-
-That's a small thing. But it's the whole posture of how this site gets built now.
+A year ago I built the site by opening Figma files and writing CSS by hand. It drifted — inconsistent spacing, one-off colors, decisions I made on Tuesday contradicted by decisions I made on Friday. Today every one of those rules is in a file a model can reach, and the site builds itself against them.
 
 ## The corpus this site runs on
 
 A skill called `campfire-css` enforces the Campfire design system as the single source of truth for every CSS and component decision — no raw hex, no `bg-blue-600`, no custom font imports, tokens for everything. A skill called `jeremy-voice` enforces the voice for every word of prose on the site. A skill called `cocktail-napkin-theme` encodes the Ghost-specific architecture: the static-first workflow where design happens in `static/*.html` files before porting to Handlebars templates, the `custom-*.hbs` pattern, the rule that borders use `var(--border-hairline)` at 0.5px because the hairline weight is deliberate and replacing it with 1px would kill the whole thing.
 
-None of those skills existed when I built the first version of this site a year ago. I was opening Figma files and writing CSS by hand. The site built slowly and drifted from its own conventions — inconsistent spacing, one-off colors, decisions I made on Tuesday contradicted by decisions I made on Friday.
+Every rule I'd been half-remembering from session to session is in a file now. A model running against those files makes the same decision I would make if I had all the context loaded at once — which I never do, because I'm a human with a brain that forgets.
 
-The corpus is the difference. Every rule I'd been half-remembering from session to session is in a file now. A model running against those files makes the same decision I would make if I had all the context loaded at once — which I never do, because I'm a human with a brain that forgets.
+The deploy is the other half. There's a sixty-eight-line JavaScript file called `dev/deploy-theme.mjs` that mints a short-lived JWT from an Admin API key, uploads a zipped theme to Ghost's admin endpoint, activates it. Four seconds from one terminal command to a live site running new code. I didn't type any of it — Claude Code wrote the whole file in a session. The reason it was worth writing at all is that a prior version of the handoff I was working from claimed the Admin API didn't have theme-management scope. The claim was wrong. One HTTP call proved it, and the SSH-to-the-droplet workaround the handoff recommended fell away.
 
 ## What changed in practice
 
@@ -32,19 +30,11 @@ The corpus carried most of that. The `cocktail-napkin-theme` skill told Claude w
 
 That ratio — me making the judgment calls, the corpus handling the execution — is the work.
 
-## The constraint that shaped it
+## What the corpus actually does
 
-The site has one design constraint that predates all the skills: **analog signal in a chrome frame**. The content is messy and personal — a Red Dirt songwriter, an amateur radio hobbyist, a designer who got laid off — and the container has to be precise enough that the content reads as deliberate rather than chaotic. Hairline borders. Fraunces for headings with intentionally tight leading. A system font stack for body text because a webfont would overstate it. Two accent colors — one decorative, one readable — that never get conflated.
+The corpus doesn't make the decisions. It holds the context so I can make the decisions fresh each time without re-researching the invariants. The hairline weight is 0.5px because it's 0.5px. The deploy path is the script because that's the script. The prose voice is what `jeremy-voice` says it is. Freed from having to re-derive those, the session becomes entirely about the thing that actually needs thinking.
 
-Every skill on the site is serving that constraint. A corpus that permitted loose typography would produce a site where the mess read as mess. The precision of the rules is what makes the content inside them register as a choice.
-
-## What breaks without the corpus
-
-Last week I hit a case where the handoff document I was working from said the Admin API couldn't upload themes. I spent about ten minutes writing a fallback plan — SSH to the droplet, edit files by hand, give up on the git-tracked workflow. Then I tested the original claim, got the 200, and threw the fallback plan away.
-
-That was ten minutes of wasted planning against a false premise. Without the corpus, there's more of that kind of waste — not because any individual decision is hard, but because the background context keeps evaporating between sessions. You spend your cognitive budget reconstructing what you already knew last week.
-
-The corpus doesn't make the decisions. It holds the context so I can make the decisions fresh each time without re-researching the invariants. The hairline weight is 0.5px because it's 0.5px. The deploy path is the script because that's the script. Freed from having to re-derive those, the session becomes entirely about the thing that actually needs thinking.
+Without that, the background context keeps evaporating between sessions. You spend your cognitive budget reconstructing what you already knew last week instead of making forward progress on what's new.
 
 ## What's not encoded yet
 
@@ -58,6 +48,6 @@ I keep telling people building design operations at their own companies that the
 
 This site is a proof at one-practitioner scale that the methodology pays for itself. The deploy script doesn't care that I'm one person instead of a design system team. The hairline rule doesn't care either. The machinery works at any scale that has recurring decisions, which turns out to be any scale that makes anything at all.
 
-The last pass of this site rebuild took ninety minutes. The one before that took three hours. The one before that, a week. The curve doesn't plateau — it steepens. Each decision encoded is one fewer decision to make next time, which frees up the session to encode the next one.
+Each decision encoded is one fewer decision to make next time, which frees up the session to encode the next one. The rebuilds get faster, session over session. Not on a measured curve — I haven't benchmarked it — but felt, consistently, in how much of a session is spent on work that matters versus work I already did.
 
 The next pass will be faster than this one. I already know what's missing.

@@ -10,7 +10,9 @@
 
 The first thing anyone said, in the first meeting, was that AI in the hands of engineering and PM was going to take our jobs.
 
-Not a metaphor. Figma Make had arrived, and a PM with no design training could generate a layout that looked real enough to circulate. The work a design team protected was, suddenly, something anyone could do plausibly enough to win an argument in a standup.
+Not a metaphor. Figma Make had launched. A PM with no design training could, in principle, generate a layout that looked real enough to circulate. The work a design team protected was, suddenly, something anyone could do plausibly enough to win an argument in a standup.
+
+We couldn't actually use Figma Make ourselves. Oracle's legal and security review kept it out of our hands until November 2024, and even then the useful version of the tool — the Make Kits that let you constrain output to a real design system — didn't land until October 2025, after I was gone. So the threat was real and external before it was a tool we could pick up. That gap shaped the project.
 
 The question we opened with wasn't *how do we do AI better.* It was *how do we make sure a non-designer can't generate something that doesn't match our design system.*
 
@@ -56,7 +58,9 @@ None of these are proprietary concepts. They're observations any team doing this
 
 ## What ended it
 
-I was laid off. The research project ended with me. The MVP was working — two tests demonstrating the core claim, plus the pipeline and the ingested corpora — but it wasn't productionized. What I had when I walked out the door was a year of thinking, a working proof-of-concept, and the observation that the methodology was more portable than the vendor tooling it had been running on.
+I was laid off. The MVP was working — two tests demonstrating the core claim, plus the pipeline and the ingested corpora — but it wasn't productionized. What I had when I walked out the door was a year of thinking, a working proof-of-concept, and the observation that the methodology was more portable than the vendor tooling it had been running on.
+
+I assume the work continues in some form with other people; I don't know the specifics and don't need to. The methodology was never just mine, and it was never just the vendor tooling.
 
 The portable part is [Domain Foundation](/work/domain-foundation/). The research that produced it is what this dispatch is for.
 
