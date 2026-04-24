@@ -1,53 +1,74 @@
-**SEO Description:** The site you're reading as a working demonstration — every structural change goes through Claude against an encoded corpus, not a designer opening a Figma file.
+**SEO Description:** The site you're reading, rebuilt against an encoded corpus — every structural change goes through a model instead of a designer opening a Figma file.
 
 **Thumbnail Description:** The Workshop at working hours, curtains closed, zone-specific task lighting. Central butcher-block island in focus — a laptop open to a VS Code window, the visible file tree showing `theme/assets/css/` with `tokens.css` selected. A small printed card pinned near the keyboard reads "hairline 0.5px". The pendant light over the island throws warm directional light onto the wood. Exposed brick and plaster walls in the background; the mezzanine railing visible up and to the right. Style: the locked Workshop prompt — cinematic photorealism, anamorphic lens, natural film grain, shallow depth of field, warm cinematic color grading, motivated lighting from practical sources. No people visible. 16:9.
 
 **Alt Text / Caption:** The butcher-block island under the pendant, an open laptop showing the site's token file.
 
+## Syndication
+
+### Facebook
+Wrote up how jeremyfuksa.com actually gets built — every structural decision runs through a model against an encoded set of rules instead of me opening Figma files and hoping I remember the spacing from last week. [link]
+
+*Post: Thursday 7:30pm CT after publication.*
+
+### LinkedIn
+A year ago I built jeremyfuksa.com by hand and it drifted — inconsistent spacing, one-off colors, Tuesday decisions contradicting Friday decisions. Today every rule that used to live in my head lives in a file a model can reach, and the site builds itself against them. Ninety-minute sessions now do what used to take a weekend. [link]
+
+#OpenToWork #UXDesign #DesignStrategy #AIDesign
+
+*Post: Thursday 8:30am CT after publication.*
+
+### Threads
+The constraint on jeremyfuksa.com that predates everything else: analog signal in a chrome frame.
+
+The content is messy and personal. The container has to be precise enough that the mess reads as deliberate.
+
+Half-pixel borders. Tight leading. System fonts. Rules I can't re-derive every session without losing a day. [link]
+
+*Post: Thursday 8:00pm CT after publication.*
+
 ---
 
-# jeremyfuksa.com, Rebuilt Against a Corpus
+# Analog Signal in a Chrome Frame
 
-The site has one design constraint that predates everything else on it: **analog signal in a chrome frame.** The content is messy and personal — a Red Dirt songwriter, an amateur radio hobbyist, a designer who got laid off — and the container has to be precise enough that the content reads as deliberate rather than chaotic. Hairline borders at half a pixel. Fraunces for headings with intentionally tight leading. A system font stack for body text because a webfont would overstate it. Two accent colors — one decorative, one readable — that never get conflated.
+That's the design constraint that predates everything else on jeremyfuksa.com. The content is messy and personal — a Red Dirt songwriter, an amateur radio hobbyist, a designer who got laid off — and the container has to be precise enough that the mess reads as deliberate. Hairline borders at half a pixel. Fraunces for headings with intentionally tight leading. System fonts for body text because a webfont would overstate it. Two accent colors, one decorative and one readable, and I don't let them get conflated.
 
-Every structural decision on the site serves that constraint. A looser container would let the mess read as mess. The precision of the rules is what makes the content inside them register as a choice.
+A year ago I built this site by opening Figma files and writing CSS by hand. It drifted. Inconsistent spacing, one-off colors, decisions I made on Tuesday contradicted by decisions I made on Friday. Today every one of those rules lives in a file a model can reach.
 
-A year ago I built the site by opening Figma files and writing CSS by hand. It drifted — inconsistent spacing, one-off colors, decisions I made on Tuesday contradicted by decisions I made on Friday. Today every one of those rules is in a file a model can reach, and the site builds itself against them.
+## The Rules, Written Down
 
-## The corpus this site runs on
+A skill called `campfire-css` holds the design system — tokens for every value, no raw hex, no custom font imports, nothing that escapes the system. `jeremy-voice` holds the voice for every word of prose on the site. `cocktail-napkin-theme` holds the Ghost-specific architecture: the static-first workflow where design happens in `static/*.html` files before porting to Handlebars templates, the `custom-*.hbs` pattern, the rule that borders use `var(--border-hairline)` at 0.5px because the hairline weight is deliberate and a 1px replacement would kill the whole thing.
 
-A skill called `campfire-css` enforces the Campfire design system as the single source of truth for every CSS and component decision — no raw hex, no `bg-blue-600`, no custom font imports, tokens for everything. A skill called `jeremy-voice` enforces the voice for every word of prose on the site. A skill called `cocktail-napkin-theme` encodes the Ghost-specific architecture: the static-first workflow where design happens in `static/*.html` files before porting to Handlebars templates, the `custom-*.hbs` pattern, the rule that borders use `var(--border-hairline)` at 0.5px because the hairline weight is deliberate and replacing it with 1px would kill the whole thing.
+Every rule I'd been half-remembering session to session is in a file now. A model running against those files makes the same decision I would make with all the context loaded at once — which I never have, because I'm a human with a brain that forgets.
 
-Every rule I'd been half-remembering from session to session is in a file now. A model running against those files makes the same decision I would make if I had all the context loaded at once — which I never do, because I'm a human with a brain that forgets.
+## The Deploy
 
-The deploy is the other half. There's a sixty-eight-line JavaScript file called `dev/deploy-theme.mjs` that mints a short-lived JWT from an Admin API key, uploads a zipped theme to Ghost's admin endpoint, activates it. Four seconds from one terminal command to a live site running new code. I didn't type any of it — Claude Code wrote the whole file in a session. The reason it was worth writing at all is that a prior version of the handoff I was working from claimed the Admin API didn't have theme-management scope. The claim was wrong. One HTTP call proved it, and the SSH-to-the-droplet workaround the handoff recommended fell away.
+There's a sixty-eight-line JavaScript file called `dev/deploy-theme.mjs` that mints a short-lived JWT from an Admin API key, uploads a zipped theme to Ghost's admin endpoint, and activates it. Four seconds from one terminal command to a live site. I didn't type any of it — Claude Code wrote the whole file in a session.
 
-## What changed in practice
+The reason it was worth writing is that a prior handoff claimed the Admin API didn't have theme-management scope. The claim was wrong. One HTTP call proved it, and the SSH-to-the-droplet workaround the handoff recommended fell away.
 
-I restructured the Work page from a flat list of case studies into a three-orbit architecture — Frameworks, Demonstrations, Case Studies. Three sections, each with an intro paragraph, each with a different relationship to the primary IP. Shipped in a ninety-minute session with Claude Code, end to end. That includes: reading the current state of the theme, restructuring the Handlebars template, adding CSS for the new orbit sections before the consolidated mobile media block, verifying locally in the Docker dev container, bumping the theme version, committing, packaging, deploying, verifying live, and writing a post-mortem of where the handoff document was wrong.
+## Ninety Minutes, End to End
 
-The corpus carried most of that. The `cocktail-napkin-theme` skill told Claude where the mobile media block was and why not to break it. `campfire-css` kept the new orbit sections on-system. `jeremy-voice` kept the intro copy from drifting into content-strategist mush. What I did was make the three judgment calls: how many orbits, what to name them, which case studies belonged in which.
+I restructured the Work page from a flat list of case studies into three orbits — Frameworks, Demonstrations, Case Studies. Three sections, each with an intro paragraph, each with a different relationship to the primary IP. Ninety-minute session with Claude Code, end to end. That includes reading the current state of the theme, restructuring the Handlebars template, adding CSS before the consolidated mobile media block, verifying locally in the Docker dev container, bumping the theme version, committing, packaging, deploying, verifying live, and writing a post-mortem of where the handoff was wrong.
 
-That ratio — me making the judgment calls, the corpus handling the execution — is the work.
+The skills carried most of that. `cocktail-napkin-theme` knew where the mobile media block was and why not to break it. `campfire-css` kept the new sections on-system. `jeremy-voice` kept the intro copy from drifting into content-strategist mush.
 
-## What the corpus actually does
+I made three judgment calls: how many orbits, what to name them, which case studies belonged in which.
 
-The corpus doesn't make the decisions. It holds the context so I can make the decisions fresh each time without re-researching the invariants. The hairline weight is 0.5px because it's 0.5px. The deploy path is the script because that's the script. The prose voice is what `jeremy-voice` says it is. Freed from having to re-derive those, the session becomes entirely about the thing that actually needs thinking.
+## What the Skills Don't Do
 
-Without that, the background context keeps evaporating between sessions. You spend your cognitive budget reconstructing what you already knew last week instead of making forward progress on what's new.
+They don't make the decisions. They hold the context so I can make decisions fresh each time without re-researching the invariants. The hairline weight is 0.5px because it's 0.5px. The deploy path is the script because that's the script. Freed from re-deriving those, the session becomes entirely about the thing that actually needs thinking.
 
-## What's not encoded yet
+## The Gaps
 
-The site has a photography gap. I take pictures — printmaking too — and neither practice is encoded as a skill. Which means if a post involves a photograph I took, the thumbnail prompt for it still has to be written from scratch, and the specific choices I'd make about image selection for a particular post can't be applied by a model running against a corpus. They're still in my head.
+The site has a photography gap. I take pictures. Printmaking too. Neither practice is encoded. If a post involves a photograph I took, the thumbnail prompt still has to be written from scratch, and the specific choices I'd make about image selection for that post can't be reached by anything running against the files.
 
-Most of the gaps in the site are like this. Not places where the methodology failed — places where I haven't written the encoding yet. The list of those is its own artifact, and seeing it written down is most of why I know what to work on next.
+Most of the gaps are like this. Not places where the methodology failed — places where I haven't written the encoding yet. The list is its own artifact.
 
-## The part that generalizes
+## The Part That Travels
 
-I keep telling people building design operations at their own companies that the order matters. You can't encode what you haven't named. You can't name what you haven't noticed is a recurring decision. And the recurring decisions are almost never the ones that feel most important in the moment — they're the small ones that get remade over and over because nobody wrote them down.
+The order matters. You can't encode what you haven't named. You can't name what you haven't noticed is a recurring decision. And the recurring decisions are almost never the ones that feel most important in the moment — they're the small ones that get remade over and over because nobody wrote them down.
 
-This site is a proof at one-practitioner scale that the methodology pays for itself. The deploy script doesn't care that I'm one person instead of a design system team. The hairline rule doesn't care either. The machinery works at any scale that has recurring decisions, which turns out to be any scale that makes anything at all.
+This site is a proof at one-practitioner scale. The deploy script doesn't care that I'm one person instead of a design system team. The hairline rule doesn't care either. The machinery works at any scale that has recurring decisions.
 
-Each decision encoded is one fewer decision to make next time, which frees up the session to encode the next one. The rebuilds get faster, session over session. Not on a measured curve — I haven't benchmarked it — but felt, consistently, in how much of a session is spent on work that matters versus work I already did.
-
-The next pass will be faster than this one. I already know what's missing.
+The next pass will be faster than this one.

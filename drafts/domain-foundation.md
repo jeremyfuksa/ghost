@@ -1,51 +1,53 @@
+**SEO Description:** A FigJam board made over winter break: four layer nodes connecting down into a database icon. That's Domain Foundation — the methodology that came out of the Moonbird research at Oracle Health, generalized past healthcare and portable to any high-stakes design org.
+
+**Thumbnail Description:** A FigJam board shot slightly off-center on a laptop screen in the Workshop. Four layer nodes — "Universal," "Domain," "Component," "Role" — arranged across the top, with clean connector lines running down into a single central database icon. The board reads as in-progress rather than finished: a few sticky notes pinned around the edges, one node slightly out of alignment, a cursor visible mid-drag on one of the connectors. Warm directional afternoon light through the cracked north curtains. Workshop consistency anchors: butcher block island in foreground (out of focus), exposed brick on the right, the mezzanine railing up and to the right. Style: the locked Workshop prompt — cinematic photorealism, anamorphic lens, natural film grain, shallow depth of field, warm cinematic color grading, motivated lighting from practical sources. No people visible. 16:9.
+
+**Alt Text / Caption:** Four layer nodes connecting down into a database icon — the FigJam board that became Domain Foundation.
+
+---
+
 # Domain Foundation
 
-## The weekend between Christmas and New Year's
+## The FigJam board
 
-I'd spent the three months before Christmas throwing things at the wall. A year of research at Oracle had ended with the layoff, and I had a pile of observations — the validation stack, the role inversion, the averaging problem — that didn't yet cohere into a thing I could hand to someone. I kept trying to structure it and kept getting something that sounded like a recap of my last job.
+I made a FigJam board over winter break. Four layer nodes, all connecting down into a database icon at the bottom. It was the first time I felt like this AI project had a clear direction.
 
-Winter break. Nothing to do. My first real week off in years. The shape arrived on its own, over a few days of not trying — the four layers, the ownership rule, the downstream applications that weren't mine to own. By New Year's I had the methodology written down for the first time as something portable. Not a project I had done. A methodology that had come out of the project and could travel to any high-stakes domain that needed it.
+You can't shape-find in this work at the pace the field moves. The AI space in late 2025 and early 2026 was running at a speed that burned through any thought I tried to have inside it — every day another model release, another paper, another architecture pattern that partially did what we were trying to build. The Moonbird research was in peak momentum. None of it left room to actually back up and look at the big picture.
 
-That's the Domain Foundation. The research year [was its own thing](/work/research-year/). This is what I built from it.
+Winter break was the first week since the research started when I wasn't moving at that pace. The original hypothesis had been to encode the knowledge in custom metadata layers inside the Figma files themselves. The RAG pivot moved the whole thing out — a retrievable, queryable knowledge base that any tool could pull from. The decision had been made mid-stride and I'd kept running.
+
+The project was [Moonbird](/work/moonbird/) — how we applied the approach specifically for Oracle Health. Domain Foundation is how you apply it anywhere else.
 
 ## The structural move
 
 The core of the methodology is simple enough to state in a sentence: **encode institutional knowledge as layers, each owned by the role that produces it, and let the model compose from all of them at generation time.**
 
-Four layers is what worked inside the design organization I came from. A base layer of universal design principles, owned by the design system team. A domain layer of industry-specific reasoning, owned by domain experts. A component layer of per-artifact intent metadata — when to use, when not to — owned by component authors. A role layer describing user types and their constraints, owned by researchers.
+Four layers is what worked inside the design organization I came from. A base layer of universal design principles, owned by the design system team. A domain layer of industry-specific reasoning, owned by strategists and health providers. A component layer of per-artifact intent metadata — when to use, when not to — owned by component authors. A role layer describing user types and their constraints, owned by researchers.
 
 The ownership matters more than the count. A different org's shape might want five layers, or three. The load-bearing claim is that governance distributes: the people who produce the knowledge also own the layer that encodes it, and no single team becomes the bottleneck.
 
-This is the design group's portion of the context problem. Other institutional knowledge — customer feedback, regulatory correspondence, the pile of decisions made in hallways and never written down — lives in other systems and needs its own ingestion story. The four-layer architecture is what I know how to build because it's what my team owned. The larger context problem extends past it.
+This is the design group's portion of the context problem. Other institutional knowledge — customer feedback, regulatory correspondence, the pile of decisions made in hallways and never written down — lives in other systems and needs its own ingestion story.
 
-The technical shape — vector database, MCP server, LLM — isn't the interesting part. What goes into the database is. Institutional knowledge, not documentation.
+The technical shape — vector database, [MCP](https://modelcontextprotocol.io/) server, LLM — isn't the interesting part. What goes into the database is. Institutional knowledge, not documentation.
 
-## Downstream applications
+## Once the knowledge is reachable
 
-The encoded corpus is retrievable, which means it can feed more than one pipeline. The obvious next stop is generation — governed Figma or code output that reflects the organization's specific intent. Two others come up in every conversation I have about this work.
+Once the knowledge is reachable, a lot opens up. Generation is the obvious example — a designer starts with a prompt and gets back an artifact already aligned to the org's rules instead of starting from scratch and retrofitting compliance later. A clinical workflow that already respects the deployment context, the component library, and the accessibility constraints for the user roles who'll actually use it.
 
-The same corpus that generates can also validate. Given a proposed design, does it satisfy the constraints the role layer names for this user type, in this deployment context? That's a check a model can run if the knowledge is reachable.
+Validation is the next one. A PM sketches a workflow over the weekend and runs it past the model to see if it survives. The model checks it against the encoded rules and brings it to a state worth debating. By the time a designer sees it, the question isn't "does this match the system" — it's "does this workflow belong, and if so, where does it go from here."
 
-Evaluation harnesses are the third. Design teams accumulate a pile of historical decisions — patterns adopted, patterns rejected, and the reasoning for both. A retrievable version of that pile is a benchmark for new proposals.
+Decision memory is the one most organizations don't realize they need. A team argues about a pattern choice they're sure they've had before. Instead of asking the senior designer who's been there eight years, they ask the model, and it surfaces the last time this came up: what was proposed, what shipped, what got rejected, why. The reasoning behind past decisions stops walking out the door every time someone leaves.
 
-None of those pipelines are mine to own. They're where the corpus can go once it exists. The methodology's job is to make sure the corpus exists in a form those pipelines can actually use.
+## The room
 
-## The shadow practice
+My component design team killed a feature for privacy reasons. A design strategist caught a real edge case — the kind of specific, rare scenario that sits outside anything AI could recognize. The [full story](/work/redwood-health-design/) is its own case study; the part that matters here is what the AI couldn't do. It had the clinical literature. It had the workflow. What it couldn't do was reason about the actual room the feature would land in — the specific human context a strategist sees because they've sat with it.
 
-Through 2024, before the layoff, I'd been building my own practice around AI collaboration — separate from the research, separate from any vendor pipeline. Not generating Figma frames. Asking a language model to pressure-test my thinking. Edge cases, interaction logic, the things I hadn't caught on my own. The artifact was always mine. The thoroughness behind it was multi-authored.
+Domain Foundation exists so the *why* can be captured in a form a model can use. The judgment of experienced people doesn't walk out the door when they do.
 
-That practice carried over. It's now codified as a corpus of skills the methodology runs on my own work through — the [skill ecosystem](/work/skill-ecosystem/) is the demonstration. Domain Foundation isn't a theory I wrote down after leaving Oracle. It's the structure of a thing I'd already been running on myself for most of a year before the research caught up to name it.
+Design teams whose expertise is encoded — a retrievable knowledge base tied to the generation and validation work — do work that doesn't look like everyone else's. Design teams whose expertise lives only in people's heads produce outputs a PM with a good prompt can already reproduce.
 
-## The gap the methodology exists to close
+## Hard to demo
 
-My old team killed a feature for privacy reasons. The AI didn't catch it. A designer did. The [full story](/work/redwood-health-design/) is its own case study; the part that matters here is what the AI missed. It could reason at the surface — workflow, provider needs, clinical framing. It couldn't carry the deployment context. Human expertise killed the feature, not the AI's.
+The methodology is hard to demo. Half the value is in what an organization chooses to put in the knowledge base, and the choosing is the expertise. The structure is just the container.
 
-Domain Foundation is a bet that the *why* can be captured in a form a model can use, so the judgment of experienced people doesn't walk out the door when they do.
-
-Design teams whose expertise is encoded — literally, as a retrievable knowledge base tied to the generation pipeline — will do work that doesn't look like everyone else's. Design teams whose expertise lives only in people's heads will produce outputs a PM with a good prompt can already reproduce. That gap is going to decide which design organizations matter a few years from now.
-
-## Where this sits
-
-The methodology isn't a product. It's hard to demo. Half the value is in what an organization chooses to put in the knowledge base, and the choosing is the expertise — the structure is just the container.
-
-The people I find myself talking to now are the ones who've arrived at the same realization: default models produce default output. If you want design that reflects real institutional insight, you have to put that insight somewhere the model can actually reach. Those conversations are where the work sits right now.
+The people I find myself talking to now are the ones who've already arrived at the same realization: default models produce default output.
