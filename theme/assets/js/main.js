@@ -163,15 +163,15 @@
     }
   }
 
-  // ---- Cursor spotlight on featured-work card ---------------------------
+  // ---- Cursor spotlight on featured-work cards --------------------------
   if (!reduceMotion) {
-    var featured = document.querySelector('.featured-work-card');
-    if (featured) {
-      featured.addEventListener('pointermove', function (e) {
-        var rect = featured.getBoundingClientRect();
-        featured.style.setProperty('--mx', (e.clientX - rect.left) + 'px');
-        featured.style.setProperty('--my', (e.clientY - rect.top) + 'px');
+    var featuredCards = document.querySelectorAll('.featured-work-card');
+    featuredCards.forEach(function (card) {
+      card.addEventListener('pointermove', function (e) {
+        var rect = card.getBoundingClientRect();
+        card.style.setProperty('--mx', (e.clientX - rect.left) + 'px');
+        card.style.setProperty('--my', (e.clientY - rect.top) + 'px');
       });
-    }
+    });
   }
 })();
