@@ -14,6 +14,9 @@ routes:
   /work/redwood-health-design/:
     template: custom-casestudy-redwood
     data: page.redwood-health-design
+  /work/moonbird/:
+    template: custom-casestudy-moonbird
+    data: page.moonbird
 
 collections:
   /writing/:
