@@ -162,16 +162,4 @@
       revealTargets.forEach(function (el) { revealObserver.observe(el); });
     }
   }
-
-  // ---- Cursor spotlight on featured-work cards --------------------------
-  if (!reduceMotion) {
-    var featuredCards = document.querySelectorAll('.featured-work-card');
-    featuredCards.forEach(function (card) {
-      card.addEventListener('pointermove', function (e) {
-        var rect = card.getBoundingClientRect();
-        card.style.setProperty('--mx', (e.clientX - rect.left) + 'px');
-        card.style.setProperty('--my', (e.clientY - rect.top) + 'px');
-      });
-    });
-  }
 })();
