@@ -47,7 +47,7 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
   font-size: clamp(36px, calc(30.5px + 1.45vw), 48px);
   line-height: 1;
-  font-weight: 400;
+  font-weight: 425;
   letter-spacing: var(--tracking-tight);
   margin-bottom: var(--spacing-4);
 }

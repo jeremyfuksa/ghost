@@ -829,7 +829,7 @@
 .hero-name {
   font-size: clamp(36px, calc(19.5px + 4.36vw), 72px);
   line-height: 1;
-  font-weight: 400;
+  font-weight: 425;
   letter-spacing: var(--tracking-tight);
   margin-bottom: var(--spacing-6);
 }
@@ -2931,7 +2931,7 @@
 .casestudy-title {
   font-family: var(--font-heading);
   font-size: var(--text-4xl);
-  font-weight: 400;
+  font-weight: 425;
   font-variation-settings: 'WONK' 1, 'opsz' 72;
   line-height: var(--leading-h1);
   color: var(--color-text-heading);

@@ -88,7 +88,7 @@ All design values must use CSS custom properties from `tokens.css`. No hardcoded
 - Mobile-specific responsive overrides in `@media` blocks
 
 ### Typography
-- **Headings:** Fraunces (variable font) with `font-variation-settings: 'WONK' 1, 'opsz' 72`. Weights: H1/H2/H3 all 400 (raised from 350 on H2/H3 in 2026-04-25 for readability at body distance). Title classes throughout components.css follow the same 400. Leading is intentionally tight.
+- **Headings:** Fraunces (variable font) with `font-variation-settings: 'WONK' 1, 'opsz' 72`. Weights: H1=425, H2=400, H3=400 (raised from H1=400, H2=350, H3=350 in 2026-04-25 for readability at body distance). Display H1 surfaces (`.hero-name`, `.casestudy-title`) match base h1 at 425; H2/H3-class title surfaces in components.css use 400. Leading is intentionally tight.
 - **Body:** System UI stack (`-apple-system`, `BlinkMacSystemFont`, `Segoe UI`, `system-ui`, etc.) — no webfont
 - **Mono:** Fira Code for dates, read times, code blocks
 - **Heading color:** `--color-text-heading` (warm brown light / cream dark)
