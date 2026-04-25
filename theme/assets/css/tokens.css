@@ -122,9 +122,11 @@
   --color-hero-fade: #f7f8f9;
 
   /* Featured work card */
-  --color-featured-card-bg: #1c1f26;
-  --color-featured-card-surface: #75acaf;
-  --color-featured-card-border: rgba(0, 0, 0, 0.1);
+  --color-featured-card-bg: var(--color-accent-subtle);
+  --color-featured-card-border: var(--color-now-border);
+  --color-featured-card-text: var(--color-text-heading);
+  --color-featured-card-body: var(--text-secondary);
+  --color-featured-card-label: var(--color-eyebrow);
 
   /* Status — aliased to campfire palette tokens */
   --color-success: var(--success-600);
@@ -180,8 +182,11 @@
   /* Hero fade */
   --color-hero-fade: #1c1f26;
 
-  --color-featured-card-surface: #2e5a5c;
-  --color-featured-card-border: rgba(255, 255, 255, 0.08);
+  --color-featured-card-bg: var(--primary-950);
+  --color-featured-card-border: var(--primary-900);
+  --color-featured-card-text: var(--color-text-heading);
+  --color-featured-card-body: var(--text-secondary);
+  --color-featured-card-label: var(--color-eyebrow);
 
   /* Worked-with section — recessed dark surface */
   --color-worked-with-bg: var(--primary-950);
