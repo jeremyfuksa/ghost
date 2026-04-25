@@ -1,8 +1,8 @@
 import GhostContentAPI from '@tryghost/content-api';
 import type { GhostPost, GhostTag } from './ghost.types';
 
-const url = import.meta.env.GHOST_URL ?? process.env.GHOST_URL;
-const key = import.meta.env.GHOST_CONTENT_API_KEY ?? process.env.GHOST_CONTENT_API_KEY;
+const url = import.meta.env.GHOST_URL || process.env.GHOST_URL;
+const key = import.meta.env.GHOST_CONTENT_API_KEY || process.env.GHOST_CONTENT_API_KEY;
 
 if (!url || !key) {
   throw new Error(
@@ -33,7 +33,8 @@ export async function getPostBySlug(slug: string): Promise<GhostPost | null> {
     );
     return post as unknown as GhostPost;
   } catch (err) {
-    if ((err as { type?: string }).type === 'NotFoundError') return null;
+    const e = err as { type?: string; response?: { status?: number } };
+    if (e.type === 'NotFoundError' || e.response?.status === 404) return null;
     throw err;
   }
 }
