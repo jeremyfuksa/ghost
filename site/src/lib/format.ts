@@ -12,6 +12,7 @@ export type GhostImageSize = keyof typeof ghostImageWidths;
 export function ghostImageUrl(src: string | null, size: GhostImageSize): string | null {
   if (!src) return null;
   if (!src.includes('/content/images/')) return src;
+  if (src.includes('/content/images/size/')) return src;
   return src.replace(
     '/content/images/',
     `/content/images/size/w${ghostImageWidths[size]}/`,

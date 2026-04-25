@@ -18,7 +18,7 @@ const readtime = readingTime(post.reading_time);
   {post.featured && <div class="featured-badge">&#9733; Featured</div>}
   {featureImage && (
     <a href={url} class="post-card-featured-image-link">
-      <img class="post-card-featured-image" src={featureImage} alt={post.title} loading="lazy" />
+      <img class="post-card-featured-image" src={featureImage} alt="" loading="lazy" />
     </a>
   )}
   <div class="post-card-meta">
