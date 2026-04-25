@@ -59,30 +59,19 @@ If a case study is added in the future, it's two HBS edits (adding the row in `c
 
 ## P1 — Real wins, no judgment call
 
-### 6. Split `components.css` (3,460 lines, one file)
-**File:** [theme/assets/css/components.css](theme/assets/css/components.css)
+### 6. ~~Split `components.css`~~ — declined 2026-04-25
+**File:** [theme/assets/css/components.css](theme/assets/css/components.css) (3,345 lines after dead-code removal)
 
-It's already sectioned with comment banners. Splitting into named files makes navigation by filename, not line number, and makes diffs sane:
+Reconsidered during cleanup. Splitting into 20+ files would help me/you navigate by filename, but:
 
-```
-components/
-  _index.css          # @imports the rest
-  layout.css          # site-content, page wrappers, responsive padding (line 3192)
-  hero.css            # 794–930
-  featured-work.css   # 932–1034
-  home-writing.css    # 1206– (post cards, sidebar)
-  post-card.css       # post-card, post-card-featured
-  post-page.css       # post-header, post-layout, post-sidebar, toc
-  case-study.css      # 2899– (cs-meta, cs-stats)
-  about.css           # 2707–
-  work-page.css       # 2544–
-  now.css
-  share.css           # 3388–
-  polish.css          # 3234– (selection, focus, anchors, reveal)
-  responsive.css      # 3192– consolidated media block
-```
+- This is a single-author theme — no merge-conflict pressure.
+- Ghost serves CSS as-is in production; splitting adds real HTTP requests every page load.
+- The section banners in components.css are clean and consistent. Ctrl+F navigation is fine.
+- A no-build setup means no concat step to undo the perf cost.
 
-No build step needed — `screen.css` already uses `@import` chains, and Ghost serves them. Cost: a handful of extra HTTP requests *during dev only* (Ghost concatenates+minifies in production, IIRC — verify). If that's a concern, keep the splits in source and add a tiny concat step.
+If the file ever crosses ~5,000 lines or gets a second contributor, revisit. For now, the file is well-organized and the cost of splitting outweighs the benefit.
+
+Did do during cleanup: removed two dead sections (`Home: Portfolio teaser` and `Placeholders (static preview only)`), trimming 67 lines.
 
 ### 7. `tokens.css` declares `--font-sans: Manrope, ...` but nothing uses Manrope
 **File:** [theme/assets/css/tokens.css:11](theme/assets/css/tokens.css#L11)
