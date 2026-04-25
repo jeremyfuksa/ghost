@@ -98,7 +98,7 @@ Two accent color roles — never conflate them:
 - `--color-accent-ui` — decorative only (borders, underlines, large uppercase text). Fails WCAG for body text.
 - `--color-accent-text` — all readable text uses of orange/amber. Passes 4.5:1.
 
-Dark mode is system-preference only (`prefers-color-scheme`). No JS toggle.
+Dark mode follows `prefers-color-scheme` by default, with a manual `.theme-toggle` button in the nav header that overrides via `data-theme="light|dark"` and persists to `localStorage`. Both selectors must be honored when adding theme-aware rules: see `home-bg::before` (components.css:761-772) for the established pattern.
 
 ### Ghost Conventions
 - `{{#get "posts"}}` for dynamic data fetching (home page latest, related posts)
@@ -116,6 +116,6 @@ Dark mode is system-preference only (`prefers-color-scheme`). No JS toggle.
 - All values use token variables. No hardcoded pixels in CSS or inline styles in HTML.
 - Borders use `var(--border-hairline)` (0.5px). The hairline weight is deliberate.
 - Prose max-width is `--prose-max: 720px` (single-column reading); content max-width is `--content-max: 1280px` (multi-column). All page wrappers use `padding: var(--spacing-12) var(--spacing-8) var(--spacing-20)`; responsive horizontal padding step-down lives in the consolidated media block at the end of `components.css`.
-- No JS dependencies. Vanilla JS only, kept minimal (TOC scroll spy is the only behavior).
+- No JS dependencies. Vanilla JS only, in `theme/assets/js/main.js`. Five behaviors: theme toggle, TOC scroll spy + sliding indicator, heading-anchor copy-to-clipboard links, reading-progress bar, and `IntersectionObserver`-driven scroll reveal on images and cards. All respect `prefers-reduced-motion`.
 - Nav logo at 32px uses the simplified SVG mark, not the full wordmark.
 - `--color-text-muted` is AA Large only — use for metadata (dates, read times), not standalone body text.
