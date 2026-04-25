@@ -4,11 +4,11 @@
    ========================================================================== */
 
 :root {
-  /* Heading font — campfire uses Manrope for body; Fraunces stays for headings */
+  /* Heading font */
   --font-heading: 'Fraunces', 'Georgia', serif;
 
   /* Named body font stack — used by components that explicitly reset font-family */
-  --font-sans: Manrope, -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
 
   /* Extended type scale — not in campfire */
   --text-3xs: 0.625rem;  /* 10px */
