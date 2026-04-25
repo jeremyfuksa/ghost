@@ -3170,6 +3170,44 @@
   text-decoration: underline;
 }
 
+/* Fact list — vertical key-value pairs for Signal block */
+.cs-fact-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+  margin: 0;
+}
+
+.cs-fact-list dt {
+  font-family: var(--font-mono);
+  font-size: var(--text-3xs);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  color: var(--text-tertiary);
+  margin-bottom: var(--spacing-1);
+}
+
+.cs-fact-list dd {
+  font-size: var(--text-sm);
+  color: var(--text-primary);
+  line-height: var(--leading-sm);
+  margin: 0;
+}
+
+/* Pull quote — italic Fraunces for Signal block */
+.cs-pullquote {
+  font-family: var(--font-heading);
+  font-variation-settings: 'WONK' 1, 'opsz' 72;
+  font-style: italic;
+  font-weight: 350;
+  font-size: var(--text-base);
+  line-height: var(--leading-lg);
+  color: var(--color-text-heading);
+  border-left: var(--border-blockquote) solid var(--color-blockquote-rule);
+  padding-left: var(--spacing-4);
+  margin: 0;
+}
+
 /* Mobile */
 
 @media (max-width: 768px) {
