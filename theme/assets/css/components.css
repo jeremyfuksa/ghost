@@ -1313,21 +1313,6 @@
   color: var(--color-accent-hover);
 }
 
-.sidebar-about-links a i,
-.about-sidebar-links a i {
-  display: inline-block;
-  width: 1.1em;
-  margin-right: var(--spacing-1);
-  text-align: center;
-  color: var(--text-tertiary);
-  transition: color var(--transition-fast);
-}
-
-.sidebar-about-links a:hover i,
-.about-sidebar-links a:hover i {
-  color: var(--color-accent-text);
-}
-
 .sidebar-topics {
   margin-top: var(--spacing-8);
   padding-top: var(--spacing-6);
@@ -3373,8 +3358,10 @@
   color: var(--color-accent-text);
 }
 
-.post-share-inline i {
-  font-size: var(--text-sm);
+.post-share-inline .icon-share,
+.post-share-cta .icon-share {
+  width: 14px;
+  height: 14px;
 }
 
 .post-share {
