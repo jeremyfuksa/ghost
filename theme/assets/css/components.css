@@ -2192,18 +2192,6 @@
   font-family: var(--font-sans);
 }
 
-/* ---------- Placeholders (static preview only) ---------- */
-
-.placeholder-image {
-  background: var(--bg-muted);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-tertiary);
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
-}
-
 /* ---------- Responsive ---------- */
 
 /* Mid-range: tighten padding before sidebars collapse */
@@ -2427,61 +2415,6 @@
   width: 100%;
   height: auto;
   aspect-ratio: 16 / 9;
-}
-
-/* ==========================================================================
-   Home: Portfolio teaser
-   ========================================================================== */
-
-.section-header-spaced {
-  margin-top: var(--spacing-12);
-}
-
-.home-work-teaser {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--spacing-4);
-}
-
-.home-work-card {
-  display: block;
-  padding: var(--spacing-5);
-  background: var(--bg-subtle);
-  border: var(--border-hairline) solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  transition: border-color var(--transition-fast), transform var(--transition-fast);
-}
-
-.home-work-card:hover {
-  border-color: var(--color-accent-ui);
-  transform: translateY(-2px);
-}
-
-.home-work-card-label {
-  font-family: var(--font-sans);
-  font-size: var(--text-xs);
-  font-weight: var(--font-weight-bold);
-  letter-spacing: var(--tracking-widest);
-  text-transform: uppercase;
-  color: var(--color-accent-text);
-  margin-bottom: var(--spacing-2);
-}
-
-.home-work-card-body {
-  font-size: var(--text-sm);
-  line-height: var(--leading-sm);
-  color: var(--text-secondary);
-}
-
-.home-work-card-cta {
-  background: var(--color-accent-subtle);
-  border-color: var(--color-accent-ui);
-}
-
-@media (max-width: 600px) {
-  .home-work-teaser {
-    grid-template-columns: 1fr;
-  }
 }
 
 /* ==========================================================================
