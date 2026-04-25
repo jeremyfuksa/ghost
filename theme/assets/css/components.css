@@ -2560,12 +2560,13 @@
 }
 
 .work-row-title {
-  font-family: var(--font-sans);
-  font-size: var(--text-xl);
-  font-weight: var(--font-weight-semibold);
-  color: var(--text-primary);
+  font-family: var(--font-heading);
+  font-variation-settings: 'WONK' 1, 'opsz' 72;
+  font-size: var(--text-2xl);
+  font-weight: 350;
+  color: var(--color-text-heading);
   margin-bottom: var(--spacing-2);
-  letter-spacing: var(--tracking-snug);
+  letter-spacing: var(--tracking-tight);
 }
 
 .work-row-excerpt {
