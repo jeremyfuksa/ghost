@@ -12,11 +12,7 @@ Swap a font in the Ghost theme. The user will specify a font name and role.
    - For body: update the `--font-primary` variable value
    - Keep the fallback stack appropriate (serif fonts get `'Georgia', serif`; sans-serif get `system-ui, sans-serif`)
 
-3. Update the Google Fonts `<link>` URL in **both** files:
-   - `theme/default.hbs`
-   - `preview.html`
-   
-   Replace only the relevant `family=` parameter in the URL. Keep other font families intact. Use the correct Google Fonts URL format for the new font (check if it's a variable font needing axis ranges vs discrete weights).
+3. Update the Google Fonts `<link>` URL in `theme/default.hbs`. Replace only the relevant `family=` parameter in the URL. Keep other font families intact. Use the correct Google Fonts URL format for the new font (check if it's a variable font needing axis ranges vs discrete weights).
 
 4. Tell the user to hard refresh (`Cmd+Shift+R`) to see the change.
 

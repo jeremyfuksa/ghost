@@ -216,11 +216,7 @@ The eyebrow now does navigation work — a visitor scanning sees what *kind* of 
 **JS:**
 - [theme/assets/js/main.js](theme/assets/js/main.js) — remove cursor-spotlight handler
 
-**Static counterparts** (per the static-first workflow):
-- [static/home.html](static/home.html) — port featured-work changes
-- [static/casestudy-cerner.html](static/casestudy-cerner.html), [static/casestudy-domain-foundation.html](static/casestudy-domain-foundation.html), [static/casestudy-terra.html](static/casestudy-terra.html) — port sidebar/tagline/eyebrow changes
-
-(No static counterparts exist for Moonbird or Redwood case studies. Worth creating during this work or noting in punch list.)
+**Note (mid-execution decision, 2026-04-24):** The static-first workflow has been retired in favor of working directly against the live Ghost dev container. `static/`, `preview.html`, the `/preview-sync` slash command, and the corresponding documentation in `CLAUDE.md` and `README.md` were all removed. No static counterparts to maintain.
 
 ---
 
@@ -238,7 +234,6 @@ The eyebrow now does navigation work — a visitor scanning sees what *kind* of 
 
 1. Home page: hero photo no longer crashes into featured-work cards; cards read as paper/cream surfaces with Fraunces titles; cursor spotlight gone.
 2. All five case-study pages: three-slot sidebar (Meta · Signal · optional Links); per-study Signal content as specified; tagline is the thesis, not the title paraphrase; eyebrow follows `[Type] · [Date range]` pattern.
-3. Static counterparts updated where they exist; sync-date headers refreshed.
-4. CSS reduced (no broken/orphan tokens left, `--color-featured-card-surface` removed).
-5. No regressions in dark mode.
-6. `npx gscan theme` still passes (0 errors).
+3. CSS reduced (no broken/orphan tokens left, `--color-featured-card-surface` removed).
+4. No regressions in dark mode.
+5. `npx gscan theme` still passes (0 errors).

@@ -128,8 +128,8 @@ Some pages use `padding: var(--spacing-12) var(--spacing-8) var(--spacing-20)`; 
 
 This pattern is everywhere — system-preference + manual toggle both need to win. It works, but it's verbose and easy to forget one side. A `[data-theme="dark"]` attribute set by JS at boot (sync with system unless user has overridden) collapses both branches into one selector.
 
-### 14. `static/*.html` and `theme/*.hbs` drift detection
-There's no tooling that warns when a static file's "last sync" date is older than its HBS counterpart's modified time. A 10-line shell check in `dev/` could surface drift in CI / pre-commit.
+### 14. ~~`static/*.html` and `theme/*.hbs` drift detection~~ — RESOLVED 2026-04-24
+The static-first workflow was retired during execution of the design-experience plan. `static/`, `preview.html`, and the `/preview-sync` command were removed. Drift is no longer possible.
 
 ### 15. Two `:root` blocks
 campfire.css defines a `:root` (line 2341), tokens.css defines another (line 6). Cascading is correct (later wins), but a single source of truth is easier to reason about. Could be done as part of #1.
@@ -142,7 +142,7 @@ If you're a single-author site (you are), Ghost's author URLs are dead weight. C
 ### 17. `error.hbs` is 8 lines
 **File:** [theme/error.hbs](theme/error.hbs)
 
-Probably fine, but worth a glance — does it match the site personality? Static `error.html` exists and is presumably more designed.
+Probably fine, but worth a glance — does it match the site personality?
 
 ---
 
