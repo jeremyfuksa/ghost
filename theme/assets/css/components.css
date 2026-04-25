@@ -967,7 +967,7 @@
   font-family: var(--font-heading);
   font-variation-settings: 'WONK' 1, 'opsz' 72;
   font-size: var(--text-2xl);
-  font-weight: 350;
+  font-weight: 400;
   color: var(--color-featured-card-text);
   line-height: var(--leading-2xl);
   margin: 0;
@@ -1022,7 +1022,7 @@
   font-family: var(--font-heading);
   font-size: var(--text-2xl);
   line-height: var(--leading-2xl);
-  font-weight: 350;
+  font-weight: 400;
   color: var(--color-text-heading);
   margin: 0;
   max-width: var(--prose-max);
@@ -1092,7 +1092,7 @@
   line-height: var(--leading-lg);
   margin: 0;
   color: var(--color-text-heading);
-  font-weight: 350;
+  font-weight: 400;
 }
 
 .methodology-tile-body {
@@ -2563,7 +2563,7 @@
   font-family: var(--font-heading);
   font-variation-settings: 'WONK' 1, 'opsz' 72;
   font-size: var(--text-2xl);
-  font-weight: 350;
+  font-weight: 400;
   color: var(--color-text-heading);
   margin-bottom: var(--spacing-2);
   letter-spacing: var(--tracking-tight);
@@ -2961,7 +2961,7 @@
 .casestudy-prose h2 {
   font-family: var(--font-heading);
   font-size: var(--text-xl);
-  font-weight: 350;
+  font-weight: 400;
   font-variation-settings: 'WONK' 1, 'opsz' 72;
   color: var(--color-text-heading);
   margin-top: var(--spacing-10);
@@ -3151,7 +3151,7 @@
   font-family: var(--font-heading);
   font-variation-settings: 'WONK' 1, 'opsz' 72;
   font-style: italic;
-  font-weight: 350;
+  font-weight: 400;
   font-size: var(--text-base);
   line-height: var(--leading-lg);
   color: var(--color-text-heading);
