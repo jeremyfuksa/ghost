@@ -123,16 +123,18 @@ Hero is a portrait photo with a 0.45→0.55 dark gradient. Featured-work block h
 ### 12. Page-wrapper padding uses inconsistent token mixes
 Some pages use `padding: var(--spacing-12) var(--spacing-8) var(--spacing-20)`; some don't. Worth a sweep when you're already in the relevant CSS.
 
-### 13. `home-bg::before` has both `:root:not([data-theme="light"])` and `:root[data-theme="dark"]` selectors stacked
-**File:** [components.css:761-772](theme/assets/css/components.css#L761-L772)
+### 13. ~~`home-bg::before` double-selector verbosity~~ — INTENTIONAL, kept as 2026-04-25
+**File:** [components.css:726-734](theme/assets/css/components.css#L726-L734)
 
-This pattern is everywhere — system-preference + manual toggle both need to win. It works, but it's verbose and easy to forget one side. A `[data-theme="dark"]` attribute set by JS at boot (sync with system unless user has overridden) collapses both branches into one selector.
+Reconsidered. The two selectors handle two distinct logical states: `:root:not([data-theme="light"])` inside `@media (prefers-color-scheme: dark)` covers "system is dark and user hasn't overridden", while `:root[data-theme="dark"]` outside the media query covers "user explicitly chose dark regardless of system". Combining them loses the second case when the system is light.
+
+The earlier suggestion (`[data-theme="dark"]` JS sync at boot) would collapse the branches but introduces a flash-of-wrong-theme on first paint and shifts the source of truth from CSS to JS. The current pattern is correct; it's just verbose. CLAUDE.md now describes it as the canonical pattern so the verbosity has documentation backing.
 
 ### 14. ~~`static/*.html` and `theme/*.hbs` drift detection~~ — RESOLVED 2026-04-24
 The static-first workflow was retired during execution of the design-experience plan. `static/`, `preview.html`, and the `/preview-sync` command were removed. Drift is no longer possible.
 
-### 15. Two `:root` blocks
-campfire.css defines a `:root` (line 2341), tokens.css defines another (line 6). Cascading is correct (later wins), but a single source of truth is easier to reason about. Could be done as part of #1.
+### 15. ~~Two `:root` blocks~~ — resolved-by-context 2026-04-25
+After #1 (gut campfire.css), the layered architecture is now legible: campfire.css holds the palette/foundation `:root`, tokens.css holds the theme-specific extensions. The split serves a real conceptual purpose. Added a long header comment in tokens.css documenting the relationship so future-me doesn't lose the thread.
 
 ### 16. Author template is a stub
 **File:** [theme/author.hbs](theme/author.hbs) — 6 lines, uses default page rendering.

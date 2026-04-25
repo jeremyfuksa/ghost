@@ -1,6 +1,20 @@
 /* ==========================================================================
    Design Tokens — Theme Overrides
-   Extends @jeremyfuksa/campfire. Only defines what campfire doesn't cover.
+
+   This file is the second of two layers. The foundation layer is in
+   campfire.css — palette tokens (--primary-*, --secondary-*, --neutral-*),
+   semantic mappings (--bg-base, --text-primary, --border-default), the
+   shared type/spacing/radii scales, and the .dark { } overrides for all
+   of those.
+
+   This file extends that foundation with theme-specific tokens: the
+   Fraunces heading font stack, an extended type scale (--text-3xs, --text-2xs),
+   per-component color tokens (--color-now-bg, --color-featured-card-bg,
+   --color-nav-bg, etc.), brand accents, and the .dark overrides for any
+   of those theme-specific tokens.
+
+   tokens.css imports AFTER campfire.css in screen.css, so anything declared
+   here wins over campfire when names collide.
    ========================================================================== */
 
 :root {
