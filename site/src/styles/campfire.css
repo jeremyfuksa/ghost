@@ -731,3 +731,4 @@ html {
 }
 .dark * {
   scrollbar-color: var(--neutral-700) var(--bg-subtle);
+}
