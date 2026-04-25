@@ -3329,37 +3329,6 @@
   padding-left: var(--spacing-3);
 }
 
-/* Cursor spotlight — dark featured-work card */
-.featured-work-card {
-  position: relative;
-  overflow: hidden;
-  isolation: isolate;
-}
-
-.featured-work-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    320px circle at var(--mx, 50%) var(--my, 50%),
-    rgba(255, 255, 255, 0.12),
-    transparent 60%
-  );
-  opacity: 0;
-  transition: opacity var(--transition-medium);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.featured-work-card:hover::before {
-  opacity: 1;
-}
-
-.featured-work-card > * {
-  position: relative;
-  z-index: 1;
-}
-
 /* Reduced-motion: disable the expressive stuff */
 @media (prefers-reduced-motion: reduce) {
   .reveal,
