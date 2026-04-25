@@ -118,12 +118,9 @@
   }
 
   // ---- Reading progress bar ---------------------------------------------
+  var bar = document.querySelector('.reading-progress');
   var article = document.querySelector('article.gh-content, .post-content.gh-content');
-  if (article) {
-    var bar = document.createElement('div');
-    bar.className = 'reading-progress';
-    document.body.appendChild(bar);
-
+  if (bar && article) {
     var ticking = false;
     var updateBar = function () {
       var rect = article.getBoundingClientRect();

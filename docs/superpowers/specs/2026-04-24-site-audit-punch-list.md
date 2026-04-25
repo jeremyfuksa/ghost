@@ -48,12 +48,12 @@ Every share affordance is `<a href="#/share">`. That's a placeholder fragment th
 
 **Action:** Decide which is the source of truth. If the JS is staying, update CLAUDE.md to describe what's actually there. If the docs are right, strip the JS back.
 
-### 5. `custom-work.hbs` hardcodes the case-study list
+### 5. ~~`custom-work.hbs` hardcodes the case-study list~~ — INTENTIONAL, kept as 2026-04-25
 **File:** [theme/custom-work.hbs:24-50](theme/custom-work.hbs#L24-L50)
 
-Adding/reordering a case study requires editing HBS, zipping, and deploying. The case studies themselves are Ghost pages tagged appropriately — they could be queried via `{{#get "pages" filter="tag:hash-case-study"}}` like the home page already does for the methodology trio.
+Reconsidered during cleanup. Case studies are years-long chapters; new ones land rarely. Editorial order matters more than a `published_at` sort, and the eyebrow values (`Methodology · 2025–ongoing`, `Systems work · 2018–2024`, etc.) are part of the typography system rather than content the CMS should own. Keeping the hardcoded list is the right tradeoff for the cardinality and editing cadence of this section.
 
-**Action:** Convert `.work-list` to a Ghost query (probably `tag:hash-case-study` ordered by `published_at desc` or a custom order field). Same change applies to the home `featured-work` grid — it hardcodes the same three.
+If a case study is added in the future, it's two HBS edits (adding the row in `custom-work.hbs` + the home `featured-work` block in `custom-home.hbs` if featured), zipping, deploying. Acceptable.
 
 ---
 
