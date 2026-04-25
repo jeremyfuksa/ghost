@@ -8,6 +8,14 @@
     <div class="casestudy-eyebrow">Research · 2025–2026</div>
     <h1 class="casestudy-title">{{title}}</h1>
     <p class="casestudy-tagline">The opening question was defensive: how do we keep a non-designer from generating something that doesn't match our design system. Answering that tells you what <em>not</em> to allow, not what to build.</p>
+    <div class="post-header-meta">
+      {{#if @custom.show_reading_time}}
+        <span class="post-card-readtime">{{reading_time}}</span>
+      {{/if}}
+      <a class="post-share-inline" href="#/share" aria-label="Share this case study">
+        {{> icon-share}}Share
+      </a>
+    </div>
   </header>
 
   <div class="casestudy-body">

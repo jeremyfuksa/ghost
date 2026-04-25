@@ -8,6 +8,14 @@
     <div class="casestudy-eyebrow">Systems work · 2024–2026</div>
     <h1 class="casestudy-title">{{title}}</h1>
     <p class="casestudy-tagline">Two components shipped. Two we'd already designed and decided to kill. The decisions about what <em>not</em> to build were the work.</p>
+    <div class="post-header-meta">
+      {{#if @custom.show_reading_time}}
+        <span class="post-card-readtime">{{reading_time}}</span>
+      {{/if}}
+      <a class="post-share-inline" href="#/share" aria-label="Share this case study">
+        {{> icon-share}}Share
+      </a>
+    </div>
   </header>
 
   <div class="casestudy-body">

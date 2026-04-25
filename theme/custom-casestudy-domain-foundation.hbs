@@ -8,6 +8,14 @@
     <div class="casestudy-eyebrow">Methodology · 2025–ongoing</div>
     <h1 class="casestudy-title">{{title}}</h1>
     <p class="casestudy-tagline">Encode institutional knowledge as layers, each owned by the role that produces it, and let the model compose from all of them at generation time.</p>
+    <div class="post-header-meta">
+      {{#if @custom.show_reading_time}}
+        <span class="post-card-readtime">{{reading_time}}</span>
+      {{/if}}
+      <a class="post-share-inline" href="#/share" aria-label="Share this case study">
+        {{> icon-share}}Share
+      </a>
+    </div>
   </header>
 
   <div class="casestudy-body">
