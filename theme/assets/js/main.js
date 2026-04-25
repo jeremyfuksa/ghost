@@ -144,7 +144,7 @@
   // ---- Scroll reveal — images and cards ---------------------------------
   if (!reduceMotion && 'IntersectionObserver' in window) {
     var revealTargets = document.querySelectorAll(
-      '.gh-content img, .gh-content figure, .post-card-image, .post-card-featured-image, .home-work-card, .methodology-tile'
+      '.gh-content img, .gh-content figure, .post-card-image, .post-card-featured-image, .methodology-tile'
     );
     if (revealTargets.length) {
       revealTargets.forEach(function (el) { el.classList.add('reveal'); });
