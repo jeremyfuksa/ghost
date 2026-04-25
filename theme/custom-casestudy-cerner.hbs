@@ -8,6 +8,14 @@
     <div class="casestudy-eyebrow">Leadership · 2018–2026</div>
     <h1 class="casestudy-title">{{title}}</h1>
     <p class="casestudy-tagline">Twelve reports across eight locations and three continents, two years with no promotions on the table, and one closing question that kept the conversations honest.</p>
+    <div class="post-header-meta">
+      {{#if @custom.show_reading_time}}
+        <span class="post-card-readtime">{{reading_time}}</span>
+      {{/if}}
+      <a class="post-share-inline" href="#/share" aria-label="Share this case study">
+        {{> icon-share}}Share
+      </a>
+    </div>
   </header>
 
   <div class="casestudy-body">
