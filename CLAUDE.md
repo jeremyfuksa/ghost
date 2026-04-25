@@ -6,40 +6,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Custom Ghost 6 Handlebars theme called "The Cocktail Napkin" for jeremyfuksa.com. No build step — CSS and JS are served directly. The theme is uploaded as a zip to Ghost Admin.
 
-## Development Workflow: Static-First
+## Development Workflow
 
-Design changes start in `static/*.html` files, not in Ghost templates. CSS is shared — both static pages and HBS templates load the same CSS files.
-
-```
-static/              ← design here (standalone HTML pages)
-  home.html          → theme/custom-home.hbs
-  post.html          → theme/post.hbs
-  writing.html       → theme/index.hbs
-  now.html           → theme/custom-now.hbs
-  tag.html           → theme/tag.hbs
-  page.html          → theme/page.hbs
-  error.html         → theme/error.hbs
-theme/assets/css/    ← single source of truth for styles
-```
-
-**The flow:**
-1. Open `static/*.html` in browser via `file://` — iterate on HTML structure and CSS
-2. CSS changes go directly into `theme/assets/css/` — shared by both static and HBS
-3. When HTML structure changes, port to the corresponding `.hbs` template
-4. Each static file has a comment header documenting its HBS counterpart and last sync date
-
-**CSS-only changes need no sync step.** Only structural HTML changes require porting to HBS.
+All design changes happen against the live Ghost dev container (see Docker section below). The bind-mounted theme directory live-reloads on file changes, so iteration is immediate.
 
 ## Key Commands
 
 ```bash
-# Open static pages index
-open preview.html
-
-# Open a specific page
-open static/home.html
-
-# Package theme for upload (static/ is NOT included)
+# Package theme for upload
 cd theme && zip -r ../the-cocktail-napkin.zip . -x "*.DS_Store" -x "*node_modules*"
 
 # Deploy routes (separate from theme zip)
@@ -100,8 +74,6 @@ docker compose down -v && rm -rf ghost-data/
 - `components.css` — all component styles
 - `screen.css` — entry point that `@import`s the above three (used by Ghost)
 
-Static pages load the three CSS files directly via `<link>` tags (bypassing `screen.css`) because `@import` fails over `file://`.
-
 ### Token System
 
 All design values must use CSS custom properties from `tokens.css`. No hardcoded pixel values in CSS or inline styles in HTML/HBS.
@@ -137,8 +109,7 @@ Dark mode is system-preference only (`prefers-color-scheme`). No JS toggle.
 
 ## Custom Commands
 
-- `/swap-font <name> for <heading|body>` — updates font in tokens.css + Google Fonts links in default.hbs and all static pages
-- `/preview-sync` — regenerates static pages from current theme state
+- `/swap-font <name> for <heading|body>` — updates font in tokens.css + Google Fonts link in default.hbs
 
 ## Design Constraints (intentional, do not override)
 

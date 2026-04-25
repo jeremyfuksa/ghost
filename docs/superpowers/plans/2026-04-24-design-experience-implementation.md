@@ -4,7 +4,9 @@
 
 **Goal:** Lighten the home featured-work block so it stops competing with the hero, and rework all five case-study sidebars to be content-distinct rather than cookie-cutter.
 
-**Architecture:** Pure CSS + HBS template edits, no build step, no JS framework. Verification is visual (Ghost dev container at `http://localhost:2368/`) plus `npx gscan theme`. Static-first workflow: design changes start in `static/*.html`, ported to `theme/*.hbs`. Three of five case studies have static counterparts; two do not (Moonbird, Redwood) and will be created during this work.
+**Architecture:** Pure CSS + HBS template edits, no build step, no JS framework. Verification is visual (Ghost dev container at `http://localhost:2368/`) plus `npx gscan theme`.
+
+**Note (mid-execution decision, 2026-04-24):** The static-first workflow has been retired. Tasks 5, 12, and 13 from the original plan (porting changes to `static/*.html` and creating new static counterparts) are dropped — the `static/` directory, `preview.html`, and the `/preview-sync` command were removed. Verification happens directly against the live Ghost dev container.
 
 **Tech Stack:** Ghost 5 (Handlebars), vanilla CSS with custom properties, Docker dev container, gscan for theme validation.
 
