@@ -79,10 +79,7 @@
 </section>
 
 <footer class="post-footer">
-  <div class="post-footer-title">
-    <span class="writing-mark writing-mark-sm" style="--logo-glyph: url('{{asset "images/glyph.svg"}}')" aria-hidden="true"></span>
-    More writing
-  </div>
+  <div class="post-footer-title">More writing</div>
   {{#get "posts" filter="id:-{{id}}" limit="3"}}
     {{#foreach posts}}
       {{> post-card}}

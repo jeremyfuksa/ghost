@@ -53,40 +53,6 @@
   -webkit-mask-position: center;
 }
 
-/* Writing mark — squiggle used in writing-related contexts */
-.writing-mark {
-  display: inline-block;
-  vertical-align: middle;
-  width: 1em;
-  height: 1em;
-  margin-right: 0.4em;
-  background-color: currentColor;
-  -webkit-mask-image: var(--logo-glyph);
-  mask-image: var(--logo-glyph);
-  -webkit-mask-size: contain;
-  mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-}
-
-.writing-mark-sm {
-  width: 0.9em;
-  height: 0.9em;
-}
-
-.page-header-title-with-mark {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-3);
-}
-
-.page-header-title-with-mark .writing-mark {
-  width: 0.7em;
-  height: 0.7em;
-  margin-right: 0;
-  color: var(--color-accent-ui);
-}
 
 .nav-name-stack {
   display: flex;
