@@ -1388,8 +1388,6 @@
 }
 
 .page-header-left h1 {
-  font-size: var(--text-4xl);
-  line-height: var(--leading-4xl);
   display: inline-block;
   padding-bottom: var(--spacing-2);
   border-bottom: 2px solid var(--color-accent-ui);
