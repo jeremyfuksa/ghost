@@ -18,8 +18,8 @@ importers:
         specifier: ^3.2.0
         version: 3.7.2
       '@tryghost/content-api':
-        specifier: ^1.11.21
-        version: 1.12.6
+        specifier: ~1.11.21
+        version: 1.11.28
       astro:
         specifier: ^5.0.0
         version: 5.18.1(@types/node@20.19.39)(rollup@4.60.2)(typescript@5.9.3)(yaml@2.8.3)
@@ -920,8 +920,8 @@ packages:
   '@shikijs/vscode-textmate@10.0.2':
     resolution: {integrity: sha512-83yeghZ2xxin3Nj8z1NMd/NCuca+gsYXswywDy5bHvwlWL8tpTQmzGeUuHd9FC3E/SBEMvzJRwWEOz5gGes9Qg==}
 
-  '@tryghost/content-api@1.12.6':
-    resolution: {integrity: sha512-QCsSG10onLqpXKN7F8yHefOgRBtWdmi30s2dV7BYY5+/Iwgsaf/o/U5oTQhlsGkO3P73Zfw++tnqOL2wO9IYUA==}
+  '@tryghost/content-api@1.11.28':
+    resolution: {integrity: sha512-OKOnwpLOZEBi24Sbe5zPznNRWX9bmC9lbEfuhbB/2tnxAUAYxZvr9zLenJr7Wzz1CWZW93pqAdTo51m2lIIx3Q==}
 
   '@types/debug@4.1.13':
     resolution: {integrity: sha512-KSVgmQmzMwPlmtljOomayoR89W4FynCAi3E8PPs7vmDVPe84hT+vGPKkJfThkmXs0x0jAaa9U8uW8bbfyS2fWw==}
@@ -3221,7 +3221,7 @@ snapshots:
 
   '@shikijs/vscode-textmate@10.0.2': {}
 
-  '@tryghost/content-api@1.12.6':
+  '@tryghost/content-api@1.11.28':
     dependencies:
       axios: 1.13.6
     transitivePeerDependencies:
