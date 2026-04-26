@@ -1,0 +1,53 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+
+const lede = "Thirty years of design work, mostly on the web. The current chapter is figuring out what design practice becomes when AI does the making.";
+
+const bodyHtml = `<p>In the spring of 1996 I was an Oklahoma State undergrad reading <em>Teach Yourself HTML in 24 Hours</em> instead of going to class. I put the pages I made on my university Unix account, and campus IT found them during an account-usage audit — which ultimately turned into a demo request from the Oklahoma State Regents for Higher Education. Their presentation room had no internet, so I put a 3.5" floppy into a computer and showed them this new thing called the World Wide Web.</p><p>My grades suffered. My career did not.</p><p>Most of the first fifteen years ran through marketing and advertising — local car ads at the bottom, national brands by the end. My first gig had me as animator, video editor, and web guy. My first full-time web job was for an online pharmacy, one of the first sites that let patients manage prescriptions and deliveries online. The company was acquired in 2001 and I was laid off because the new owners decided the internet was a fad for the sixty-five-and-over demographic. Another decade at studios and agencies, building whatever digital meant that year.</p><p>Enterprise healthcare came next. Design systems at Cerner, then design leadership through Oracle's acquisition. Oracle Health laid me off in the infamous 5 a.m. 30,000-person email.</p><p>I've been teaching myself new tools ever since that HTML book. AI is the latest — goofy image generation at first, now <a href="/work/domain-foundation/">Domain Foundation</a>, which is about getting a design organization's real expertise into a form AI can actually use.</p><p>The Cocktail Napkin has been my blog and podcast since the mid-2000s, back when I was a D-list internet celebrity. This is the current form.</p>`;
+---
+
+<BaseLayout
+  title="About — Jeremy Fuksa"
+  description="Designer, design systems engineer, occasional radio operator. Based in Kansas City."
+>
+  <article class="about-page">
+    <header class="about-header">
+      <h1>About</h1>
+      <p class="about-lede">{lede}</p>
+    </header>
+
+    <div class="about-layout">
+      <div class="gh-content about-prose" set:html={bodyHtml} />
+
+      <aside class="about-sidebar">
+        <div class="about-sidebar-block">
+          <div class="about-sidebar-label">Based in</div>
+          <div class="about-sidebar-value">Kansas City, MO</div>
+        </div>
+        <div class="about-sidebar-block">
+          <div class="about-sidebar-label">Practice</div>
+          <div class="about-sidebar-value">Design systems, UX strategy, AI-augmented design</div>
+        </div>
+        <div class="about-sidebar-block">
+          <div class="about-sidebar-label">Elsewhere</div>
+          <ul class="about-sidebar-links">
+            <li><a href="/writing/">Writing</a></li>
+            <li><a href="/work/">Work</a></li>
+            <li><a href="/now/">Now</a></li>
+            <li><a href="https://linkedin.com/in/jeremyfuksa">LinkedIn</a></li>
+            <li><a href="https://github.com/jeremyfuksa">GitHub</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
+    <section id="work-with-me" class="about-cta-section">
+      <h2 class="about-cta-title">Work with me</h2>
+      <p class="about-cta-body">Available for design system engagements, UX strategy consulting, and senior design leadership roles. Working with teams anywhere.</p>
+      <div class="about-cta-actions">
+        <a href="mailto:hello@jeremyfuksa.com" class="hero-cta">Get in touch</a>
+        <a href="/work/" class="hero-cta-secondary">See my work &rarr;</a>
+      </div>
+    </section>
+  </article>
+</BaseLayout>
