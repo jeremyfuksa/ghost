@@ -1,0 +1,59 @@
+---
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import PostCard from '~/components/PostCard.astro';
+import { getAllPosts, getAllTags } from '~/lib/ghost';
+
+export const getStaticPaths = (async () => {
+  const POSTS_PER_PAGE = 15;
+  const all = await getAllPosts();
+  const totalPages = Math.ceil(all.length / POSTS_PER_PAGE);
+  // Pages 2..N (page 1 is /writing/)
+  const pages = [];
+  for (let i = 2; i <= totalPages; i++) {
+    pages.push({
+      params: { page: String(i) },
+      props: {
+        pageNum: i,
+        totalPages,
+        posts: all.slice((i - 1) * POSTS_PER_PAGE, i * POSTS_PER_PAGE),
+        totalCount: all.length,
+      },
+    });
+  }
+  return pages;
+}) satisfies GetStaticPaths;
+
+const { pageNum, totalPages, posts, totalCount } = Astro.props;
+const allTags = await getAllTags();
+const prevUrl = pageNum === 2 ? '/writing/' : `/writing/page/${pageNum - 1}/`;
+const nextUrl = pageNum < totalPages ? `/writing/page/${pageNum + 1}/` : null;
+---
+
+<BaseLayout title={`Writing (page ${pageNum}) — Jeremy Fuksa`}>
+  <div class="writing-layout writing-layout-single">
+    <div class="page-header">
+      <div class="page-header-left">
+        <h1>Writing</h1>
+      </div>
+      <span class="page-header-count">{totalCount} posts</span>
+    </div>
+
+    <div class="filter-bar">
+      <a href="/writing/" class="filter-chip">All</a>
+      {allTags.map((tag) => (
+        <a href={`/tag/${tag.slug}/`} class="filter-chip">{tag.name}</a>
+      ))}
+    </div>
+
+    <main>
+      {posts.map((post) => <PostCard post={post} />)}
+
+      <div class="pagination">
+        <a href={prevUrl}>&larr; Newer</a>
+        <span class="page-number">Page {pageNum} of {totalPages}</span>
+        {nextUrl && <a href={nextUrl}>Older &rarr;</a>}
+      </div>
+    </main>
+  </div>
+</BaseLayout>
