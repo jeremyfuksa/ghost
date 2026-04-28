@@ -1,99 +1,75 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+Guidance for Claude Code when working in this repo.
 
-## Project Overview
+## Project overview
 
-This repo contains two coexisting systems for jeremyfuksa.com during a migration to a headless architecture:
+jeremyfuksa.com is a static [Astro](https://astro.build) site that consumes Ghost as a headless CMS for blog posts only. All other content (home, work, case studies, now, about) lives in version-controlled `.astro` and `.mdx` files. The Astro site is in [`site/`](site/). See [site/README.md](site/README.md) for site-specific dev instructions.
 
-- **`theme/`** — the original "The Cocktail Napkin" Ghost 6 Handlebars theme. No build step; CSS and JS served directly. Deployed as a zip to Ghost Admin (or via the Admin API using `dev/deploy-theme.mjs`).
-- **`site/`** — an Astro static site consuming Ghost as a headless source for posts. All non-post content (home, work, case studies, now, about) is local. Build with `cd site && pnpm build`. See `site/README.md`.
+The Handlebars Ghost theme that previously drove the site has been retired (April 2026). Don't look for `theme/` — it's gone, and history lives in git if anyone needs to spelunk.
 
-The end state is the Astro site in production with Ghost serving as a content-only backend. The Handlebars theme remains in the repo until cutover, then gets archived. Both systems can run concurrently against the same local Docker Ghost.
+## Local development
 
-## Development Workflow
-
-For Ghost-theme changes (Handlebars templates, `theme/assets/css/`, `routes.yaml`): work against the live Ghost dev container (see Docker section below). The bind-mounted theme directory live-reloads on file changes.
-
-For Astro frontend changes (everything in `site/`): work in `site/` with `pnpm dev` for HMR. The Astro site fetches posts from the local Docker Ghost via Content API at build/dev time.
+Two layers run locally during development:
 
 ```bash
-# Ghost backend (always running for both systems)
-docker compose up -d            # http://localhost:2368/
+# Backend: headless Ghost (provides posts to Astro at build time)
+docker compose up -d                    # http://localhost:2368/
+bash dev/setup.sh                       # first-run only: creates owner account
 
-# Astro frontend
-cd site && pnpm dev             # http://localhost:4321/
-cd site && pnpm test            # vitest contract + redirect tests
-cd site && pnpm build           # static dist/
+# Frontend: Astro
+cd site && pnpm install                 # first run
+cd site && pnpm dev                     # http://localhost:4321/
 ```
 
-## Key Commands
+Posts are authored in Ghost Admin (`http://localhost:2368/ghost/`, login `dev@local.test` / `DevLocal12345!`). Astro fetches them via the Content API at build/dev time. Content API key goes in `site/.env` — see `site/.env.example`.
+
+Common commands:
 
 ```bash
-# Package theme for upload
-cd theme && zip -r ../the-cocktail-napkin.zip . -x "*.DS_Store" -x "*node_modules*"
-
-# Deploy routes (separate from theme zip)
-# Upload theme/routes.yaml via Ghost Admin > Settings > Labs > Routes
+cd site && pnpm check         # TypeScript + Astro type check
+cd site && pnpm test          # vitest (Ghost contract test needs site/.env)
+cd site && pnpm build         # static dist/
+cd site && pnpm preview       # serve dist/ locally
 ```
 
-## Local Ghost Development with Docker
+## Deploying to production
 
-For rapid iteration, use a local Ghost instance instead of the manual zip → upload workflow:
+Production is a DigitalOcean droplet at `161.35.226.162`. Traefik (TLS) routes `jeremyfuksa.com` to an `astro-web` nginx container that serves `/home/admin/jeremyfuksa.com/site/dist`. A `webhook` container runs `rebuild-astro.sh` on the `ghost-rebuild` hook, which `git pull`s and `pnpm build`s in place.
+
+Deploy flow:
 
 ```bash
-# Start Ghost container (first time: builds volumes and seeds content)
-docker compose up -d
-
-# Run setup script on first launch (idempotent, safe to re-run)
-bash dev/setup.sh
-
-# Output: Site runs at http://localhost:2368, admin at http://localhost:2368/ghost/
-# Credentials: dev@local.test / DevLocal12345!
+git push origin main
+ssh admin@161.35.226.162 'docker exec webhook /scripts/rebuild-astro.sh'
 ```
 
-**How it works:**
-- `docker-compose.yml` — Ghost 5 Alpine container with SQLite, NODE_ENV=development (file watching enabled)
-- `./theme` bind-mounts to Ghost's theme directory → live reloading on file changes
-- `dev/setup.sh` — idempotent setup: creates owner account, activates theme, uploads routes.yaml, seeds test content
-- Data persists in `ghost-data/` volume across container restarts
+Build takes ~15-20s. No cache purge needed — nginx serves new files on next request. Ghost publish events also auto-trigger this hook.
 
-**Development loop:**
-1. Edit `theme/*.hbs` or `theme/assets/css/*` → refresh browser (changes live within 1-2s)
-2. Test all pages locally: `/`, `/writing/`, `/work/`, `/about/`, `/now/`, `/writing/{post}/`, `/tag/{tag}/`
-3. Run `npx gscan theme` in `theme/` to validate compatibility (0 errors, 1 warning for custom fonts is normal)
-
-**When done:**
-```bash
-# Stop (data persists)
-docker compose down
-
-# Full reset (if needed)
-docker compose down -v && rm -rf ghost-data/
-```
-
-**Deploying to production:**
-1. Package theme: `cd theme && zip -r ../the-cocktail-napkin.zip . -x "*.DS_Store" -x "*node_modules*"`
-2. Upload to your Ghost Admin at jeremyfuksa.com (Themes) — or push via the Admin API using the `GHOST_API` key in `.env` (`POST /ghost/api/admin/themes/upload/` with a JWT signed from the key)
-3. Upload routes.yaml via Settings > Labs > Routes (if it changed)
+Ghost itself runs on the same droplet and is reachable at [cms.jeremyfuksa.com](https://cms.jeremyfuksa.com).
 
 ## Architecture
 
-### Routing (`theme/routes.yaml`)
-- `/` renders `custom-home.hbs` with data from a Ghost page titled "Home"
-- `/writing/` is a post collection using `index.hbs`
-- `/tag/{slug}/` uses `tag.hbs` for tag archives
-- Posts live at `/writing/{slug}/`
+### Site source layout
+- [site/src/pages/](site/src/pages/) — routes. `index.astro`, `now.astro`, `about.astro`, `work/index.astro`, `work/[slug].astro`, `writing/[slug].astro`, etc. Trailing-slash URLs preserved (`trailingSlash: 'always'`, `format: 'directory'`).
+- [site/src/content/case-studies/](site/src/content/case-studies/) — case studies as MDX with Zod-validated frontmatter ([site/src/content/config.ts](site/src/content/config.ts)). One shared [CaseStudyLayout.astro](site/src/components/CaseStudyLayout.astro) renders header + sidebar; MDX body fills the prose slot.
+- [site/src/lib/ghost.ts](site/src/lib/ghost.ts) — Content API client. Pinned to `@tryghost/content-api ~1.11.21` (no types; module declared ambiently in [site/src/env.d.ts](site/src/env.d.ts)).
+- [site/src/lib/format.ts](site/src/lib/format.ts) — `ghostImageUrl`, `isoDate`, `shortDate`, `monthYear`, `readingTime`.
+- [site/src/redirects.json](site/src/redirects.json) — flat `Record<string, string>` wired into `astro.config.mjs`.
+- [site/public/scripts/main.js](site/public/scripts/main.js) — vanilla JS for theme toggle, TOC scroll spy, heading-anchor copy links, reading-progress bar, IntersectionObserver scroll reveal. Respects `prefers-reduced-motion`.
 
-### CSS Structure (no preprocessor, no build)
-- `tokens.css` — design tokens only (CSS custom properties, no selectors)
-- `base.css` — reset, heading/body defaults, animations
-- `components.css` — all component styles
-- `screen.css` — entry point that `@import`s the above three (used by Ghost)
+### CSS
 
-### Token System
+No preprocessor, no build step. Four files imported in [site/src/styles/screen.css](site/src/styles/screen.css):
 
-All design values must use CSS custom properties from `tokens.css`. No hardcoded pixel values in CSS or inline styles in HTML/HBS.
+- [campfire.css](site/src/styles/campfire.css) — palette + semantic tokens + typography globals (vendored copy of `@jeremyfuksa/campfire` package output)
+- [tokens.css](site/src/styles/tokens.css) — design tokens only (CSS custom properties, no selectors). Imports AFTER `campfire.css`, so anything declared here overrides campfire defaults.
+- [base.css](site/src/styles/base.css) — reset, heading/body defaults, animations
+- [components.css](site/src/styles/components.css) — all component styles
+
+### Token system
+
+All design values must use CSS custom properties from `tokens.css`. No hardcoded pixel values in CSS or inline styles in `.astro` files.
 
 **Token categories:** spacing (`--space-*`), typography (`--text-*`, `--leading-*`, `--weight-*`), tracking (`--tracking-*`), borders (`--border-hairline`, `--border-thin`, `--border-blockquote`), sizing (`--size-*`), layout (`--sidebar-*`, `--content-max`, `--prose-max`), colors, radius, transitions.
 
@@ -105,34 +81,37 @@ All design values must use CSS custom properties from `tokens.css`. No hardcoded
 - Mobile-specific responsive overrides in `@media` blocks
 
 ### Typography
-- **Headings:** Fraunces (variable font) with `font-variation-settings: 'WONK' 1, 'opsz' 72`. Weights: H1=425, H2=400, H3=400 (raised from H1=400, H2=350, H3=350 in 2026-04-25 for readability at body distance). Display H1 surfaces (`.hero-name`, `.casestudy-title`) match base h1 at 425; H2/H3-class title surfaces in components.css use 400. Leading is intentionally tight.
+- **Headings:** Fraunces (variable font) with `font-variation-settings: 'WONK' 1, 'opsz' 72`. Weights: H1=425, H2=400, H3=400. Display H1 surfaces (`.hero-name`, `.casestudy-title`) match base h1 at 425; H2/H3-class title surfaces in `components.css` use 400. Leading is intentionally tight.
 - **Body:** System UI stack (`-apple-system`, `BlinkMacSystemFont`, `Segoe UI`, `system-ui`, etc.) — no webfont
 - **Mono:** Fira Code for dates, read times, code blocks
 - **Heading color:** `--color-text-heading` (warm brown light / cream dark)
 
-### Color System
+### Color system
+
 Two accent color roles — never conflate them:
 - `--color-accent-ui` — decorative only (borders, underlines, large uppercase text). Fails WCAG for body text.
 - `--color-accent-text` — all readable text uses of orange/amber. Passes 4.5:1.
 
-Dark mode follows `prefers-color-scheme` by default, with a manual `.theme-toggle` button in the nav header that overrides via `data-theme="light|dark"` and persists to `localStorage`. Both selectors must be honored when adding theme-aware rules: see `home-bg::before` (components.css:761-772) for the established pattern.
+Dark mode follows `prefers-color-scheme` by default, with a manual `.theme-toggle` button that overrides via `data-theme="light|dark"` and persists to `localStorage`. Both selectors must be honored when adding theme-aware rules.
 
-### Ghost Conventions
-- `{{#get "posts"}}` for dynamic data fetching (home page latest, related posts)
-- `{{@custom.show_reading_time}}` reads from theme custom settings in `package.json`
-- `{{img_url feature_image size="m"}}` for responsive images
-- `{{#foreach navigation}}` with `{{link_class}}` for active nav state
-- `custom-*.hbs` templates are selectable per-page in Ghost Admin
+## Custom commands
 
-## Custom Commands
+- `/swap-font <name> for <heading|body>` — updates font in [site/src/styles/tokens.css](site/src/styles/tokens.css) + Google Fonts link in [site/src/layouts/BaseLayout.astro](site/src/layouts/BaseLayout.astro)
 
-- `/swap-font <name> for <heading|body>` — updates font in tokens.css + Google Fonts link in default.hbs
+## Design constraints (intentional, do not override)
 
-## Design Constraints (intentional, do not override)
-
-- All values use token variables. No hardcoded pixels in CSS or inline styles in HTML.
+- All values use token variables. No hardcoded pixels in CSS or inline styles.
 - Borders use `var(--border-hairline)` (0.5px). The hairline weight is deliberate.
-- Prose max-width is `--prose-max: 720px` (single-column reading); content max-width is `--content-max: 1280px` (multi-column). All page wrappers use `padding: var(--spacing-12) var(--spacing-8) var(--spacing-20)`; responsive horizontal padding step-down lives in the consolidated media block at the end of `components.css`.
-- No JS dependencies. Vanilla JS only, in `theme/assets/js/main.js`. Five behaviors: theme toggle, TOC scroll spy + sliding indicator, heading-anchor copy-to-clipboard links, reading-progress bar, and `IntersectionObserver`-driven scroll reveal on images and cards. All respect `prefers-reduced-motion`.
+- Prose max-width is `--prose-max: 720px` (single-column reading); content max-width is `--content-max: 1280px` (multi-column).
+- No JS dependencies. Vanilla JS only, in `site/public/scripts/main.js`. All animations respect `prefers-reduced-motion`.
 - Nav logo at 32px uses the simplified SVG mark, not the full wordmark.
 - `--color-text-muted` is AA Large only — use for metadata (dates, read times), not standalone body text.
+
+## Repo layout
+
+- [`site/`](site/) — Astro project (the deployed site)
+- [`docker-compose.yml`](docker-compose.yml) — local headless Ghost (SQLite, NODE_ENV=development)
+- [`dev/setup.sh`](dev/setup.sh) — first-run Ghost owner-account setup
+- [`dev/deploy-post.mjs`](dev/deploy-post.mjs) — push markdown post → Ghost Admin (uses `GHOST_API` from `.env`)
+- [`drafts/`](drafts/) — local markdown drafts staged before pushing to Ghost
+- [`docs/`](docs/) — superpowers plans/specs and historical handoffs
