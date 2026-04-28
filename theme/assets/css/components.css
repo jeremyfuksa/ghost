@@ -1007,7 +1007,7 @@
   padding: var(--spacing-8) 0;
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-4);
+  gap: var(--spacing-6);
 }
 
 .testimonial-label {
@@ -1018,14 +1018,26 @@
   color: var(--color-section-label);
 }
 
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-8);
+}
+
+.testimonial-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  margin: 0;
+}
+
 .testimonial-quote {
   font-family: var(--font-heading);
-  font-size: var(--text-2xl);
-  line-height: var(--leading-2xl);
+  font-size: var(--text-lg);
+  line-height: var(--leading-lg);
   font-weight: 400;
   color: var(--color-text-heading);
   margin: 0;
-  max-width: var(--prose-max);
   font-variation-settings: 'WONK' 1, 'opsz' 72;
 }
 
@@ -1034,10 +1046,28 @@
 }
 
 .testimonial-cite {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
   font-size: var(--text-sm);
   font-style: normal;
-  color: var(--text-secondary);
   letter-spacing: var(--tracking-wide);
+}
+
+.testimonial-cite-name {
+  color: var(--color-text-heading);
+  font-weight: var(--font-weight-bold);
+}
+
+.testimonial-cite-title {
+  color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+  .testimonial-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-6);
+  }
 }
 
 /* ---------- Methodology Trio ---------- */
