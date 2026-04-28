@@ -1,0 +1,35 @@
+---
+import type { GhostPost } from '~/lib/ghost.types';
+import { ghostImageUrl, isoDate, shortDate, readingTime } from '~/lib/format';
+import TagPill from './TagPill.astro';
+
+interface Props {
+  post: GhostPost;
+}
+
+const { post } = Astro.props;
+const url = `/writing/${post.slug}/`;
+const featureImage = ghostImageUrl(post.feature_image, 'l');
+const excerpt = post.custom_excerpt ?? post.excerpt;
+const readtime = readingTime(post.reading_time);
+---
+
+<article class={`post-card-featured ${featureImage ? 'post-card-featured-has-image' : ''}`}>
+  {post.featured && <div class="featured-badge">&#9733; Featured</div>}
+  {featureImage && (
+    <a href={url} class="post-card-featured-image-link">
+      <img class="post-card-featured-image" src={featureImage} alt="" loading="lazy" />
+    </a>
+  )}
+  <div class="post-card-meta">
+    <TagPill tags={post.tags} />
+    <span class="post-card-date">
+      <time datetime={isoDate(post.published_at)}>{shortDate(post.published_at)}</time>
+    </span>
+    {readtime && <span class="post-card-readtime">{readtime}</span>}
+  </div>
+  <a href={url}>
+    <h2 class="post-card-title">{post.title}</h2>
+  </a>
+  {excerpt && <p class="post-card-excerpt">{excerpt}</p>}
+</article>

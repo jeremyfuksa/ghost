@@ -1,0 +1,70 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import PostCardFeatured from '~/components/PostCardFeatured.astro';
+import SidebarPostLink from '~/components/SidebarPostLink.astro';
+import { getAllPosts } from '~/lib/ghost';
+
+const allPosts = await getAllPosts();
+const featuredPosts = allPosts.filter((p) => p.featured);
+const heroPost = featuredPosts[0] ?? allPosts[0];
+const sidebarPosts = (featuredPosts.length > 0 ? featuredPosts.slice(1, 6) : allPosts.slice(1, 6));
+---
+
+<BaseLayout
+  title="Jeremy Fuksa — The Cocktail Napkin"
+  description="Design systems, UX strategy, and what design practice becomes when AI does the making."
+>
+  <div class="home-bg">
+
+  <section class="hero">
+    <div class="hero-inner">
+      <h1 class="hero-name">Jeremy Fuksa</h1>
+      <p class="hero-positioning">I follow my creative thoughts wherever they take me. Right now they've got me figuring out what design practice becomes when AI does the making.</p>
+    </div>
+  </section>
+
+  <section class="featured-work">
+    <div class="featured-work-inner">
+      <div class="featured-work-grid">
+        <a href="/work/domain-foundation/" class="featured-work-card">
+          <span class="featured-work-label">Methodology</span>
+          <h2 class="featured-work-title">Domain Foundation</h2>
+          <p class="featured-work-body">Encoding institutional design expertise as layered, machine-readable knowledge an AI can reason with. Because default models produce default output.</p>
+          <span class="featured-work-link">Read the case study &rarr;</span>
+        </a>
+
+        <a href="/work/moonbird/" class="featured-work-card">
+          <span class="featured-work-label">Case study</span>
+          <h2 class="featured-work-title">Moonbird</h2>
+          <p class="featured-work-body">A year inside Oracle Health figuring out what design practice becomes when AI does the making. The research that produced Domain Foundation.</p>
+          <span class="featured-work-link">Read the case study &rarr;</span>
+        </a>
+
+        <a href="/work/redwood-health-design/" class="featured-work-card">
+          <span class="featured-work-label">Case study</span>
+          <h2 class="featured-work-title">Two Components That Didn't Ship</h2>
+          <p class="featured-work-body">Health-specific components on Oracle's Redwood design system. The ones I remember best are the two we decided to kill.</p>
+          <span class="featured-work-link">Read the case study &rarr;</span>
+        </a>
+      </div>
+      <a href="/work/" class="featured-work-all">See all work &rarr;</a>
+    </div>
+  </section>
+
+  <div class="home-writing-grid">
+    <main>
+      <span class="section-title">Latest</span>
+      {heroPost && <PostCardFeatured post={heroPost} />}
+    </main>
+
+    <aside class="sidebar">
+      <span class="section-title">Previous Writing</span>
+      <nav class="sidebar-posts">
+        {sidebarPosts.map((post) => <SidebarPostLink post={post} />)}
+        <a href="/writing/" class="sidebar-posts-all">All posts &rarr;</a>
+      </nav>
+    </aside>
+  </div>
+
+  </div>
+</BaseLayout>

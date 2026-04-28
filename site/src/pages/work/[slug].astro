@@ -1,0 +1,40 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection } from 'astro:content';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import CaseStudyLayout from '~/components/CaseStudyLayout.astro';
+
+export const getStaticPaths = (async () => {
+  const studies = await getCollection('case-studies');
+  return studies.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}) satisfies GetStaticPaths;
+
+const { entry } = Astro.props;
+const { Content, remarkPluginFrontmatter } = await entry.render();
+const readingMinutes =
+  entry.data.readingTime ?? remarkPluginFrontmatter?.minutesRead;
+---
+
+<BaseLayout
+  title={`${entry.data.title} — Jeremy Fuksa`}
+  description={entry.data.excerpt}
+>
+  <CaseStudyLayout
+    title={entry.data.title}
+    eyebrow={entry.data.eyebrow}
+    tagline={entry.data.tagline}
+    role={entry.data.role}
+    organization={entry.data.organization}
+    timeline={entry.data.timeline}
+    pullquote={entry.data.pullquote}
+    facts={entry.data.facts}
+    stats={entry.data.stats}
+    links={entry.data.links}
+    readingMinutes={readingMinutes}
+  >
+    <Content />
+  </CaseStudyLayout>
+</BaseLayout>
