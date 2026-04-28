@@ -1,0 +1,36 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+
+const studies = (await getCollection('case-studies')).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+---
+
+<BaseLayout title="Work — Jeremy Fuksa" description="Selected case studies in design systems, healthcare UX, and AI-augmented design.">
+  <div class="work-page">
+    <header class="work-header">
+      <h1>Work</h1>
+      <p class="work-intro">Selected case studies — design systems, healthcare UX, and the research that became Domain Foundation.</p>
+    </header>
+
+    <div class="work-list">
+      {studies.map((s) => (
+        <a href={`/work/${s.slug}/`} class="work-row">
+          <div class="work-row-meta">{s.data.eyebrow}</div>
+          <div class="work-row-title">{s.data.title}</div>
+          <div class="work-row-excerpt">{s.data.excerpt}</div>
+        </a>
+      ))}
+    </div>
+
+    <section id="work-with-me" class="work-cta-section">
+      <h2 class="work-cta-title">Work with me</h2>
+      <p class="work-cta-body">Available for design system engagements, UX strategy consulting, and senior design leadership roles. Based in Kansas City, working with teams anywhere.</p>
+      <div class="work-cta-actions">
+        <a href="mailto:hello@jeremyfuksa.com" class="hero-cta">Get in touch</a>
+        <a href="/about/" class="hero-cta-secondary">About me &rarr;</a>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

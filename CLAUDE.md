@@ -4,11 +4,28 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Custom Ghost 6 Handlebars theme called "The Cocktail Napkin" for jeremyfuksa.com. No build step — CSS and JS are served directly. The theme is uploaded as a zip to Ghost Admin.
+This repo contains two coexisting systems for jeremyfuksa.com during a migration to a headless architecture:
+
+- **`theme/`** — the original "The Cocktail Napkin" Ghost 6 Handlebars theme. No build step; CSS and JS served directly. Deployed as a zip to Ghost Admin (or via the Admin API using `dev/deploy-theme.mjs`).
+- **`site/`** — an Astro static site consuming Ghost as a headless source for posts. All non-post content (home, work, case studies, now, about) is local. Build with `cd site && pnpm build`. See `site/README.md`.
+
+The end state is the Astro site in production with Ghost serving as a content-only backend. The Handlebars theme remains in the repo until cutover, then gets archived. Both systems can run concurrently against the same local Docker Ghost.
 
 ## Development Workflow
 
-All design changes happen against the live Ghost dev container (see Docker section below). The bind-mounted theme directory live-reloads on file changes, so iteration is immediate.
+For Ghost-theme changes (Handlebars templates, `theme/assets/css/`, `routes.yaml`): work against the live Ghost dev container (see Docker section below). The bind-mounted theme directory live-reloads on file changes.
+
+For Astro frontend changes (everything in `site/`): work in `site/` with `pnpm dev` for HMR. The Astro site fetches posts from the local Docker Ghost via Content API at build/dev time.
+
+```bash
+# Ghost backend (always running for both systems)
+docker compose up -d            # http://localhost:2368/
+
+# Astro frontend
+cd site && pnpm dev             # http://localhost:4321/
+cd site && pnpm test            # vitest contract + redirect tests
+cd site && pnpm build           # static dist/
+```
 
 ## Key Commands
 

@@ -1,0 +1,51 @@
+---
+title: "Moonbird"
+eyebrow: "Research · 2025–2026"
+tagline: "The opening question was defensive: how do we keep a non-designer from generating something that doesn't match our design system. Answering that tells you what <em>not</em> to allow, not what to build."
+role: "UX Designer, AI design research"
+organization: "Oracle Health"
+timeline: "2025–2026"
+order: 2
+excerpt: "A year inside Oracle Health figuring out what design practice becomes when AI does the making. The research that produced Domain Foundation."
+pullquote: "The first thing said, in the first meeting, was that AI in the hands of engineering and PM was going to take our jobs."
+---
+
+The first thing said, in the first meeting, was that AI in the hands of engineering and PM was going to take our jobs.
+
+The fear was that a PM with no design training could generate workflows that looked like [Redwood](https://redwood.oracle.com/) but weren't — bypassing UX involvement, skipping any verification that the components were actually Redwood rather than AI approximations, and pushing the output straight into engineering as a spec.
+
+The question we opened with was defensive. *How do we keep a non-designer from generating something that doesn't match our design system.* Answering this tells you what not to allow, not what to build.
+
+We called the project Moonbird. Oracle Health was the pilot, but it would eventually be used across all of Oracle design.
+
+"Does the look match the system" was where we started — fidelity to Redwood, component by component. The deeper question arrived slowly, and it was the one the project was really about: is this component here for the right reason, is this the right experience for this user in this context.
+
+Health was chosen as the pilot because healthcare is the kind of domain that forces that final question. Regulatory rules, accessibility standards, user personas and job profiles written against those rules, every piece interdependent with every other. The complexity made the deeper question unavoidable; a generic pilot could have been run on the fidelity question alone.
+
+## The RAG pivot
+
+The first attempt at encoding the why-layer was at the wrong altitude. I tried to embed the context — component purpose, usage rules, deployment caveats — directly inside the Figma files themselves. It sort of worked. It was also clunky enough to kill the idea. Figma files are not knowledge bases; maintaining structured context inside them doesn't scale past a few components before the tooling fights you.
+
+Over winter break, I moved to a RAG pattern concept. Vector database holding the whole knowledge base — institutional context and component reasoning side by side — queryable through an [MCP](https://modelcontextprotocol.io/) server. That architectural shift was the project's inflection point. Once the knowledge layer lived outside the design tool, anything that needed the context could pull from it.
+
+## Three first inputs
+
+An engineer paired with me on the pipeline. We stood up the vector database, the MCP server, and the query tooling, connected to a commercial LLM. Aside from the Figma design tokens already in place, we chose three first inputs: role profiles from human factors, the team's user personas, and Oracle's internal accessibility guidelines.
+
+We fed the system a persona, a matching role profile, the context from an ongoing team conversation about a component pattern, and example UIs similar to what we were looking for. The reasoning the team had been doing for weeks came back as a concrete artifact in seconds — reasonably designed, but not Redwood.
+
+## The fidelity wall
+
+The weeks before the layoff, we came back to the fidelity problem. The knowledge-layer work had proven out; the question was whether we could now use it in combination with [Figma Make](https://www.figma.com/make/) to get governed generation end-to-end.
+
+Figma Make's output looked like Redwood. A design director would look at it and say it wasn't Redwood. They could pick out the tells every time — a spacing token one step off, a border-radius that resolved close but not exact, a color value matched by eye rather than by reference. Custom stuff built to look like Redwood, never actually from the design toolkit.
+
+Oracle builds on its own frontend framework, [Oracle JET](https://www.oracle.com/webfolder/technetwork/jet/index.html). We thought that if Figma Make could import the Oracle JET npm package, it could use JET components as its source of truth instead of generating React approximations. Figma Make could import the package, but when we tried to instruct the model to write JET code instead of React, we hit the hard limit — Make's output layer is locked to React and Tailwind, and the imported JET library just sat there unused.
+
+We started building our own prompt-to-UI tool, scoped to the one thing we needed: JET code. I saw a handful of proof-of-concept prototypes in the week before the layoff.
+
+[Figma Make Kits](https://www.figma.com/blog/introducing-make-kits-and-make-attachments/) shipped about a month after I left. It fixes the fidelity problem but their JET problem remains.
+
+## Moonbird, then
+
+Moonbird was how we applied the approach specifically for Oracle Health. [Domain Foundation](/work/domain-foundation/) is how you apply it anywhere else.

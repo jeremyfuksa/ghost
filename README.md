@@ -1,10 +1,21 @@
 # The Cocktail Napkin
 
-A custom Ghost 6 Handlebars theme for [jeremyfuksa.com](https://jeremyfuksa.com).
+The site for [jeremyfuksa.com](https://jeremyfuksa.com).
 
-No build step. CSS and JS are served as-is. The theme is uploaded to Ghost Admin as a zip.
+## Architecture (April 2026 onward)
 
-## Stack
+This repo contains two systems, coexisting during a migration to a headless architecture:
+
+- **`theme/`** — the original Ghost 6 Handlebars theme. Still functional; will be archived once the Astro site cuts over to production. No build step; deployed as a zip to Ghost Admin.
+- **`site/`** — an Astro static site that consumes Ghost as a headless content source for posts only. All other pages (home, work, case studies, now, about) live as Astro routes / MDX files. See [site/README.md](./site/README.md).
+
+Until cutover, both systems can run concurrently:
+- Ghost dev: `docker compose up -d` → <http://localhost:2368/>
+- Astro dev: `cd site && pnpm dev` → <http://localhost:4321/>
+
+The end state is the Astro site in production with Ghost serving as a content-only backend. The Handlebars theme stays in the repo until cutover, then gets moved under `archive/`.
+
+## Stack (Handlebars theme — `theme/`)
 
 - **Ghost** 6+ (Handlebars templates, `routes.yaml`)
 - **CSS** — plain CSS with custom properties; no preprocessor
