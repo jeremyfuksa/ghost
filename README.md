@@ -2,104 +2,84 @@
 
 The site for [jeremyfuksa.com](https://jeremyfuksa.com).
 
-## Architecture (April 2026 onward)
+## Architecture
 
-This repo contains two systems, coexisting during a migration to a headless architecture:
+A static [Astro](https://astro.build) site that consumes Ghost as a headless CMS for blog posts only. Home, work, case studies, now, and about are local Astro routes / MDX files. The Handlebars theme that previously drove the site was retired in April 2026.
 
-- **`theme/`** — the original Ghost 6 Handlebars theme. Still functional; will be archived once the Astro site cuts over to production. No build step; deployed as a zip to Ghost Admin.
-- **`site/`** — an Astro static site that consumes Ghost as a headless content source for posts only. All other pages (home, work, case studies, now, about) live as Astro routes / MDX files. See [site/README.md](./site/README.md).
+## Stack
 
-Until cutover, both systems can run concurrently:
-- Ghost dev: `docker compose up -d` → <http://localhost:2368/>
-- Astro dev: `cd site && pnpm dev` → <http://localhost:4321/>
-
-The end state is the Astro site in production with Ghost serving as a content-only backend. The Handlebars theme stays in the repo until cutover, then gets moved under `archive/`.
-
-## Stack (Handlebars theme — `theme/`)
-
-- **Ghost** 6+ (Handlebars templates, `routes.yaml`)
-- **CSS** — plain CSS with custom properties; no preprocessor
-- **JS** — vanilla, minimal (TOC scroll-spy only)
+- **Astro 5+** with `@tryghost/content-api` for posts, MDX content collection for case studies
+- **Plain CSS** with custom properties; no preprocessor
+- **Vanilla JS**, minimal (theme toggle, TOC scroll-spy, reading-progress bar)
 - **Fonts** — Fraunces (headings), Fira Code (mono), system UI stack (body)
+- **Hosting** — DigitalOcean droplet running Traefik + nginx + Ghost in Docker
 
 ## Repo layout
 
 ```
-theme/               The Ghost theme (this is what gets zipped and uploaded)
-  assets/css/        tokens.css, base.css, components.css, screen.css
-  partials/
-  *.hbs              Templates (default, index, post, page, tag, custom-*)
-  routes.yaml        Custom routing (uploaded separately in Ghost Admin)
-dev/setup.sh         Idempotent bootstrap for the local Docker Ghost
-docker-compose.yml   Local Ghost 5 Alpine + SQLite with theme bind-mount
+site/                The Astro project (the deployed site)
+  src/pages/         Routes
+  src/content/       Case studies (MDX) and content config
+  src/lib/           Ghost client + format helpers
+  src/styles/        tokens.css, base.css, components.css, campfire.css, screen.css
+  public/            Static assets, scripts/main.js
+docker-compose.yml   Local Ghost (SQLite, dev mode)
+dev/setup.sh         First-run owner-account setup for local Ghost
+dev/deploy-post.mjs  Push a markdown file as a Ghost post
+drafts/              Local markdown drafts staged for Ghost
+docs/                Plans, specs, handoffs
 CLAUDE.md            Detailed guidance for Claude Code agents
 ```
 
-## Quick start (local development)
+## Quick start
 
 ```bash
-# Boot a local Ghost with the theme bind-mounted
+# Backend: local headless Ghost
 docker compose up -d
+bash dev/setup.sh                 # first run only — creates owner account
 
-# First run only — creates owner, activates theme, uploads routes, seeds content
-bash dev/setup.sh
+# Frontend: Astro
+cd site
+cp .env.example .env              # paste a Content API key from Ghost Admin
+pnpm install
+pnpm dev                          # http://localhost:4321/
 ```
 
-- Site: <http://localhost:2368>
-- Admin: <http://localhost:2368/ghost/> — `dev@local.test` / `DevLocal12345!`
+- Astro: <http://localhost:4321>
+- Ghost admin: <http://localhost:2368/ghost/> — `dev@local.test` / `DevLocal12345!`
+- Get the Content API key in Ghost Admin → Settings → Integrations → "Add custom integration".
 
-Edits to `theme/*.hbs` and `theme/assets/css/*` live-reload within a second or two.
+Edits under `site/src/` hot-reload. Edits to posts in Ghost Admin appear after restart of `pnpm dev` (or rebuild) since posts are fetched at build time.
 
-Stop with `docker compose down` (data persists). Full reset: `docker compose down -v && rm -rf ghost-data/`.
+## Production deploy
 
-## Packaging and deploy
+Production is a DigitalOcean droplet (`161.35.226.162`) running Traefik (TLS), an nginx container serving `site/dist`, and headless Ghost at [cms.jeremyfuksa.com](https://cms.jeremyfuksa.com). A webhook container runs `rebuild-astro.sh` which pulls the repo and rebuilds Astro in place.
 
 ```bash
-cd theme && zip -r ../the-cocktail-napkin.zip . -x "*.DS_Store" -x "*node_modules*"
+git push origin main
+ssh admin@161.35.226.162 'docker exec webhook /scripts/rebuild-astro.sh'
 ```
 
-1. Upload `the-cocktail-napkin.zip` in Ghost Admin → Design → Themes.
-2. If `theme/routes.yaml` changed, upload it separately under Settings → Labs → Routes.
+Ghost publish events also auto-trigger this hook, so writing a post in Ghost Admin rebuilds the site automatically.
 
 ## Design system
 
-All spacing, type, color, border, and sizing values come from CSS custom properties in `theme/assets/css/tokens.css`. Hardcoded pixels in CSS or inline styles are off-limits; see `CLAUDE.md` for the full list of intentional exceptions (root font size, relative units, keyframes, media queries).
+All spacing, type, color, border, and sizing values come from CSS custom properties in [site/src/styles/tokens.css](site/src/styles/tokens.css). Hardcoded pixels in CSS or inline styles are off-limits; see [CLAUDE.md](CLAUDE.md) for the full list of intentional exceptions.
 
 Two accent color roles — do not conflate them:
 
 - `--color-accent-ui` — decorative only (borders, underlines, large uppercase).
 - `--color-accent-text` — any readable orange/amber text. Passes 4.5:1.
 
-Dark mode is system-preference only (`prefers-color-scheme`). No toggle.
+Dark mode follows `prefers-color-scheme` and exposes a manual `.theme-toggle` button that overrides via `data-theme="light|dark"` and persists to `localStorage`.
 
-## Validating
+## CI
 
-```bash
-cd theme && npx gscan .
-```
-
-0 errors is the bar. A single warning about custom fonts is expected.
-
-## CI and auto-merge
-
-`.github/workflows/ci.yml` runs `gscan` against `theme/` on every PR and on pushes to `main`. The `--fatal` flag makes it exit non-zero on errors so the check actually blocks bad merges.
-
-To enable auto-merge end-to-end, configure this once in the GitHub UI:
-
-1. **Settings → General → Pull Requests**
-   - Enable **Allow auto-merge**.
-   - Enable **Automatically delete head branches**.
-   - Pick one merge style (squash recommended) and disable the others.
-2. **Settings → Branches → Branch protection rules → Add rule** for `main`:
-   - **Require a pull request before merging**.
-   - **Require status checks to pass before merging** → add `gscan` as required. Also tick **Require branches to be up to date before merging**.
-   - Leave "Require approvals" off for a solo repo (it would block auto-merge with no second reviewer).
-   - Tick **Do not allow bypassing the above settings** to keep the rule honest.
-
-With that in place, enable auto-merge on an individual PR via the GitHub UI button, `gh pr merge --auto --squash <n>`, or the `mcp__github__enable_pr_auto_merge` tool. GitHub will merge it the moment `gscan` goes green.
+`.github/workflows/ci.yml` runs `pnpm install` + `pnpm check` (Astro type-check) on every PR and on pushes to `main`. Tests are not run in CI because the Ghost contract test needs `GHOST_URL` / `GHOST_CONTENT_API_KEY` from `site/.env`.
 
 ## More
 
-- `CLAUDE.md` — exhaustive architecture notes and conventions for agent-driven work.
-- `.claude/commands/` — custom slash commands (`/swap-font`).
-- `docs/superpowers/` — design specs and implementation plans.
+- [CLAUDE.md](CLAUDE.md) — architecture, deploy flow, conventions
+- [site/README.md](site/README.md) — Astro-specific dev instructions
+- [.claude/commands/](.claude/commands/) — custom slash commands (`/swap-font`)
+- [docs/superpowers/](docs/superpowers/) — design specs and implementation plans

@@ -4,6 +4,8 @@
 **Branch:** `feat/astro-headless-migration`
 **Scope:** What's vestigial, when each item can be removed, what stays.
 
+> **Status: completed 2026-04-28.** Both halves are done. The `theme/` directory was deleted (not archived — git history is the archive). `dev/deploy-theme.mjs` and `dev/deploy-page.mjs` were deleted. `dev/deploy-post.mjs` was kept (Jeremy: not sure, default per spec is keep). `dev/setup.sh` was slimmed to owner-account creation only. CLAUDE.md and README.md rewritten Astro-only. `*.zip` rule removed from `.gitignore`. CI swapped from gscan → Astro check. The remainder of this doc is preserved as-is for historical context.
+
 This doc has two halves:
 - **Half A** — pre-cutover safe actions (some apply to the worktree, some only to `main`)
 - **Half B** — post-cutover punch list (executed in a separate plan once Astro is in production)

@@ -12,7 +12,6 @@ services:
       security__staffDeviceVerification: "false"
     volumes:
       - ghost-data:/var/lib/ghost/content
-      - ./theme:/var/lib/ghost/content/themes/the-cocktail-napkin
     restart: unless-stopped
 
 volumes:

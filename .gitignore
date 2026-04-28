@@ -1,7 +1,6 @@
 .DS_Store
 .mcp.json
 node_modules/
-*.zip
 .claude/settings.local.json
 
 # Local Ghost dev

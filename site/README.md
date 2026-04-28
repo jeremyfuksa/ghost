@@ -54,7 +54,7 @@ Static `dist/` directory ready for Netlify/Vercel/Cloudflare Pages. A Ghost webh
 ## Architecture notes
 
 - **Content API client:** `src/lib/ghost.ts` exports `getAllPosts`, `getPostBySlug`, `getPostsByTag`, `getAllTags`. Tilde-pinned to `@tryghost/content-api ~1.11.21` (this SDK has historically changed error shape between minor versions). The 1.11.x branch ships no types, so `src/env.d.ts` declares the module ambiently.
-- **Format helpers:** `src/lib/format.ts` exports `ghostImageUrl`, `isoDate`, `shortDate`, `monthYear`, `readingTime`. `ghostImageUrl` rewrites Ghost CDN paths to a target width per `theme/package.json` `image_sizes`.
+- **Format helpers:** `src/lib/format.ts` exports `ghostImageUrl`, `isoDate`, `shortDate`, `monthYear`, `readingTime`. `ghostImageUrl` rewrites Ghost CDN paths to a target width per the `ghostImageWidths` map in that file.
 - **Content collection:** `src/content/case-studies/` holds five MDX files with Zod-validated frontmatter (`src/content/config.ts`). One shared `CaseStudyLayout.astro` renders header + sidebar; the MDX body fills the prose slot.
 - **Redirects:** `src/redirects.json` is wired into `astro.config.mjs`. Two entries today (`/moonbird/`, `/rss/`); add to the JSON, rebuild, ship.
 - **404:** `src/pages/404.astro` passes `noCanonical` to suppress the canonical link and og:url.
