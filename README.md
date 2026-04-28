@@ -26,7 +26,7 @@ site/                The Astro project (the deployed site)
 docker-compose.yml   Local Ghost (SQLite, dev mode)
 dev/setup.sh         First-run owner-account setup for local Ghost
 dev/deploy-post.mjs  Push a markdown file as a Ghost post
-drafts/              Local markdown drafts staged for Ghost
+../ghost-drafts/     Local markdown drafts (lives outside the repo)
 docs/                Plans, specs, handoffs
 CLAUDE.md            Detailed guidance for Claude Code agents
 ```

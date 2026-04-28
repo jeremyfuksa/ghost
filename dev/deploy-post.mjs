@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Create a new Ghost post from a local markdown file.
-// Usage: node dev/deploy-post.mjs --file drafts/slug.md --title "..." [--slug <slug>] [--tags tag1,tag2] [--excerpt "..."] [--status draft|published] [--push]
+// Usage: node dev/deploy-post.mjs --file ../ghost-drafts/slug.md --title "..." [--slug <slug>] [--tags tag1,tag2] [--excerpt "..."] [--status draft|published] [--push]
 // Without --push, prints preview and exits (dry-run by default).
 // Reads GHOST_API=<id>:<secret> from .env in the repo root.
 // Strips a leading H1 "# Title" from the markdown so Ghost's post title isn't duplicated.

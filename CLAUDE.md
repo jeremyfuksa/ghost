@@ -113,5 +113,5 @@ Dark mode follows `prefers-color-scheme` by default, with a manual `.theme-toggl
 - [`docker-compose.yml`](docker-compose.yml) — local headless Ghost (SQLite, NODE_ENV=development)
 - [`dev/setup.sh`](dev/setup.sh) — first-run Ghost owner-account setup
 - [`dev/deploy-post.mjs`](dev/deploy-post.mjs) — push markdown post → Ghost Admin (uses `GHOST_API` from `.env`)
-- [`drafts/`](drafts/) — local markdown drafts staged before pushing to Ghost
+- `../ghost-drafts/` (sibling of this repo, not committed) — local markdown drafts staged before pushing to Ghost
 - [`docs/`](docs/) — superpowers plans/specs and historical handoffs

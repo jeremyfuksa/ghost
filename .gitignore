@@ -7,6 +7,9 @@ node_modules/
 .ghost/
 ghost-data/
 
+# Drafts live outside the repo (../ghost-drafts/)
+drafts/
+
 # Secrets
 .env
 .env.local
