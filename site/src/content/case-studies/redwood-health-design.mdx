@@ -7,10 +7,8 @@ organization: "Oracle Health (Redwood Design System)"
 timeline: "2024–2026"
 order: 3
 excerpt: "Health-specific components on Oracle's Redwood design system. The ones I remember best are the two we decided to kill."
-coverImage: "/images/object-id-hero.jpg"
+coverImage: "../../assets/object-id-hero.jpg"
 coverImageAlt: "Object ID component showing a patient card with name, date of birth, age, sex, pronouns, and NHS identifier."
-coverImageWidth: 1284
-coverImageHeight: 485
 facts:
   - { label: "Shipped", value: "Page Summary, Object ID, health-aware timestamp" }
   - { label: "Descoped", value: "Name truncator, pronoun notification" }
@@ -18,6 +16,11 @@ facts:
 links:
   - { label: "Redwood design system ↗", href: "https://redwood.oracle.com/" }
 ---
+
+import { Image } from 'astro:assets';
+import nameFormatting from '../../assets/object-id-name-formatting.jpg';
+import ageCalculation from '../../assets/object-id-age-calculation.jpg';
+import genderMismatch from '../../assets/object-id-gender-mismatch.jpg';
 
 ## Overview
 
@@ -32,17 +35,17 @@ The pattern across everything we built was the same: an all-purpose design syste
 I shipped three main components: a Page Summary for medical summaries, with an API to consume an AI-generated rich-text summary of a patient record; an Object ID component carrying the patient identity surface (date of birth, age, birth sex, self-reported pronouns, health ID); and a health-aware timestamp for patient age — hours for neonates, days for young infants, weeks and months as the child grew, years beyond that.
 
 <figure>
-  <img src="/images/object-id-name-formatting.jpg" alt="Object ID name-formatting rules: a seven-step truncation ladder from a full multi-part name down to family-name-only, with example patient cards at each step." width="1920" height="1080" loading="lazy" decoding="async" />
+  <Image src={nameFormatting} alt="Object ID name-formatting rules: a seven-step truncation ladder from a full multi-part name down to family-name-only, with example patient cards at each step." loading="lazy" decoding="async" widths={[640, 960, 1280, 1920]} sizes="(min-width: 1280px) 1280px, 100vw" />
   <figcaption>Object ID — name formatting and truncation steps.</figcaption>
 </figure>
 
 <figure>
-  <img src="/images/object-id-age-calculation.jpg" alt="Object ID age-calculation rules: pediatric and standard age thresholds spanning minutes, hours, days, weeks, months, and years." width="1920" height="1080" loading="lazy" decoding="async" />
+  <Image src={ageCalculation} alt="Object ID age-calculation rules: pediatric and standard age thresholds spanning minutes, hours, days, weeks, months, and years." loading="lazy" decoding="async" widths={[640, 960, 1280, 1920]} sizes="(min-width: 1280px) 1280px, 100vw" />
   <figcaption>Object ID — health-aware age calculation thresholds.</figcaption>
 </figure>
 
 <figure>
-  <img src="/images/object-id-gender-mismatch.jpg" alt="Object ID sex and gender display: a patient card highlighting the sex and pronouns field, with optional displays for label, mismatch indicator, and pronouns." width="1920" height="680" loading="lazy" decoding="async" />
+  <Image src={genderMismatch} alt="Object ID sex and gender display: a patient card highlighting the sex and pronouns field, with optional displays for label, mismatch indicator, and pronouns." loading="lazy" decoding="async" widths={[640, 960, 1280, 1920]} sizes="(min-width: 1280px) 1280px, 100vw" />
   <figcaption>Object ID — sex and gender display configuration.</figcaption>
 </figure>
 

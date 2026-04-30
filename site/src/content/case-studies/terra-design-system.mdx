@@ -7,10 +7,8 @@ organization: "Cerner / Oracle Health"
 timeline: "2018–2024"
 order: 5
 excerpt: "Open-source React component library. 80+ components, 200+ icons, WCAG 2.1 AA. Built and led at Cerner / Oracle Health."
-coverImage: "/images/terra-hero.png"
+coverImage: "../../assets/terra-hero.png"
 coverImageAlt: "Terra design system landing page: hexagonal Terra logo on a dark starfield with a 'Get Started' CTA, above an 'About Terra' section."
-coverImageWidth: 1893
-coverImageHeight: 862
 stats:
   - { value: "80+", label: "React components" }
   - { value: "200+", label: "Icons" }
@@ -24,6 +22,9 @@ links:
   - { label: "GitHub: one-cerner-style-icons ↗", href: "https://github.com/oracle-samples/one-cerner-style-icons" }
   - { label: "Engineering blog: One Cerner Style Icons ↗", href: "https://engineering.cerner.com/blog/one-cerner-style-icons/" }
 ---
+
+import { Image } from 'astro:assets';
+import terraIcons from '../../assets/terra-icons.png';
 
 ## Overview
 
@@ -42,7 +43,7 @@ Most days I was in the Terra monorepo reading pull requests. Walking through the
 Alongside that, I owned the [icon library](https://github.com/oracle-samples/one-cerner-style-icons) — a dedicated Git repository the engineering team consumed into the component system, maintained end-to-end from design asset to published package ([UX write-up](https://engineering.cerner.com/blog/one-cerner-style-icons/)).
 
 <figure>
-  <img src="/images/terra-icons.png" alt="Excerpt from the One Cerner Style icon library: status, care and workflow icons in the upper section, navigation, communication and reference icons below." width="1920" height="1080" loading="lazy" decoding="async" />
+  <Image src={terraIcons} alt="Excerpt from the One Cerner Style icon library: status, care and workflow icons in the upper section, navigation, communication and reference icons below." loading="lazy" decoding="async" widths={[640, 960, 1280, 1920]} sizes="(min-width: 1280px) 1280px, 100vw" />
   <figcaption>One Cerner Style Icons — 200+ icons across status/care/workflow and navigation/communication/reference.</figcaption>
 </figure>
 

@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import IconShare from './IconShare.astro';
 import SubscribeCta from './SubscribeCta.astro';
 import { readingTime } from '~/lib/format';
@@ -15,10 +17,8 @@ interface Props {
   stats?: { value: string; label: string }[];
   links?: { label: string; href: string }[];
   readingMinutes?: number;
-  coverImage?: string;
+  coverImage?: ImageMetadata;
   coverImageAlt?: string;
-  coverImageWidth?: number;
-  coverImageHeight?: number;
 }
 
 const {
@@ -35,8 +35,6 @@ const {
   readingMinutes,
   coverImage,
   coverImageAlt,
-  coverImageWidth,
-  coverImageHeight,
 } = Astro.props;
 
 const readtime = readingTime(readingMinutes);
@@ -59,14 +57,14 @@ const readtime = readingTime(readingMinutes);
 
   {coverImage && (
     <figure class="casestudy-cover">
-      <img
+      <Image
         src={coverImage}
         alt={coverImageAlt ?? ''}
-        width={coverImageWidth}
-        height={coverImageHeight}
         loading="eager"
         decoding="async"
         fetchpriority="high"
+        widths={[640, 960, 1280, 1920]}
+        sizes="(min-width: 1280px) 1280px, 100vw"
       />
     </figure>
   )}
