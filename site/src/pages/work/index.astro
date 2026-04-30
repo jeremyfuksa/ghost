@@ -16,7 +16,7 @@ const studies = (await getCollection('case-studies')).sort(
 
     <div class="work-list">
       {studies.map((s) => (
-        <a href={`/work/${s.slug}/`} class="work-row">
+        <a href={`/work/${s.id}/`} class="work-row">
           <div class="work-row-meta">{s.data.eyebrow}</div>
           <div class="work-row-title">{s.data.title}</div>
           <div class="work-row-excerpt">{s.data.excerpt}</div>

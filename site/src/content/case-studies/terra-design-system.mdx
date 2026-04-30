@@ -7,6 +7,8 @@ organization: "Cerner / Oracle Health"
 timeline: "2018–2024"
 order: 5
 excerpt: "Open-source React component library. 80+ components, 200+ icons, WCAG 2.1 AA. Built and led at Cerner / Oracle Health."
+coverImage: "../../assets/terra-hero.png"
+coverImageAlt: "Terra design system landing page: hexagonal Terra logo on a dark starfield with a 'Get Started' CTA, above an 'About Terra' section."
 stats:
   - { value: "80+", label: "React components" }
   - { value: "200+", label: "Icons" }
@@ -20,6 +22,9 @@ links:
   - { label: "GitHub: one-cerner-style-icons ↗", href: "https://github.com/oracle-samples/one-cerner-style-icons" }
   - { label: "Engineering blog: One Cerner Style Icons ↗", href: "https://engineering.cerner.com/blog/one-cerner-style-icons/" }
 ---
+
+import Figure from '~/components/Figure.astro';
+import terraIcons from '../../assets/terra-icons.png';
 
 ## Overview
 
@@ -36,6 +41,12 @@ The architecture's promise — accessible, internationalized, responsive compone
 Most days I was in the Terra monorepo reading pull requests. Walking through the interaction logic, checking focus management against the standards we'd published, flagging the places where an engineer's reasonable implementation had quietly diverged from the intended behavior. UX review meant commenting on the PR, citing the specific lines if errors were there, and naming what the standard required. Engineering made the change.
 
 Alongside that, I owned the [icon library](https://github.com/oracle-samples/one-cerner-style-icons) — a dedicated Git repository the engineering team consumed into the component system, maintained end-to-end from design asset to published package ([UX write-up](https://engineering.cerner.com/blog/one-cerner-style-icons/)).
+
+<Figure
+  src={terraIcons}
+  alt="Excerpt from the One Cerner Style icon library: status, care and workflow icons in the upper section, navigation, communication and reference icons below."
+  caption="One Cerner Style Icons — 200+ icons across status/care/workflow and navigation/communication/reference."
+/>
 
 The standards we were enforcing weren't small. The system was built on 125+ design standards and 150+ accessibility guidelines targeting WCAG 2.1 AA. My job was making sure what shipped actually honored them.
 
