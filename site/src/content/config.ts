@@ -31,6 +31,10 @@ const caseStudies = defineCollection({
     readingTime: z.number().optional(),  // minutes; falls back to MDX-derived
     order: z.number(),                   // for /work/ list ordering
     excerpt: z.string(),                 // for og:description and /work/ list
+    coverImage: z.string().optional(),       // path under /public, e.g. /images/foo.jpg
+    coverImageAlt: z.string().optional(),
+    coverImageWidth: z.number().optional(),  // intrinsic px, prevents CLS
+    coverImageHeight: z.number().optional(),
   }),
 });
 

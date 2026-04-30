@@ -15,6 +15,10 @@ interface Props {
   stats?: { value: string; label: string }[];
   links?: { label: string; href: string }[];
   readingMinutes?: number;
+  coverImage?: string;
+  coverImageAlt?: string;
+  coverImageWidth?: number;
+  coverImageHeight?: number;
 }
 
 const {
@@ -29,6 +33,10 @@ const {
   stats,
   links,
   readingMinutes,
+  coverImage,
+  coverImageAlt,
+  coverImageWidth,
+  coverImageHeight,
 } = Astro.props;
 
 const readtime = readingTime(readingMinutes);
@@ -48,6 +56,20 @@ const readtime = readingTime(readingMinutes);
       </a>
     </div>
   </header>
+
+  {coverImage && (
+    <figure class="casestudy-cover">
+      <img
+        src={coverImage}
+        alt={coverImageAlt ?? ''}
+        width={coverImageWidth}
+        height={coverImageHeight}
+        loading="eager"
+        decoding="async"
+        fetchpriority="high"
+      />
+    </figure>
+  )}
 
   <div class="casestudy-body">
     <div class="casestudy-prose gh-content">
