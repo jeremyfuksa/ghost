@@ -1,4 +1,5 @@
 import { defineCollection, z } from 'astro:content';
+import { glob } from 'astro/loaders';
 
 const factSchema = z.object({
   label: z.string(),
@@ -16,7 +17,7 @@ const linkSchema = z.object({
 });
 
 const caseStudies = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/case-studies' }),
   schema: ({ image }) =>
     z.object({
       title: z.string(),
