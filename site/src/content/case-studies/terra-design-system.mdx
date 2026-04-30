@@ -23,7 +23,7 @@ links:
   - { label: "Engineering blog: One Cerner Style Icons ↗", href: "https://engineering.cerner.com/blog/one-cerner-style-icons/" }
 ---
 
-import { Image } from 'astro:assets';
+import Figure from '~/components/Figure.astro';
 import terraIcons from '../../assets/terra-icons.png';
 
 ## Overview
@@ -42,10 +42,11 @@ Most days I was in the Terra monorepo reading pull requests. Walking through the
 
 Alongside that, I owned the [icon library](https://github.com/oracle-samples/one-cerner-style-icons) — a dedicated Git repository the engineering team consumed into the component system, maintained end-to-end from design asset to published package ([UX write-up](https://engineering.cerner.com/blog/one-cerner-style-icons/)).
 
-<figure>
-  <Image src={terraIcons} alt="Excerpt from the One Cerner Style icon library: status, care and workflow icons in the upper section, navigation, communication and reference icons below." loading="lazy" decoding="async" widths={[640, 960, 1280, 1920]} sizes="(min-width: 1280px) 1280px, 100vw" />
-  <figcaption>One Cerner Style Icons — 200+ icons across status/care/workflow and navigation/communication/reference.</figcaption>
-</figure>
+<Figure
+  src={terraIcons}
+  alt="Excerpt from the One Cerner Style icon library: status, care and workflow icons in the upper section, navigation, communication and reference icons below."
+  caption="One Cerner Style Icons — 200+ icons across status/care/workflow and navigation/communication/reference."
+/>
 
 The standards we were enforcing weren't small. The system was built on 125+ design standards and 150+ accessibility guidelines targeting WCAG 2.1 AA. My job was making sure what shipped actually honored them.
 
