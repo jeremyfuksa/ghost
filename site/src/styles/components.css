@@ -2906,6 +2906,47 @@
   line-height: var(--leading-lg);
 }
 
+.casestudy-cover {
+  margin: var(--spacing-12) 0 var(--spacing-16);
+  max-width: var(--content-max);
+}
+
+.casestudy-cover img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: var(--border-hairline) solid var(--border-subtle);
+  border-radius: var(--radius-md);
+}
+
+.casestudy-prose figure {
+  margin: var(--spacing-10) 0;
+}
+
+.casestudy-prose figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: var(--border-hairline) solid var(--border-subtle);
+  border-radius: var(--radius-md);
+}
+
+.casestudy-prose figcaption {
+  margin-top: var(--spacing-2);
+  font-size: var(--text-sm);
+  color: var(--text-tertiary);
+  font-family: var(--font-mono);
+}
+
+.casestudy-prose img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: var(--spacing-10) 0;
+  border: var(--border-hairline) solid var(--border-subtle);
+  border-radius: var(--radius-md);
+}
+
 .casestudy-body {
   display: grid;
   grid-template-columns: 1fr var(--sidebar-writing);

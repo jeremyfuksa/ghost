@@ -17,21 +17,24 @@ const linkSchema = z.object({
 
 const caseStudies = defineCollection({
   type: 'content',
-  schema: z.object({
-    title: z.string(),
-    eyebrow: z.string(),         // e.g. "Systems work · 2018–2024"
-    tagline: z.string(),         // HTML allowed for <em>
-    role: z.string(),
-    organization: z.string().optional(),
-    timeline: z.string(),
-    pullquote: z.string().optional(),
-    facts: z.array(factSchema).optional(),
-    stats: z.array(statSchema).optional(),
-    links: z.array(linkSchema).optional(),
-    readingTime: z.number().optional(),  // minutes; falls back to MDX-derived
-    order: z.number(),                   // for /work/ list ordering
-    excerpt: z.string(),                 // for og:description and /work/ list
-  }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      eyebrow: z.string(),
+      tagline: z.string(),
+      role: z.string(),
+      organization: z.string().optional(),
+      timeline: z.string(),
+      pullquote: z.string().optional(),
+      facts: z.array(factSchema).optional(),
+      stats: z.array(statSchema).optional(),
+      links: z.array(linkSchema).optional(),
+      readingTime: z.number().optional(),
+      order: z.number(),
+      excerpt: z.string(),
+      coverImage: image().optional(),
+      coverImageAlt: z.string().optional(),
+    }),
 });
 
 export const collections = { 'case-studies': caseStudies };
