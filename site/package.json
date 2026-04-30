@@ -18,7 +18,7 @@
     "@astrojs/rss": "^4.0.0",
     "@astrojs/sitemap": "^3.2.0",
     "@tryghost/content-api": "~1.11.21",
-    "astro": "^5.0.0"
+    "astro": "^6.1.6"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.8",
