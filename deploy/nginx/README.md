@@ -12,16 +12,24 @@
 
 ## Deploy
 
-The cleanest path is to bind-mount this file at
-`/etc/nginx/conf.d/default.conf` in the prod compose file. Quick path
-without touching compose:
+This directory is bind-mounted into `astro-web` at `/etc/nginx/conf.d`
+via `/home/admin/docker-compose.yml`:
+
+```yaml
+volumes:
+  - ./jeremyfuksa.com/deploy/nginx:/etc/nginx/conf.d:ro
+```
+
+To apply config changes after editing `default.conf`:
 
 ```bash
 ssh admin@161.35.226.162
-docker cp /home/admin/jeremyfuksa.com/deploy/nginx/default.conf astro-web:/etc/nginx/conf.d/default.conf
-docker exec astro-web nginx -t
-docker exec astro-web nginx -s reload
+docker exec astro-web nginx -t && docker exec astro-web nginx -s reload
 ```
+
+Note: `Edit`-style atomic-rename writes change the file's inode, which
+breaks single-file bind mounts. Mounting the whole directory avoids
+that — edits propagate without recreating the container.
 
 ## Verify
 
