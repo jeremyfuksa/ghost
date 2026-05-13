@@ -329,7 +329,7 @@ const turndown = new TurndownService({
   headingStyle: 'atx',
   bulletListMarker: '-',
   emDelimiter: '_',
-  hr: '---',
+  hr: '* * *',
 });
 turndown.use(gfm);
 turndown.keep(['sub', 'sup', 'kbd', 'mark', 'ghost-stash']);
@@ -371,7 +371,7 @@ for (const post of filtered) {
       continue;
     }
 
-    const file = matter.stringify(r.body, r.frontmatter);
+    const file = matter.stringify({ content: r.body }, r.frontmatter);
     if (!DRY_RUN) {
       await mkdir(CONTENT_DIR, { recursive: true });
       // If the other extension exists from a prior run, remove it so we don't
