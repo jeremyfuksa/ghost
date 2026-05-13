@@ -11,10 +11,13 @@ drafts/
 .superpowers/
 .playwright-mcp/
 
-# Astro site
-site/node_modules/
-site/dist/
-site/.astro/
-site/.env
-site/.env.production
-site/coverage/
+# Astro
+node_modules/
+dist/
+.astro/
+coverage/
+.env
+.env.production
+.env*.local
+*.log
+*.tsbuildinfo

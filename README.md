@@ -14,12 +14,11 @@ The site for [jeremyfuksa.com](https://jeremyfuksa.com) — a static
 ## Repo layout
 
 ```
-site/                The Astro project (the deployed site)
-  src/pages/         Routes
-  src/content/       Posts and case studies (MDX), content config
-  src/lib/           format helpers (dates, reading time)
-  src/styles/        tokens.css, base.css, components.css, campfire.css, screen.css
-  public/            Static assets, scripts/main.js
+src/pages/           Routes
+src/content/         Posts and case studies (MDX), content config
+src/lib/             format helpers (dates, reading time)
+src/styles/          tokens.css, base.css, components.css, campfire.css, screen.css
+public/              Static assets, scripts/main.js
 deploy/nginx/        Production nginx config served from astro-web container
 .github/workflows/   CI (type-check + tests on PRs and pushes to main)
 CLAUDE.md            Detailed guidance for Claude Code agents
@@ -28,18 +27,16 @@ CLAUDE.md            Detailed guidance for Claude Code agents
 ## Quick start
 
 ```bash
-cd site
 pnpm install
 pnpm dev                          # http://localhost:4321/
 ```
 
-Edits under `site/src/` hot-reload. See [site/README.md](site/README.md)
-for site-specific commands.
+Edits under `src/` hot-reload.
 
 ## Production deploy
 
 Production is a DigitalOcean droplet (`161.35.226.162`) running Traefik
-(TLS) and an `astro-web` nginx container serving `site/dist`. A `webhook`
+(TLS) and an `astro-web` nginx container serving `dist`. A `webhook`
 container runs `rebuild-astro.sh` which pulls the repo and rebuilds Astro
 in place.
 
@@ -51,7 +48,7 @@ ssh admin@161.35.226.162 'docker exec webhook /scripts/rebuild-astro.sh'
 ## Design system
 
 All spacing, type, color, border, and sizing values come from CSS custom
-properties in [site/src/styles/tokens.css](site/src/styles/tokens.css).
+properties in [src/styles/tokens.css](src/styles/tokens.css).
 Hardcoded pixels in CSS or inline styles are off-limits; see [CLAUDE.md](CLAUDE.md)
 for the full list of intentional exceptions.
 
@@ -72,5 +69,4 @@ button that overrides via `data-theme="light|dark"` and persists to
 ## More
 
 - [CLAUDE.md](CLAUDE.md) — architecture, deploy flow, conventions
-- [site/README.md](site/README.md) — Astro-specific dev instructions
 - [.claude/commands/](.claude/commands/) — custom slash commands (`/swap-font`)
