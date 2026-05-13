@@ -1,7 +1,6 @@
 ---
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
-import IconShare from './IconShare.astro';
 import SubscribeCta from './SubscribeCta.astro';
 import { readingTime } from '~/lib/format';
 
@@ -49,9 +48,6 @@ const readtime = readingTime(readingMinutes);
     <p class="casestudy-tagline" set:html={tagline}></p>
     <div class="post-header-meta">
       {readtime && <span class="post-card-readtime">{readtime}</span>}
-      <a class="post-share-inline" href="#/share" aria-label="Share this case study">
-        <IconShare />Share
-      </a>
     </div>
   </header>
 
@@ -135,14 +131,6 @@ const readtime = readingTime(readingMinutes);
       )}
     </aside>
   </div>
-
-  <section class="post-share" aria-label="Share">
-    <div class="post-share-label">Enjoyed this?</div>
-    <a class="post-share-cta" href="#/share">
-      <IconShare />
-      Share this case study
-    </a>
-  </section>
 
   <SubscribeCta />
 </div>
