@@ -3339,3 +3339,91 @@
   }
 }
 
+/* ==========================================================================
+   Share — inline (post header meta) + end-of-article block
+   Built on astro-social-share. The package emits .astro-social-share wrapping
+   <a class="social-share-btn"><svg/></a> per network. We override the
+   package's default styles by passing an empty fragment to its CSS slot.
+   ========================================================================== */
+
+.post-share-inline .astro-social-share {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  margin: 0;
+  height: auto;
+  vertical-align: middle;
+}
+
+.post-share-inline .social-share-btn {
+  display: inline-flex;
+  align-items: center;
+  margin: 0;
+  color: var(--text-secondary);
+  transition: color var(--transition-fast);
+}
+
+.post-share-inline .social-share-btn:hover {
+  color: var(--color-accent-text);
+}
+
+.post-share-inline .social-share-btn svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+.post-share {
+  max-width: var(--prose-max);
+  margin: var(--spacing-16) auto var(--spacing-12);
+  padding: var(--spacing-8) var(--spacing-8) 0;
+  border-top: var(--border-hairline) solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-6);
+  flex-wrap: wrap;
+}
+
+.post-share-label {
+  font-family: var(--font-heading);
+  font-variation-settings: 'WONK' 1, 'opsz' 72;
+  font-size: var(--text-2xl);
+  color: var(--color-text-heading);
+  letter-spacing: var(--tracking-tight);
+  line-height: 1;
+}
+
+.post-share .astro-social-share {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-4);
+  margin: 0;
+  height: auto;
+}
+
+.post-share .social-share-btn {
+  display: inline-flex;
+  align-items: center;
+  margin: 0;
+  color: var(--color-accent-text);
+  transition: transform var(--transition-fast), color var(--transition-fast);
+}
+
+.post-share .social-share-btn:hover {
+  color: var(--color-text-heading);
+  transform: translateY(-1px);
+}
+
+.post-share .social-share-btn svg {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .post-share .social-share-btn:hover {
+    transform: none;
+  }
+}
+

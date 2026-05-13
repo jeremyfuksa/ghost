@@ -1,6 +1,15 @@
 ---
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
+import {
+  SocialShare,
+  LinkedInShareButton,
+  TwitterShareButton,
+  BlueskyShareButton,
+  RedditShareButton,
+  ThreadsShareButton,
+  FacebookShareButton,
+} from 'astro-social-share';
 import TagPill from './TagPill.astro';
 import { isoDate, shortDate, readingTime } from '~/lib/format';
 
@@ -33,6 +42,15 @@ const {
 
 const readtime = readingTime(readingMinutes);
 const showDraftBanner = isDraft && import.meta.env.DEV;
+const shareUrl = new URL(Astro.url.pathname, 'https://jeremyfuksa.com').toString();
+const shareButtons = [
+  LinkedInShareButton,
+  TwitterShareButton,
+  BlueskyShareButton,
+  RedditShareButton,
+  ThreadsShareButton,
+  FacebookShareButton,
+];
 ---
 
 {showDraftBanner && (
@@ -48,6 +66,14 @@ const showDraftBanner = isDraft && import.meta.env.DEV;
       <time datetime={isoDate(publishedAt)}>{shortDate(publishedAt)}</time>
     </span>
     {readtime && <span class="post-card-readtime">{readtime}</span>}
+    <span class="post-share-inline">
+      <SocialShare
+        buttons={shareButtons}
+        url={shareUrl}
+        title={title}
+        description={excerpt}
+      />
+    </span>
   </div>
   {excerpt && <p class="post-header-excerpt">{excerpt}</p>}
   {coverImage && (
@@ -85,3 +111,13 @@ const showDraftBanner = isDraft && import.meta.env.DEV;
     <slot name="sidebar" />
   </aside>
 </div>
+
+<section class="post-share" aria-label="Share">
+  <div class="post-share-label">Enjoyed this?</div>
+  <SocialShare
+    buttons={shareButtons}
+    url={shareUrl}
+    title={title}
+    description={excerpt}
+  />
+</section>

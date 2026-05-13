@@ -26,6 +26,9 @@ importers:
       astro:
         specifier: ^6.1.10
         version: 6.1.10(@types/node@20.19.39)(rollup@4.60.3)(typescript@5.9.3)(yaml@2.8.3)
+      astro-social-share:
+        specifier: ^2.2.0
+        version: 2.2.0
       sharp:
         specifier: ^0.34.5
         version: 0.34.5
@@ -948,6 +951,9 @@ packages:
   astring@1.9.0:
     resolution: {integrity: sha512-LElXdjswlqjWrPpJFg1Fx4wpkOCxj1TDHlSV4PlaRxHGWko024xICaa97ZkMfs6DRKlCguiAI+rbXv5GWwXIkg==}
     hasBin: true
+
+  astro-social-share@2.2.0:
+    resolution: {integrity: sha512-Z5ebhO6Yw4GLggw7wsTahdpS0f4pf/XuVjQlBpWZ0zyt0cKaVrlG/+u6RzrzN9B2t27wxp90XiosZNwvBZqA+Q==}
 
   astro@6.1.10:
     resolution: {integrity: sha512-jQAIki6c862oxRr7OXXC+h3n4wg1EpmKgCH3vv1FtXM9VFmD2iTjlaxrfb0I6eQCwtUjSBxfJBFBDSXHu7Wing==}
@@ -3090,6 +3096,8 @@ snapshots:
   assertion-error@2.0.1: {}
 
   astring@1.9.0: {}
+
+  astro-social-share@2.2.0: {}
 
   astro@6.1.10(@types/node@20.19.39)(rollup@4.60.3)(typescript@5.9.3)(yaml@2.8.3):
     dependencies:
