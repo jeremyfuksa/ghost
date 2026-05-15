@@ -175,9 +175,9 @@
   isolation: isolate;
   overflow: hidden;
   background: var(--color-footer-bg);
-  /* Amber-accent division, dialed down from the original 5px so it
-     reads as definition rather than statement. */
-  border-top: 2px solid var(--color-accent-ui);
+  /* Mauve-earth division — picks up the principles section's hue,
+     gives the page a quiet color rhyme top-to-bottom. */
+  border-top: 2px solid var(--mauve-earth);
   padding: var(--spacing-8) var(--spacing-8);
 }
 
