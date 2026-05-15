@@ -4,6 +4,7 @@
 
 # Drafts live outside the repo (../ghost-drafts/)
 drafts/
+docs/
 
 # Git worktrees / agent scratch
 .worktrees/

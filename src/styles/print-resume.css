@@ -1,0 +1,358 @@
+/* ==========================================================================
+   Resume Print Stylesheet
+   jeremyfuksa.com · /resume/
+
+   Applied via <link rel="stylesheet" media="print"> on the resume page only.
+   Derives from the established typography system:
+     Fraunces     — name, section headings (restrained at print sizes)
+     Hanken Grotesk — body copy, role descriptions, bullet points
+     Work Sans    — metadata: dates, location, contact line
+   Fira Code is omitted — no live data on print.
+
+   Target: 2–3 pages, US Letter, black ink on white.
+   ========================================================================== */
+
+@media print {
+
+  /* ── Page setup ────────────────────────────────────────────────────────── */
+
+  @page {
+    size: letter portrait;
+    margin: 0.65in 0.75in 0.65in 0.75in;
+  }
+
+  @page :first {
+    margin-top: 0.5in;
+  }
+
+
+  /* ── Hide everything that isn't resume content ─────────────────────────── */
+
+  nav,
+  header nav,
+  .tinkering-strip,
+  footer,
+  .site-footer,
+  .now-page-dot,
+  .spark-pulse,
+  [class*="spark"],
+  .about-cta-section,
+  .hero-cta,
+  .hero-cta-secondary,
+  .resume-print-hide {
+    display: none !important;
+  }
+
+
+  /* ── Base reset for print ──────────────────────────────────────────────── */
+
+  *,
+  *::before,
+  *::after {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  body {
+    font-family: 'Hanken Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 9.5pt;
+    line-height: 1.45;
+    color: #000 !important;
+    background: #fff !important;
+    margin: 0;
+    padding: 0;
+  }
+
+
+  /* ── Resume page container ─────────────────────────────────────────────── */
+
+  .resume-page {
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+
+  /* ── Header block: name, title, contact ────────────────────────────────── */
+
+  .resume-header {
+    margin-bottom: 18pt;
+    padding-bottom: 10pt;
+    border-bottom: 1pt solid #ccc;
+  }
+
+  .resume-name {
+    /* Fraunces — restrained at print size. Declaration, not display. */
+    font-family: 'Fraunces', 'Georgia', serif;
+    font-size: 22pt;
+    font-weight: 425;           /* Fraunces optical weight, not bold */
+    font-variation-settings: 'opsz' 72, 'SOFT' 80, 'WONK' 1;
+    line-height: 1.1;
+    color: #000 !important;
+    margin: 0 0 3pt 0;
+    letter-spacing: -0.01em;
+  }
+
+  .resume-title {
+    /* Hanken Grotesk — descriptor, not a heading */
+    font-family: 'Hanken Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 11pt;
+    font-weight: 400;
+    color: #222 !important;
+    margin: 0 0 6pt 0;
+  }
+
+  .resume-contact {
+    /* Work Sans — metadata register */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Work Sans', system-ui, sans-serif;
+    font-size: 8.5pt;
+    color: #555 !important;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 16pt;
+  }
+
+  .resume-contact a {
+    color: #555 !important;
+    text-decoration: none;
+  }
+
+  .resume-contact a::after {
+    /* Print URLs for links if needed — suppressed here since these are
+       personal site links a recruiter can look up. */
+    content: '';
+  }
+
+
+  /* ── Currently seeking block ───────────────────────────────────────────── */
+
+  .resume-seeking {
+    margin-bottom: 14pt;
+    padding: 7pt 10pt;
+    border: 0.75pt solid #bbb;
+  }
+
+  .resume-seeking-label {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Work Sans', system-ui, sans-serif;
+    font-size: 7.5pt;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #666 !important;
+    margin: 0 0 3pt 0;
+  }
+
+  .resume-seeking-value {
+    font-family: 'Hanken Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 9pt;
+    color: #222 !important;
+    margin: 0;
+  }
+
+
+  /* ── Section headings ──────────────────────────────────────────────────── */
+
+  .resume-section-heading {
+    /* Fraunces — restrained. Section label, not display type. */
+    font-family: 'Fraunces', 'Georgia', serif;
+    font-size: 12pt;
+    font-weight: 400;
+    font-variation-settings: 'opsz' 72, 'SOFT' 80, 'WONK' 1;
+    letter-spacing: -0.01em;
+    color: #000 !important;
+    margin: 14pt 0 6pt 0;
+    padding-bottom: 3pt;
+    border-bottom: 0.5pt solid #ccc;
+    page-break-after: avoid;
+  }
+
+
+  /* ── Skills / Expertise grid ───────────────────────────────────────────── */
+
+  .resume-skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8pt 16pt;
+    margin-bottom: 4pt;
+  }
+
+  .resume-skills-domain {
+    break-inside: avoid;
+  }
+
+  .resume-skills-domain-label {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Work Sans', system-ui, sans-serif;
+    font-size: 7.5pt;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #555 !important;
+    margin: 0 0 3pt 0;
+  }
+
+  .resume-skills-list {
+    font-family: 'Hanken Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 8.5pt;
+    color: #222 !important;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .resume-skills-list li {
+    margin: 0 0 1.5pt 0;
+    padding: 0;
+  }
+
+  .resume-skills-list li::before {
+    content: '';
+  }
+
+
+  /* ── Experience entries ────────────────────────────────────────────────── */
+
+  .resume-experience-entry {
+    margin-bottom: 10pt;
+    break-inside: avoid;
+  }
+
+  .resume-experience-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 2pt;
+  }
+
+  .resume-role {
+    font-family: 'Hanken Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 9.5pt;
+    font-weight: 600;
+    color: #000 !important;
+    margin: 0;
+  }
+
+  .resume-company {
+    font-family: 'Hanken Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 9pt;
+    font-weight: 400;
+    color: #222 !important;
+    margin: 0 0 3pt 0;
+  }
+
+  .resume-dates {
+    /* Work Sans — metadata register */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Work Sans', system-ui, sans-serif;
+    font-size: 8pt;
+    color: #666 !important;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-left: 12pt;
+  }
+
+  .resume-bullets {
+    margin: 3pt 0 0 0;
+    padding-left: 12pt;
+    font-family: 'Hanken Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 8.5pt;
+    color: #222 !important;
+  }
+
+  .resume-bullets li {
+    margin-bottom: 2pt;
+    line-height: 1.4;
+  }
+
+
+  /* ── Side projects block ───────────────────────────────────────────────── */
+
+  .resume-projects {
+    margin-bottom: 10pt;
+  }
+
+  .resume-project-entry {
+    display: flex;
+    gap: 8pt;
+    margin-bottom: 4pt;
+    font-size: 8.5pt;
+  }
+
+  .resume-project-name {
+    font-family: 'Hanken Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    color: #000 !important;
+    white-space: nowrap;
+    min-width: 90pt;
+  }
+
+  .resume-project-desc {
+    font-family: 'Hanken Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #333 !important;
+  }
+
+
+  /* ── Education block ───────────────────────────────────────────────────── */
+
+  .resume-education-entry {
+    font-size: 9pt;
+    margin-bottom: 4pt;
+  }
+
+  .resume-degree {
+    font-family: 'Hanken Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    color: #000 !important;
+  }
+
+  .resume-institution {
+    font-family: 'Hanken Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #333 !important;
+  }
+
+  .resume-edu-dates {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Work Sans', system-ui, sans-serif;
+    font-size: 8pt;
+    color: #666 !important;
+  }
+
+
+  /* ── Page break rules ──────────────────────────────────────────────────── */
+
+  .resume-section-heading {
+    page-break-after: avoid;
+  }
+
+  .resume-experience-entry {
+    page-break-inside: avoid;
+  }
+
+  .resume-skills-grid {
+    page-break-inside: avoid;
+  }
+
+  h1, h2, h3 {
+    page-break-after: avoid;
+  }
+
+  ul, ol {
+    page-break-before: avoid;
+  }
+
+
+  /* ── Suppress decorative elements ──────────────────────────────────────── */
+
+  .resume-print-hide,
+  .resume-screen-only {
+    display: none !important;
+  }
+
+  /* Show elements that are screen-hidden but print-relevant */
+  .resume-print-only {
+    display: block !important;
+  }
+
+}
