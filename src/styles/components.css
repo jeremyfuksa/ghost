@@ -999,6 +999,21 @@
   margin-bottom: var(--spacing-8);
 }
 
+/* Quiet section opener — single word, Fraunces, low-key. Marks the
+   transition from work cards into the writing surface without
+   resorting to the templated `## / Section` eyebrow. */
+.home-writing-heading {
+  font-family: var(--font-heading-editorial);
+  font-variation-settings: var(--editorial-font-variation);
+  font-size: clamp(1.75rem, 1.5vw + 1.25rem, 2.5rem);
+  font-weight: 425;
+  font-style: italic;
+  color: var(--color-text-heading);
+  margin: 0 0 var(--spacing-8);
+  padding-bottom: var(--spacing-3);
+  border-bottom: var(--border-hairline) solid var(--border-default);
+}
+
 /* ---------- Workshop bridge ---------- */
 
 /* Green surface — fits the "stranger room behind the hallway" register

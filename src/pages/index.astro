@@ -117,8 +117,9 @@ const workshopChips = [
     </div>
   </section>
 
-  <section class="home-writing-section" aria-label="Writing">
+  <section class="home-writing-section" aria-labelledby="home-writing-heading">
     <div class="home-writing-inner">
+      <h2 class="home-writing-heading" id="home-writing-heading">Lately</h2>
       <div class="home-writing-grid">
         <main>
           {heroPost && <PostCardFeatured entry={heroPost} />}
