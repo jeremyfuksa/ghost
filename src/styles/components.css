@@ -188,7 +188,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url('/images/topo-footer.png');
+  background-image: url('/images/topo-footer.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1060,7 +1060,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url('/images/noise-tile.png');
+  background-image: url('/images/noise-tile.webp');
   background-repeat: repeat;
   background-size: 512px 512px;
   opacity: 0.32;
@@ -1243,7 +1243,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url('/images/noise-paper.png');
+  background-image: url('/images/noise-paper.webp');
   background-repeat: repeat;
   background-size: 256px 256px;
   opacity: 0.15;
