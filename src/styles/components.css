@@ -175,7 +175,9 @@
   isolation: isolate;
   overflow: hidden;
   background: var(--color-footer-bg);
-  border-top: var(--border-hairline) solid var(--color-footer-border);
+  /* Stark amber-accent division — the footer is the only place on the
+     site that gets a heavy top edge. */
+  border-top: 5px solid var(--color-accent-ui);
   padding: var(--spacing-8) var(--spacing-8);
 }
 
