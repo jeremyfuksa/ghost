@@ -1008,8 +1008,8 @@
   position: relative;
   isolation: isolate;
   padding: var(--spacing-20) var(--spacing-8);
-  background: color-mix(in oklch, var(--success-300) 30%, var(--neutral-200));
-  border-top: var(--border-hairline) solid color-mix(in oklch, var(--success-400) 30%, var(--neutral-300));
+  background: color-mix(in oklch, var(--success-400) 30%, var(--neutral-300));
+  border-top: var(--border-hairline) solid color-mix(in oklch, var(--success-500) 30%, var(--neutral-400));
 }
 
 /* Real Gaussian noise tile — 512x512 monochrome, pre-rendered. No
@@ -1028,8 +1028,8 @@
 }
 
 .dark .workshop-bridge {
-  background: color-mix(in oklch, var(--success-900) 30%, var(--neutral-800));
-  border-top-color: color-mix(in oklch, var(--success-800) 30%, var(--neutral-700));
+  background: color-mix(in oklch, var(--success-950) 30%, var(--neutral-900));
+  border-top-color: color-mix(in oklch, var(--success-900) 30%, var(--neutral-800));
 }
 
 .dark .workshop-bridge::before {
