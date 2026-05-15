@@ -858,21 +858,21 @@
 
 /* ---------- Principles section ---------- */
 
-/* Red surface to support the section's filter job. Stays within the
-   airy luminance ladder — danger-100 sits near neutral-100 in
-   brightness, danger-900 near neutral-800 — so the page rhythm holds
-   while the hue signals "line in the sand." */
+/* Red surface to support the section's filter job — pulled toward the
+   warm terracotta family so it reads as leather / oxblood rather than
+   alert red. Saturation lives in the hue's contribution; luminance
+   still tracks the airy ladder. */
 .principles {
   padding: var(--spacing-16) var(--spacing-8);
-  background: var(--danger-100);
-  border-top: var(--border-hairline) solid var(--danger-200);
-  border-bottom: var(--border-hairline) solid var(--danger-200);
+  background: color-mix(in oklch, var(--danger-100) 35%, var(--secondary-100));
+  border-top: var(--border-hairline) solid color-mix(in oklch, var(--danger-200) 35%, var(--secondary-200));
+  border-bottom: var(--border-hairline) solid color-mix(in oklch, var(--danger-200) 35%, var(--secondary-200));
 }
 
 .dark .principles {
-  background: var(--danger-900);
-  border-top-color: var(--danger-800);
-  border-bottom-color: var(--danger-800);
+  background: color-mix(in oklch, var(--danger-900) 35%, var(--secondary-900));
+  border-top-color: color-mix(in oklch, var(--danger-800) 35%, var(--secondary-800));
+  border-bottom-color: color-mix(in oklch, var(--danger-800) 35%, var(--secondary-800));
 }
 
 .principles-inner {
