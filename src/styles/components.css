@@ -999,10 +999,20 @@
 
 /* ---------- Workshop bridge ---------- */
 
+/* Green surface — fits the "stranger room behind the hallway" register
+   (workshop, maker bench, garden door) and pairs against the principles
+   section's mauve to give each themed section its own atmosphere. Same
+   color-mix-at-airy-luminance technique as principles: hue carries the
+   meaning, brightness keeps the page rhythm. */
 .workshop-bridge {
   padding: var(--spacing-20) var(--spacing-8);
-  background: var(--bg-muted);
-  border-top: var(--border-hairline) solid var(--border-default);
+  background: color-mix(in oklch, var(--success-300) 30%, var(--neutral-200));
+  border-top: var(--border-hairline) solid color-mix(in oklch, var(--success-400) 30%, var(--neutral-300));
+}
+
+.dark .workshop-bridge {
+  background: color-mix(in oklch, var(--success-900) 30%, var(--neutral-800));
+  border-top-color: color-mix(in oklch, var(--success-800) 30%, var(--neutral-700));
 }
 
 .workshop-bridge-inner {
@@ -1027,14 +1037,8 @@
   font-size: clamp(2.25rem, 3vw + 1rem, 3.5rem);
   font-weight: 425;
   line-height: 1.05;
-  /* Dark moss in light, sage in dark — the "stranger room" register
-     fits a muted green where the rest of the site uses warm brown. */
-  color: var(--success-900);
+  color: var(--color-text-heading);
   margin: 0 0 var(--spacing-6);
-}
-
-.dark .workshop-bridge-headline {
-  color: var(--sage);
 }
 
 .workshop-bridge-body {
