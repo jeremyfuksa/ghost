@@ -12,11 +12,11 @@ const posts = allPosts.slice(0, POSTS_PER_PAGE);
 <BaseLayout title="Writing — Jeremy Fuksa" description="Essays and notes on design, AI, and design systems.">
   <div class="writing-layout writing-layout-single">
     <div class="page-header">
-      <div class="page-header-left">
+      <div class="page-header-top">
         <h1>Writing</h1>
-        <p class="page-header-intro">In one form or another, The Cocktail Napkin has been a journal of unbridled creativity for me since 2003.</p>
+        <span class="page-header-count">{allPosts.length} posts</span>
       </div>
-      <span class="page-header-count">{allPosts.length} posts</span>
+      <p class="page-header-intro">In one form or another, The Cocktail Napkin has been a journal of unbridled creativity for me since 2003.</p>
     </div>
 
     <main>

@@ -11,11 +11,11 @@ const studies = (await getCollection('case-studies')).sort(
 <BaseLayout title="Work — Jeremy Fuksa" description="Selected case studies in design systems, AI design pipelines, and regulated-domain UX.">
   <div class="writing-layout writing-layout-single">
     <div class="page-header">
-      <div class="page-header-left">
+      <div class="page-header-top">
         <h1>Work</h1>
-        <p class="page-header-intro">Selected case studies — design systems at scale, AI design pipeline infrastructure, and UX work in regulated domains.</p>
+        <span class="page-header-count">{studies.length} case studies</span>
       </div>
-      <span class="page-header-count">{studies.length} case studies</span>
+      <p class="page-header-intro">Selected case studies — design systems at scale, AI design pipeline infrastructure, and UX work in regulated domains.</p>
     </div>
 
     <main>

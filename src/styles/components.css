@@ -1755,14 +1755,28 @@
 
 .page-header {
   grid-column: 1 / -1;
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
+  display: block;
   padding-bottom: var(--spacing-4);
   margin-bottom: var(--spacing-4);
   border-bottom: var(--border-hairline) solid var(--border-default);
 }
 
+.page-header-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--spacing-4);
+}
+
+.page-header-top h1 {
+  display: inline-block;
+  padding-bottom: var(--spacing-2);
+  border-bottom: 2px solid var(--color-accent-ui);
+  margin: 0;
+}
+
+/* Legacy left-column wrapper — retained for older markup that still
+   uses it. New pages should use .page-header-top instead. */
 .page-header-left .eyebrow {
   margin-bottom: var(--spacing-2);
 }
