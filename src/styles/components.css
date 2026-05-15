@@ -858,21 +858,21 @@
 
 /* ---------- Principles section ---------- */
 
-/* Stepped within the airy luminance ladder so it reads as a distinct
-   surface from the body — neutral-100 in light, neutral-800 in dark.
-   Dark uses the same step as nav/infrastructure (one above the body),
-   light recesses slightly into bg-subtle. */
+/* Stepped within the airy luminance ladder, but pulled out of the
+   neutral track for a tonal break — warm parchment in light, cool blue
+   infrastructure in dark. Both sit at the same luminance step as the
+   neutral surface they'd otherwise occupy, so the airy ladder holds. */
 .principles {
   padding: var(--spacing-16) var(--spacing-8);
-  background: var(--bg-subtle);
-  border-top: var(--border-hairline) solid var(--border-subtle);
-  border-bottom: var(--border-hairline) solid var(--border-subtle);
+  background: var(--secondary-100);
+  border-top: var(--border-hairline) solid var(--secondary-200);
+  border-bottom: var(--border-hairline) solid var(--secondary-200);
 }
 
 .dark .principles {
-  background: var(--neutral-800);
-  border-top-color: var(--neutral-700);
-  border-bottom-color: var(--neutral-700);
+  background: var(--primary-800);
+  border-top-color: var(--primary-700);
+  border-bottom-color: var(--primary-700);
 }
 
 .principles-inner {
