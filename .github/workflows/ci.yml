@@ -3,8 +3,10 @@ name: CI
 on:
   pull_request:
     branches: [main]
-  push:
-    branches: [main]
+
+# CI runs typecheck + tests on PRs. The deploy workflow (deploy.yml) runs
+# the full check-build-ship pipeline on pushes to main, so this file only
+# needs to gate PRs.
 
 jobs:
   astro:
@@ -31,6 +33,3 @@ jobs:
 
       - name: Test
         run: pnpm test
-
-      - name: Build
-        run: pnpm build

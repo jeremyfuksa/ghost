@@ -53,26 +53,43 @@ process on the host (`jeremyfuksa-ssr.service`) that runs the
 `@astrojs/node` standalone server (`dist/server/entry.mjs`, listening
 on `0.0.0.0:4321` — UFW restricts external access).
 
-A systemd path unit on the host (`rebuild-jeremyfuksa.path`) watches
-`~/.rebuild-trigger/rebuild` and runs `~/rebuild-jeremyfuksa.sh`:
-`git pull` → `pnpm install` → `pnpm build` →
-`sudo -n systemctl restart jeremyfuksa-ssr`.
+**Primary deploy path: CI builds, droplet receives.** Pushes to `main`
+trigger [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml):
+GitHub Actions installs deps, runs typecheck + tests, builds the site,
+tars `dist/`, and SSH-streams the tarball into the droplet. A receiver
+script (`/home/admin/deploy-jeremyfuksa.sh`, mirrored at
+[`deploy/systemd/deploy-jeremyfuksa.sh`](deploy/systemd/deploy-jeremyfuksa.sh))
+extracts to a staging dir, sanity-checks the artifact, `rsync --delete`s
+into the live `dist/`, and restarts `jeremyfuksa-ssr`. The deploy SSH
+key is locked to that script via a `command=` directive in admin's
+`authorized_keys`, so it can't be used for anything else.
+
+Why: the 2GB droplet was spending ~9 minutes on Sharp image optimization
+per build, which left an unstyled-HTML window mid-rebuild. CI does the
+heavy lift; the droplet only writes files and restarts the SSR.
 
 Deploy flow:
 
 ```bash
 git push origin main
+# That's it — Actions does the rest, ~2-3 min end to end.
+```
+
+**Manual fallback (still wired):** if Actions or GitHub is down,
+`/home/admin/rebuild-jeremyfuksa.sh` still works as before. Triggered by
+a systemd path unit watching `~/.rebuild-trigger/rebuild`:
+
+```bash
 ssh admin@161.35.226.162 'touch /home/admin/.rebuild-trigger/rebuild'
 ```
 
-Build takes ~20–30s on the droplet. nginx serves new static files on
-the next request; the SSR restart drops in-flight requests for ~300ms
-(only the homepage tinkering strip uses it).
+That path takes ~9 minutes (Sharp on a 2GB box) and is for emergencies
+only — not the everyday deploy.
 
 First-time systemd unit setup, env-var setup, nginx-to-SSR wiring, the
-docker-compose `host.docker.internal` pinning, and the UFW rule for
-the docker proxy network are all documented in
-[`deploy/systemd/README.md`](deploy/systemd/README.md).
+docker-compose `host.docker.internal` pinning, the UFW rule for the
+docker proxy network, and the deploy-receiver wiring are all documented
+in [`deploy/systemd/README.md`](deploy/systemd/README.md).
 Tinkering-strip credentials live in `/etc/jeremyfuksa-ssr.env` on the
 droplet (root:root mode 0600, out of the repo); the template is at
 [`deploy/systemd/jeremyfuksa-ssr.env.example`](deploy/systemd/jeremyfuksa-ssr.env.example).
