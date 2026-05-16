@@ -1,0 +1,83 @@
+name: Deploy
+
+# Builds on every push to main and ships the artifact to the production
+# droplet. CI runs the build (the 2GB droplet was struggling on Sharp image
+# optimization); the droplet receives a tarball over SSH and swaps it in.
+#
+# Manual fallback (the existing rebuild-jeremyfuksa.sh on the droplet) is
+# still wired up and can be triggered with `touch ~/.rebuild-trigger/rebuild`
+# if Actions or GitHub itself is down.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Don't let two pushes deploy on top of each other — second one waits.
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Build + ship to droplet
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Type-check
+        run: pnpm check
+
+      - name: Test
+        run: pnpm test
+
+      - name: Build
+        run: pnpm build
+
+      - name: Package dist as tarball
+        run: tar -czf dist.tar.gz -C dist .
+
+      - name: Ship to droplet
+        env:
+          DEPLOY_KEY: ${{ secrets.DROPLET_DEPLOY_KEY }}
+          DROPLET_HOST: 161.35.226.162
+          DROPLET_USER: admin
+          DROPLET_HOST_FINGERPRINT: ${{ secrets.DROPLET_HOST_FINGERPRINT }}
+        run: |
+          install -m 0600 /dev/stdin ~/deploy_key <<<"$DEPLOY_KEY"
+          mkdir -p ~/.ssh
+          # Pin the host fingerprint so a compromised DNS / MITM can't pose
+          # as the droplet. Stored as a GH secret; rotate if the droplet's
+          # host key ever changes.
+          echo "$DROPLET_HOST_FINGERPRINT" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/known_hosts
+          # The authorized_keys entry on the droplet pins deploy-jeremyfuksa.sh
+          # as the forced command, so any args here are ignored. Tarball
+          # streams in on stdin.
+          ssh -i ~/deploy_key \
+              -o BatchMode=yes \
+              -o UserKnownHostsFile=~/.ssh/known_hosts \
+              -o StrictHostKeyChecking=yes \
+              "$DROPLET_USER@$DROPLET_HOST" < dist.tar.gz
+
+      - name: Smoke test public endpoint
+        run: |
+          # Give nginx a beat to settle after rsync.
+          sleep 3
+          curl --fail --silent --show-error -o /dev/null -w 'HTTP %{http_code}\n' https://jeremyfuksa.com/
+          curl --fail --silent --show-error -o /dev/null -w 'HTTP %{http_code}\n' https://jeremyfuksa.com/api/tinkering.json

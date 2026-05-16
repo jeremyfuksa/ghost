@@ -17,10 +17,17 @@ process manager for.
 | `jeremyfuksa-ssr.service` | `/etc/systemd/system/jeremyfuksa-ssr.service` | root:root 0644 |
 | `jeremyfuksa-ssr.env.example` | `/etc/jeremyfuksa-ssr.env` (filled in) | root:root 0600 |
 | `sudoers.d-jeremyfuksa-ssr-restart` | `/etc/sudoers.d/jeremyfuksa-ssr-restart` | root:root 0440 |
+| `deploy-jeremyfuksa.sh` | `/home/admin/deploy-jeremyfuksa.sh` | admin:admin 0755 |
 | `rebuild-jeremyfuksa.sh` | `/home/admin/rebuild-jeremyfuksa.sh` | admin:admin 0755 |
 
 The credentials file lives outside the repo because it holds the
 `GITHUB_TOKEN`, Home Assistant tokens, and entity IDs.
+
+`deploy-jeremyfuksa.sh` is the CI-driven receiver; `rebuild-jeremyfuksa.sh`
+is the manual on-droplet fallback. Both end in the same place
+(`systemctl restart jeremyfuksa-ssr`) but the CI path skips the
+9-minute Sharp pass on this 2GB droplet by doing the build on a GH
+Actions runner.
 
 ## First-time bootstrap
 
@@ -121,12 +128,40 @@ services:
 `/usr/share/nginx/html/server` but is never served — nginx's `root`
 is the `client` subdirectory.
 
-## Rebuild flow
+## Deploy flow — CI (primary path)
 
-The existing `rebuild-jeremyfuksa.path` systemd unit fires when
-`~/.rebuild-trigger/rebuild` is touched after a push to main. The
-script at `/home/admin/rebuild-jeremyfuksa.sh` (mirror of
-`rebuild-jeremyfuksa.sh` in this dir) runs:
+Pushes to `main` trigger `.github/workflows/deploy.yml`. The workflow
+installs deps, runs typecheck + tests, builds the site, tars `dist/`,
+and pipes the tarball into the droplet over SSH:
+
+```
+ssh -i deploy_key admin@161.35.226.162 < dist.tar.gz
+```
+
+The deploy SSH key is locked down on the droplet via a `command=`
+directive in `~/.ssh/authorized_keys` — it can only invoke
+`deploy-jeremyfuksa.sh`. That script:
+
+1. Acquires a flock on `~/.rebuild-trigger/deploy.lock`.
+2. Extracts the incoming tar to `~/jeremyfuksa.com/dist-incoming/`.
+3. Sanity-checks `client/index.html` and `server/entry.mjs` are present.
+4. `rsync -a --delete dist-incoming/ dist/` — files swap in place under
+   the bind mount; nginx keeps serving from the same `dist/` inode.
+5. `sudo -n systemctl restart jeremyfuksa-ssr` via the same sudoers
+   rule the rebuild script uses.
+
+Required GitHub Actions secrets:
+
+| Secret | What |
+|---|---|
+| `DROPLET_DEPLOY_KEY` | The full private key (including header/footer) |
+| `DROPLET_HOST_FINGERPRINT` | Output of `ssh-keyscan -t ed25519,rsa 161.35.226.162` (one line, used as `known_hosts`) |
+
+## Deploy flow — manual fallback
+
+The existing `rebuild-jeremyfuksa.path` systemd unit still fires when
+`~/.rebuild-trigger/rebuild` is touched. The script at
+`/home/admin/rebuild-jeremyfuksa.sh` runs:
 
 ```
 git pull --ff-only
@@ -134,6 +169,10 @@ pnpm install --frozen-lockfile
 pnpm build
 sudo -n systemctl restart jeremyfuksa-ssr
 ```
+
+This path takes ~9 minutes on a 2GB droplet because Sharp image
+optimization is CPU-bound, and during that window users see the
+in-progress build mid-write. It's the emergency path, not the default.
 
 `systemctl restart` is not zero-downtime; the SSR drops in-flight
 requests for ~300ms. The only client of the SSR is the homepage
